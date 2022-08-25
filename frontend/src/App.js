@@ -10,7 +10,18 @@ import Questions from './pages/questions/Questions';
 import Tags from './pages/tags/Tags';
 import Users from './pages/users/Users';
 
-const Contents = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+`;
+
+const Contents = styled.div`
+  width: 100%;
+  height: 100vh;
+  border: 1px solid black;
+  padding-left: 164px;
+`;
 
 function App() {
   // const [helloWorld, setHelloWorld] = useState('');
@@ -38,10 +49,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
-        <Header />
+      <Header />
+      <Container>
         <Navigator />
         <Contents>
+          <div>여기는 Contents입니다</div>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/questions" element={<Questions />}></Route>
@@ -49,7 +61,7 @@ function App() {
             <Route path="/users" element={<Users />}></Route>
           </Routes>
         </Contents>
-      </div>
+      </Container>
     </BrowserRouter>
   );
 }
