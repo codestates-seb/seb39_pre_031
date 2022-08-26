@@ -1,9 +1,9 @@
-import QuestionBtn from '../../components/questions/QuestionBtn';
+import AskQuestionBtn from '../../components/questions/AskQuestionBtn';
 
 const Questions = () => {
   return (
     <div>
-      <QuestionBtn />
+      <AskQuestionBtn />
       Qustion 입니다
     </div>
   );

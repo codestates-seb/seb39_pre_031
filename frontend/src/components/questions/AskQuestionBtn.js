@@ -1,6 +1,6 @@
 import SubmitButton from '../../common/SubmitButton';
 
-const QuestionBtn = () => {
+const AskQuestionBtn = () => {
   return (
     <SubmitButton
       go="/questions/ask"
@@ -12,4 +12,4 @@ const QuestionBtn = () => {
   );
 };
 
-export default QuestionBtn;
+export default AskQuestionBtn;

@@ -1,7 +1,6 @@
-import SubmitButton from '../../common/SubmitButton';
-import QuestionForm from '../../components/questions/QuestionForm';
-
 import styled from 'styled-components';
+import AskForm from '../../components/questions/AskForm';
+import SubmitButton from '../../common/SubmitButton';
 
 const AskContainer = styled.div`
   height: 100%;
@@ -20,8 +19,8 @@ const HeaderTxt = styled.div`
 const Ask = () => {
   return (
     <AskContainer>
-      <HeaderTxt>ASK a public question</HeaderTxt>
-      <QuestionForm />
+      <HeaderTxt>Ask a public question</HeaderTxt>
+      <AskForm />
       <SubmitButton
         go="/"
         text="Review your question"
