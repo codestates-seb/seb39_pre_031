@@ -11,12 +11,10 @@ const Container = styled.div`
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header />
-      <Container>
-        <RoutesTree />
-      </Container>
-    </div>
+      <RoutesTree />
+    </Container>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import SubmitButton from '../../common/SubmitButton';
+import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.jpeg';
 
 const Head = styled.header`
@@ -40,9 +40,11 @@ const HeaderInput = styled.div`
 
   > input {
     width: 80%;
-    height: 20px;
+    height: 30px;
+    border-radius: 3px;
     padding: 5px 35px;
     font-size: 13px;
+    border: 1px solid #babfc3;
   }
 `;
 
@@ -63,7 +65,7 @@ const Header = () => {
         </Link>
       </HeaderLogo>
       <HeaderInput>
-        <input />
+        <input placeholder="Search..." />
       </HeaderInput>
       <HeaderLogin>
         <SubmitButton
