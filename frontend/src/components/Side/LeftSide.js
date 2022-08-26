@@ -8,7 +8,7 @@ const Nav = styled.nav`
   top: 50px;
 `;
 
-const Navigator = () => {
+const LeftSide = () => {
   return (
     <Nav>
       <div>여기는 Nav 입니다</div>
@@ -16,4 +16,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default LeftSide;
