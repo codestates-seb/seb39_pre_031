@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/SubmitButton';
-import logoImage from '../../image/logo.jpeg';
+import logoImage from '../../image/headerLogo.jpeg';
 
 const Head = styled.header`
   width: 100;
