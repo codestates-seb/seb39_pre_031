@@ -1,5 +1,12 @@
+import QuestionBtn from '../../components/questions/QuestionBtn';
+
 const Questions = () => {
-  return <div>Qustion 입니다</div>;
+  return (
+    <div>
+      <QuestionBtn />
+      Qustion 입니다
+    </div>
+  );
 };
 
 export default Questions;
