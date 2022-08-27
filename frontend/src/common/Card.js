@@ -2,6 +2,9 @@
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   width: ${({ width }) => (width ? width : '40rem')};
   padding: ${({ padding }) => (padding ? padding : '16px')};
   margin: ${({ margin }) => (margin ? margin : '2rem auto')};
@@ -12,8 +15,8 @@ const CardContainer = styled.div`
   border: 1px solid rgb(214, 217, 220);
 `;
 
-const Card = (props) => {
-  return <CardContainer>{props.children}</CardContainer>;
+const Card = ({ children, ...props }) => {
+  return <CardContainer {...props}>{children}</CardContainer>;
 };
 
 export default Card;

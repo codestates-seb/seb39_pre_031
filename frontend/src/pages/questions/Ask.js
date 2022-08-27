@@ -1,9 +1,14 @@
 import styled from 'styled-components';
-import AskForm from '../../components/questions/AskForm';
+import AskForm from '../../components/ask/AskForm';
 import SubmitButton from '../../common/SubmitButton';
+import AskInfo from '../../components/ask/AskInfo.js';
 
 const AskContainer = styled.div`
-  height: 100%;
+  display: flex;
+  width: 100%;
+`;
+
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,15 +24,18 @@ const HeaderTxt = styled.div`
 const Ask = () => {
   return (
     <AskContainer>
-      <HeaderTxt>Ask a public question</HeaderTxt>
-      <AskForm />
-      <SubmitButton
-        go="/"
-        text="Review your question"
-        width="150px"
-        height="35px"
-        color="white"
-      />
+      <FormContainer>
+        <HeaderTxt>Ask a public question</HeaderTxt>
+        <AskForm />
+        <SubmitButton
+          go="/"
+          text="Review your question"
+          width="150px"
+          height="35px"
+          color="white"
+        />
+      </FormContainer>
+      <AskInfo />
     </AskContainer>
   );
 };

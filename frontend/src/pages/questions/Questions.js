@@ -1,4 +1,4 @@
-import AskQuestionBtn from '../../components/questions/AskQuestionBtn';
+import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 
 const Questions = () => {
   return (
