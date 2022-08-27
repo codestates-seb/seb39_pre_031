@@ -4,6 +4,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import Card from '../../common/Card';
 
 import styled from 'styled-components';
+import AskPreViewer from './AskPreViewer';
 
 const Label = styled.label`
   width: 100%;
@@ -89,6 +90,7 @@ const AskForm = () => {
           ``` <code>code</code> ``` <strong>**bold**</strong> *<em>italic</em>*
           &gt;quote
         </div>
+        <AskPreViewer />
       </PreviewContainer>
       <Label className="tags">
         Tags

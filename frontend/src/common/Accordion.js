@@ -33,7 +33,8 @@ const ContentsContainer = styled.div`
 const ContentsBlock = styled.div`
   font-size: 12px;
   background-color: white;
-  padding: 0.5rem 3rem 0.5rem 2rem;
+  padding: ${({ contentsPadding }) =>
+    contentsPadding ? contentsPadding : '1rem'};
   line-height: 1rem;
 `;
 
@@ -59,7 +60,7 @@ const Accordion = ({ info, active, onToggle, ...props }) => {
             : { height: '0px' }
         }
       >
-        <ContentsBlock>{contents}</ContentsBlock>
+        <ContentsBlock {...props}>{contents}</ContentsBlock>
       </ContentsContainer>
     </Container>
   );

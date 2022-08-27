@@ -10,6 +10,10 @@ const ABlock = styled.a`
   }
 `;
 
+const DivBlock = styled.div`
+  padding-bottom: 0.8rem;
+`;
+
 const AskInfoSecondItem = () => {
   const [clicked, setClicked] = useState(-1);
 
@@ -33,7 +37,7 @@ const AskInfoSecondItem = () => {
         title: 'More helpuful links',
         contents: (
           <>
-            <div>
+            <DivBlock>
               <span>Find more information about </span>
               <ABlock
                 href="https://stackoverflow.com/help/how-to-ask"
@@ -41,7 +45,7 @@ const AskInfoSecondItem = () => {
               >
                 how to ask a good question here
               </ABlock>
-            </div>
+            </DivBlock>
             <div>
               <span>Visit the </span>
               <ABlock href="https://stackoverflow.com/help" target="_blank">

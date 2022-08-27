@@ -65,6 +65,7 @@ const AskInfoFirstItem = () => {
             active={clicked === idx}
             info={step}
             color="black"
+            contentsPadding="0.2rem 3rem 0.5rem 2rem"
           />
         );
       })}

@@ -10,6 +10,10 @@ const ABlock = styled.a`
   }
 `;
 
+const DivBlock = styled.div`
+  padding-bottom: 0.8rem;
+`;
+
 const AskInfoSecondItem = () => {
   const [clicked, setClicked] = useState(-1);
 
@@ -33,7 +37,7 @@ const AskInfoSecondItem = () => {
         title: 'Have a non-programming question?',
         contents: (
           <>
-            <p>
+            <DivBlock>
               <ABlock
                 href="https://superuser.com/help/on-topic"
                 target="_blank"
@@ -42,8 +46,8 @@ const AskInfoSecondItem = () => {
                 Super user
               </ABlock>
               <div>Troubleshooting hardware and software issues</div>
-            </p>
-            <p>
+            </DivBlock>
+            <DivBlock>
               <ABlock
                 href="https://softwareengineering.stackexchange.com/"
                 target="_blank"
@@ -52,8 +56,8 @@ const AskInfoSecondItem = () => {
                 Software engineering
               </ABlock>
               <div>For software development methods and process questions </div>
-            </p>
-            <p>
+            </DivBlock>
+            <DivBlock>
               <ABlock
                 href="https://hardwarerecs.stackexchange.com/help/on-topic"
                 target="_blank"
@@ -61,17 +65,17 @@ const AskInfoSecondItem = () => {
               >
                 Hardware recommendations
               </ABlock>
-            </p>
-            <p>
-              <aABlock
+            </DivBlock>
+            <DivBlock>
+              <ABlock
                 href="https://softwarerecs.stackexchange.com/help/on-topic"
                 target="_blank"
                 rel="noreferrer"
               >
                 Software recommendations
-              </aABlock>
-            </p>
-            <p>
+              </ABlock>
+            </DivBlock>
+            <div>
               Ask questions about the site on{' '}
               <ABlock
                 href="https://meta.stackoverflow.com/"
@@ -80,7 +84,7 @@ const AskInfoSecondItem = () => {
               >
                 meta
               </ABlock>
-            </p>
+            </div>
           </>
         ),
       }}
