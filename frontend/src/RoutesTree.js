@@ -5,6 +5,7 @@ import Questions from './pages/questions/Questions';
 import Signup from './pages/signup/Signup';
 import Tags from './pages/tags/Tags';
 import Users from './pages/users/Users';
+import Ask from './pages/questions/Ask';
 
 const RoutesTree = () => {
   return (
@@ -16,6 +17,7 @@ const RoutesTree = () => {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/questions/ask" element={<Ask />} />
     </Routes>
   );
 };
