@@ -3,23 +3,26 @@ import LeftSide from '../../components/Side/LeftSide';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  flex-grow: 1;
   display: flex;
   justify-content: center;
+  width: 1300px;
 `;
 
 const LeftSideBlock = styled.div`
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  width: 164px;
+  flex-basis: 164px;
+  flex-grow: 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
 `;
 const Content = styled.div`
+  flex-grow: 1;
+  flex-shrink: 1;
   padding: 24px;
-  width: 1100px;
+  flex-basis: auto;
   border-left: 0.1px solid hsl(210, 8%, 75%);
 `;
 
