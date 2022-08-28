@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import logoImage from '../../image/logo.png';
+import logoImage from '../../assets/image/logo.png';
 
 const Container = styled.div`
   width: 100%;

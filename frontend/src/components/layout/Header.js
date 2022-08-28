@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/SubmitButton';
-import logoImage from '../../image/headerLogo.jpeg';
+import logoImage from '../../assets/image/headerLogo.jpeg';
 
 const Head = styled.header`
-  width: 100;
+  width: 100vw;
   height: 50px;
-  border: 1px solid black;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +13,10 @@ const Head = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: hsl(210, 8%, 97.5%);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
+  border-top: 3px solid hsl(27, 90%, 55%);
 `;
 
 const HeaderLogo = styled.div`

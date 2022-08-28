@@ -1,22 +1,31 @@
-// import { useState, useEffect } from 'react';
-import './App.css';
 import Header from './components/layout/Header';
 import RoutesTree from './RoutesTree';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderBlock = styled.div`
+  width: 100vw;
+  height: 50px;
+`;
+
+const ContentsBlock = styled.div`
+  height: calc(100vh - 50px);
 `;
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Container>
+    <Container>
+      <HeaderBlock>
+        <Header />
+      </HeaderBlock>
+      <ContentsBlock>
         <RoutesTree />
-      </Container>
-    </div>
+      </ContentsBlock>
+    </Container>
   );
 }
 
