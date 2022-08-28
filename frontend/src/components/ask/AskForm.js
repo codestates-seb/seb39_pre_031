@@ -33,11 +33,10 @@ const InputBlock = styled.input`
 `;
 
 const PreviewContainer = styled.div`
-  margin: 1rem 0;
-
   div {
     font-size: 12px;
     color: hsl(210, 8%, 45%);
+    margin-top: 10px;
   }
 
   code {
@@ -57,7 +56,7 @@ const AskForm = () => {
   // Editor.prototype.getInstance().getMarkdown()
 
   return (
-    <Card>
+    <Card width="842px" margin="0 0 2rem 0">
       <Label>
         Title
         <div>

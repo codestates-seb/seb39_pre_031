@@ -13,7 +13,9 @@ const HeaderBlock = styled.div`
 `;
 
 const ContentsBlock = styled.div`
-  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: center;
+  align-items: center;
 `;
 
 function App() {
