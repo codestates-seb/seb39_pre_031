@@ -5,7 +5,6 @@ import NavItem from './NavItem';
 const Nav = styled.nav`
   height: 100%;
   width: 164px;
-  border-right: 0.1px solid hsl(210, 8%, 75%);
   position: fixed;
   top: 50px;
 `;

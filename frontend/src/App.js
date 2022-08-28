@@ -3,6 +3,7 @@ import RoutesTree from './RoutesTree';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  width: 100vw;
   display: flex;
   flex-direction: column;
 `;
@@ -14,8 +15,7 @@ const HeaderBlock = styled.div`
 
 const ContentsBlock = styled.div`
   display: flex;
-  flex-direction: center;
-  align-items: center;
+  justify-content: center;
 `;
 
 function App() {

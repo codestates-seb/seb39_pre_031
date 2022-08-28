@@ -3,12 +3,15 @@ import LeftSide from '../../components/Side/LeftSide';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const LeftSideBlock = styled.div`
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   width: 164px;
   flex-shrink: 0;
   display: flex;
@@ -17,6 +20,7 @@ const LeftSideBlock = styled.div`
 const Content = styled.div`
   padding: 24px;
   width: 1100px;
+  border-left: 0.1px solid hsl(210, 8%, 75%);
 `;
 
 const Home = () => {
