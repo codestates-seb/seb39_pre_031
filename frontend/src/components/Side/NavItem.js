@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { ImEarth } from 'react-icons/im';
 
 const NavList = styled.li`
-  width: ${({ width }) => (width ? width : '139px')};
+  width: 164px;
   height: ${({ height }) => (height ? height : '33px')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '0.8rem')};
   color: ${({ color }) => (color ? color : 'hsl(210, 8%, 25%)')};
@@ -28,7 +28,7 @@ const NavList = styled.li`
     props.isClick &&
     css`
       color: black;
-      width: ${({ width }) => (width ? width : '132px')};
+      width: 164px;
       background-color: hsl(210, 8%, 95%);
       border-right: 4px solid #f48224;
       font-weight: 700;

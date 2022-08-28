@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import NavItem from '../../common/NavItem';
+import NavItem from './NavItem';
 
 const Nav = styled.nav`
   height: 100%;
   width: 164px;
-  border: 1px soLid black;
+  border-right: 0.1px solid hsl(210, 8%, 75%);
   position: fixed;
   top: 50px;
 `;
 
 const NavMenu = styled.ol`
   list-style: none;
-  padding: 0;
-  padding-top: 0.1rem;
+  padding-top: 24px;
 `;
 
 const LeftSide = () => {
@@ -23,7 +22,6 @@ const LeftSide = () => {
     {
       text: 'Home',
       path: '/',
-      width: '153px',
       padding: '0 0 0 0.5rem',
     },
     {
@@ -31,7 +29,7 @@ const LeftSide = () => {
       height: '10px',
       fontSize: '10px',
       color: 'hsl(210, 8%, 25%)',
-      padding: '1.2rem 0 0.4rem 0.5rem',
+      padding: '1.2rem 0 0.8rem 0.5rem',
       cursor: 'help',
       pointerEvents: 'none',
     },
@@ -39,7 +37,6 @@ const LeftSide = () => {
       text: 'Questions',
       path: '/questions',
       padding: '0 0 0 0.6rem',
-      width: '152px',
     },
     { text: 'Tags', path: '/tags' },
     { text: 'Users', path: '/users' },
