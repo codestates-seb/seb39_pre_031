@@ -1,9 +1,9 @@
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
-import Card from '../../common/Card';
-
 import styled from 'styled-components';
+import Card from '../../common/Card';
+import Input from '../../common/Input';
 import AskPreViewer from './AskPreViewer';
 
 const Label = styled.label`
@@ -19,18 +19,18 @@ const Label = styled.label`
   }
 `;
 
-const InputBlock = styled.input`
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.6em 0.7em;
-  border: 1px solid hsl(210, 8%, 75%);
-  border-radius: 3px;
+// const InputBlock = styled.input`
+//   box-sizing: border-box;
+//   width: 100%;
+//   margin-bottom: 1rem;
+//   padding: 0.6em 0.7em;
+//   border: 1px solid hsl(210, 8%, 75%);
+//   border-radius: 3px;
 
-  ::placeholder {
-    color: hsl(210, 8%, 75%);
-  }
-`;
+//   ::placeholder {
+//     color: hsl(210, 8%, 75%);
+//   }
+// `;
 
 const PreviewContainer = styled.div`
   div {
@@ -63,11 +63,7 @@ const AskForm = () => {
           Be specific and imagine you’re asking a question to another person
         </div>
       </Label>
-      <InputBlock
-        placeholder="e.g. Is there an R function for finding the index an element in a vector?"
-        maxLength={300}
-        minLength={15}
-      />
+      <Input text="e.g. Is there an R function for finding the index an element in a vector?" />
       <Label>
         Body
         <div>
@@ -95,7 +91,7 @@ const AskForm = () => {
         Tags
         <div>Add up to 5 tags to describe what your question is about</div>
       </Label>
-      <InputBlock placeholder="e.g. (ruby-on-rails .net sql-server)" />
+      <Input text="e.g. (ruby-on-rails .net sql-server)" />
     </Card>
   );
 };
