@@ -4,7 +4,7 @@ const OauthBtn = styled.div`
   width: 100%;
   height: 37px;
   font-size: 15px;
-  margin: 8px 0;
+  margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
   text-align: center;
   cursor: pointer;
   border-radius: 5px;

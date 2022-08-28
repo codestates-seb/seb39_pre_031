@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import OauthButton from '../../common/Button/OauthButton';
 import InputForm from '../../common/InputForm';
+import SignupBtn from './SignupBtn';
 
 const SignupContent = styled.div`
   width: 35%;
@@ -41,6 +43,30 @@ const LoginLink = styled.div`
 `;
 
 const SignupComponent = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  //* onChaneHandler
+  const nameHandler = (event) => {
+    setName(event.target.value);
+  };
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+  const submitHandler = () => {
+    const userInfo = {
+      name,
+      email,
+      password,
+    };
+
+    console.log(userInfo);
+  };
+
   return (
     <SignupContent>
       <SingupOauth>
@@ -57,13 +83,22 @@ const SignupComponent = () => {
         />
       </SingupOauth>
       <SingupForm>
-        <InputForm title="Display name" type="text" />
-        <InputForm title="Email" type="email" />
-        <InputForm title="Password" type="password" />
-        <OauthButton
+        <InputForm title="Display name" type="text" onChange={nameHandler} />
+        <InputForm title="Email" type="email" onChange={emailHandler} />
+        <InputForm
+          title="Password"
+          type="password"
+          onChange={passwordHandler}
+        />
+        <SignupBtn
+          go="/"
           btnName="Sign up"
           backgroundColor="#0074CC"
           color="white"
+          type="submit"
+          width="100%"
+          height="37px"
+          onClick={submitHandler}
         />
       </SingupForm>
       <LoginLink>

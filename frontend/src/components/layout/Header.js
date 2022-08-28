@@ -70,11 +70,11 @@ const Header = () => {
       <HeaderLogin>
         <SubmitButton
           go="/login"
-          text="Log In"
+          btnName="Log In"
           backgroundColor="#C7DCF5"
           color="#3F94F8"
         />
-        <SubmitButton go="/signup" text="Sign Up" color="white" />
+        <SubmitButton go="/signup" btnName="Sign Up" color="white" />
       </HeaderLogin>
     </Head>
   );

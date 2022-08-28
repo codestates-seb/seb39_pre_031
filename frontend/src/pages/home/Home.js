@@ -12,7 +12,6 @@ const Home = () => {
     <>
       <LeftSide />
       <Content>
-        <div>여기는 Container입니다.</div>
         <Outlet />
       </Content>
     </>

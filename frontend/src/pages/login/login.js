@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import OauthButton from '../../common/Button/OauthButton';
 import InputForm from '../../common/InputForm';
 import logoImage from '../../image/logo.png';
+import LoginBtn from './loginBtn';
+import OauthBtn from './OauthBtn';
 
 const Container = styled.div`
   width: 100%;
@@ -22,14 +24,14 @@ const Content = styled.div`
 
 const Component = styled.div`
   height: 100%;
-  width: 30%;
+  width: 27%;
   display: flex;
   align-items: center;
 `;
 
 const LoginContent = styled.div`
   width: 100%;
-  height: 60%;
+  height: 80%;
 `;
 
 const LoginLogo = styled.div`
@@ -76,6 +78,26 @@ const SignpLink = styled.div`
 `;
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const submitHandler = () => {
+    const userInfo = {
+      email,
+      password,
+    };
+    console.log('good');
+    console.log(userInfo);
+  };
+
   return (
     <Container>
       <Content>
@@ -83,18 +105,18 @@ const Login = () => {
           <LoginContent>
             <LoginLogo>
               <Link to="/">
-                <Logo></Logo>
+                <Logo />
               </Link>
             </LoginLogo>
 
             <LoginOauth>
-              <OauthButton btnName="Log in with Google" />
-              <OauthButton
+              <OauthBtn btnName="Log in with Google" />
+              <OauthBtn
                 btnName="Log in with GitHub"
                 color="white"
                 backgroundColor="#2f3337"
               />
-              <OauthButton
+              <OauthBtn
                 btnName="Log in with Facebook"
                 color="white"
                 backgroundColor="#304986"
@@ -102,16 +124,23 @@ const Login = () => {
             </LoginOauth>
 
             <LoginForm>
-              <InputForm title="Email" type="email" />
+              <InputForm title="Email" type="email" onChange={emailHandler} />
               <InputForm
                 title="Password"
                 type="password"
                 passwordLink="Forgot password?"
+                onChange={passwordHandler}
               />
-              <OauthButton
+              <LoginBtn
+                go="/"
                 btnName="Log in"
+                type="submit"
                 backgroundColor="#0074CC"
                 color="white"
+                marginTD="2rem"
+                width="100%"
+                height="37px"
+                onClick={submitHandler}
               />
             </LoginForm>
 
