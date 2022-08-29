@@ -1,19 +1,25 @@
+import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
-import logoImage from '../../image/headerLogo.jpeg';
+import logoImage from '../../image/headerLogo.png';
 
-const Head = styled.header`
-  width: 100;
+const Container = styled.header`
+  width: 100%;
   height: 50px;
-  border: 1px solid black;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  background-color: #f8f9f9;
+  box-shadow: 5px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const Head = styled.div`
+  width: 82%;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
 `;
 
 const HeaderLogo = styled.div`
@@ -36,8 +42,13 @@ const HeaderInput = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: center;
 
+  .searchIcon {
+    position: absolute;
+    left: 5.3rem;
+  }
   > input {
     width: 80%;
     height: 30px;
@@ -58,25 +69,28 @@ const HeaderLogin = styled.div`
 
 const Header = () => {
   return (
-    <Head>
-      <HeaderLogo>
-        <Link to="/">
-          <Logo className="logo-image"></Logo>
-        </Link>
-      </HeaderLogo>
-      <HeaderInput>
-        <input placeholder="Search..." />
-      </HeaderInput>
-      <HeaderLogin>
-        <SubmitButton
-          go="/login"
-          btnName="Log In"
-          backgroundColor="#C7DCF5"
-          color="#3F94F8"
-        />
-        <SubmitButton go="/signup" btnName="Sign Up" color="white" />
-      </HeaderLogin>
-    </Head>
+    <Container>
+      <Head>
+        <HeaderLogo>
+          <Link to="/">
+            <Logo className="logo-image"></Logo>
+          </Link>
+        </HeaderLogo>
+        <HeaderInput>
+          <BiSearch className="searchIcon" />
+          <input placeholder="Search..." />
+        </HeaderInput>
+        <HeaderLogin>
+          <SubmitButton
+            go="/login"
+            btnName="Log In"
+            backgroundColor="#C7DCF5"
+            color="#3F94F8"
+          />
+          <SubmitButton go="/signup" btnName="Sign Up" color="white" />
+        </HeaderLogin>
+      </Head>
+    </Container>
   );
 };
 
