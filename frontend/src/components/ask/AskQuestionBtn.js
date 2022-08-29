@@ -1,10 +1,10 @@
-import SubmitButton from '../../common/SubmitButton';
+import SubmitButton from '../../common/Button/SubmitButton';
 
 const AskQuestionBtn = () => {
   return (
     <SubmitButton
       go="/questions/ask"
-      text="Ask Question"
+      btnName="Ask Question"
       width="100px"
       height="36px"
       color="white"

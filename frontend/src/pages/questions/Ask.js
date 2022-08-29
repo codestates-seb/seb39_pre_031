@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import AskForm from '../../components/ask/AskForm';
-import SubmitButton from '../../common/SubmitButton';
+import SubmitButton from '../../common/Button/SubmitButton';
 import AskInfo from '../../components/ask/AskInfo.js';
 
 const AskContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
 `;
 
 const FormContainer = styled.div`
@@ -29,7 +30,7 @@ const Ask = () => {
         <AskForm />
         <SubmitButton
           go="/"
-          text="Review your question"
+          btnName="Review your question"
           width="150px"
           height="35px"
           color="white"
