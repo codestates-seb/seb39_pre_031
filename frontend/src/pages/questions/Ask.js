@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundImg from '../../assets/image/background.svg';
+import backgroundImg from '../../image/background.svg';
 import AskForm from '../../components/ask/AskForm';
 import SubmitButton from '../../common/SubmitButton';
 import AskInfo from '../../components/ask/AskInfo.js';
