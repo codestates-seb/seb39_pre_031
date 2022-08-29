@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LoginBtn = styled.button`
+const MakeBtn = styled.button`
   width: ${({ width }) => (width ? width : '90px')};
   height: ${({ height }) => (height ? height : '30px')};
   color: ${({ color }) => (color ? color : 'black')};
@@ -11,13 +11,14 @@ const LoginBtn = styled.button`
   border: 1px solid
     ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205,36%,53%)')};
   border-radius: 3px;
+  margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
 `;
 
 //! props : width, backgroundColor, link, color
-const SubmitButton = ({ go, text, ...props }) => {
+const SubmitButton = ({ go, btnName, ...props }) => {
   return (
     <Link to={go}>
-      <LoginBtn {...props}>{text}</LoginBtn>
+      <MakeBtn {...props}>{btnName}</MakeBtn>
     </Link>
   );
 };

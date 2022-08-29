@@ -10,16 +10,21 @@ const ABlock = styled.a`
   }
 `;
 
+const ListBlock = styled.ul`
+  line-height: 1.5rem;
+  padding-left: 1rem;
+`;
+
 const AskInfoFirstItem = () => {
   const steps = [
     {
       title: '1. Summarize the problem',
       contents: (
-        <ul style={{ lineHeight: '1.5rem', paddingLeft: '1rem' }}>
+        <ListBlock>
           <li>Include details about your goal</li>
           <li>Describe expected and actual results</li>
           <li>Include any error messages</li>
-        </ul>
+        </ListBlock>
       ),
     },
     {

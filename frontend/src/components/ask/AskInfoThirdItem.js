@@ -34,7 +34,7 @@ const AskInfoSecondItem = () => {
       fontWeight="500"
       fontSize="14px"
       info={{
-        title: 'More helpuful links',
+        title: 'More helpful links',
         contents: (
           <>
             <DivBlock>
