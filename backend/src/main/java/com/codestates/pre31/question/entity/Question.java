@@ -1,26 +1,26 @@
-package com.codestates.pre31.entities;
+package com.codestates.pre31.question.entity;
 
+import com.codestates.pre31.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
-@Entity(name="answer")
-@Table(name="Answer")
+@Entity(name="question")
+@Table(name="Question")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Answer {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int answerId;
-
+    private int questionId;
 
     @Column
     private String title;
@@ -38,19 +38,17 @@ public class Answer {
     private Timestamp modifiedTime;
 
     @Column
-    private int voteUp;
+    private int vote_up;
 
     @Column
-    private int voteDown;
+    private int vote_down;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
-
+    @OneToMany(mappedBy = "question")
+//  @JoinTable(name = "Answer")
+    private List<Answer> answer;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
 //    private User user;
-
 
 }
