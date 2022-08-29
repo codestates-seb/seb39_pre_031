@@ -3,15 +3,12 @@ import styled from 'styled-components';
 import NavItem from '../../common/NavItem';
 
 const Nav = styled.nav`
+  display: block;
   height: 100%;
-  width: 164px;
-  border: 1px soLid black;
-  position: fixed;
-  top: 50px;
+  min-width: 9rem;
 `;
 
-const NavMenu = styled.ol`
-  list-style: none;
+const NavMenu = styled.ul`
   padding: 0;
   padding-top: 0.1rem;
 `;
@@ -23,7 +20,7 @@ const LeftSide = () => {
     {
       text: 'Home',
       path: '/',
-      width: '153px',
+      width: '100%',
       padding: '0 0 0 0.5rem',
     },
     {
@@ -39,10 +36,10 @@ const LeftSide = () => {
       text: 'Questions',
       path: '/questions',
       padding: '0 0 0 0.6rem',
-      width: '152px',
+      width: '100%',
     },
-    { text: 'Tags', path: '/tags' },
-    { text: 'Users', path: '/users' },
+    { text: 'Tags', path: '/tags', width: '100%' },
+    { text: 'Users', path: '/users', width: '100%' },
   ];
 
   return (
