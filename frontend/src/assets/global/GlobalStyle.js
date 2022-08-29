@@ -5,7 +5,6 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
-  list-style: none;
   text-decoration: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
