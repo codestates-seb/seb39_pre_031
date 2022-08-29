@@ -1,5 +1,4 @@
 // import { useState, useEffect } from 'react';
-import './App.css';
 import Header from './components/layout/Header';
 import RoutesTree from './RoutesTree';
 // import styled from 'styled-components';

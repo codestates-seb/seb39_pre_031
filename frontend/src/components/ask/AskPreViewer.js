@@ -3,11 +3,11 @@ import { Viewer } from '@toast-ui/react-editor';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  padding: 12px;
+  margin: 0 15px;
 `;
 
 const AskPreViewer = () => {
-  const markdown = '> 안녕하세요';
+  const markdown = '# 마크다운 미리보기 예시';
 
   return (
     <Container>

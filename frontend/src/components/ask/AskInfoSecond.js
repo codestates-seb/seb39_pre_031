@@ -3,7 +3,7 @@ import AskInfoSecondItem from './AskInfoSecondItem';
 
 const AskInfoSecond = () => {
   return (
-    <Card width="314px" padding="0">
+    <Card width="314px" padding="0" margin="2rem auto">
       <AskInfoSecondItem />
     </Card>
   );
