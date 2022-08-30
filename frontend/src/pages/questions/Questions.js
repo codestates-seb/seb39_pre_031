@@ -1,8 +1,11 @@
+import { useState } from 'react';
+
 import styled from 'styled-components';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import QuestionList from '../../components/question/QuestionList';
 import QuestionTab from '../../components/question/QuestionTab';
-import FilterBtn from '../../components/question/FilterBtn';
+import FilterBtn from '../../components/filter/FilterBtn';
+import Filter from '../../components/filter/Filter';
 
 const Page = styled.div`
   display: flex;
@@ -23,8 +26,14 @@ const Headline = styled.div`
 const MidContainer = styled.div`
   margin-bottom: 12px;
   display: flex;
+  flex-direction: column;
+`;
+
+const MidBlock = styled.div`
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
 `;
 
 const TotalCount = styled.div`
@@ -37,6 +46,14 @@ const RightBlock = styled.div`
 `;
 
 const Questions = () => {
+  const [showFilter, setShowFilter] = useState(false);
+
+  const filterClickHandler = () => {
+    setShowFilter(!showFilter);
+  };
+
+  console.log(showFilter);
+
   return (
     <Page>
       <TopContainer>
@@ -44,11 +61,14 @@ const Questions = () => {
         <AskQuestionBtn />
       </TopContainer>
       <MidContainer>
-        <TotalCount>22,937,347 questions</TotalCount>
-        <RightBlock>
-          <QuestionTab />
-          <FilterBtn />
-        </RightBlock>
+        <MidBlock>
+          <TotalCount>22,937,347 questions</TotalCount>
+          <RightBlock>
+            <QuestionTab />
+            <FilterBtn onClick={filterClickHandler} />
+          </RightBlock>
+        </MidBlock>
+        {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
       </MidContainer>
       <QuestionList />
     </Page>

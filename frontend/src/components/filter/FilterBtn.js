@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { MdFilterList } from 'react-icons/md';
 
-const TabBlock = styled.button`
+const Button = styled.button`
   display: flex;
   border: 0;
   border: 1px solid hsl(205, 41%, 63%);
@@ -16,20 +16,14 @@ const TabBlock = styled.button`
   &:hover {
     background-color: hsl(205, 57%, 81%);
   }
-
-  /* ${(props) =>
-    props.isClick &&
-    css`
-      background-color: hsl(205, 57%, 81%);
-    `} */
 `;
 
-const FilterBtn = () => {
+const FilterBtn = ({ ...props }) => {
   return (
-    <TabBlock>
+    <Button {...props}>
       <MdFilterList />
       Filter
-    </TabBlock>
+    </Button>
   );
 };
 
