@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import NavItem from '../../common/NavItem';
+import NavItem from './NavItem';
 
 const Nav = styled.nav`
   display: block;
   height: 100%;
   min-width: 9rem;
+  padding-top: 24px;
 `;
 
 const NavMenu = styled.ul`

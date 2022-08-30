@@ -12,7 +12,6 @@ const Container = styled.div`
 const Content = styled.div`
   height: 100%;
   width: 70%;
-  border: 1px solid red;
   display: flex;
   padding: 24px;
 `;
