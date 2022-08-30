@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import QuestionList from '../../components/question/QuestionList';
-import QuestionTab from '../../components/question/QuestionTab';
+import HomeTab from '../../components/home/HomeTab';
 
 const Page = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const Home = () => {
         <AskQuestionBtn />
       </TopContainer>
       <MidContainer>
-        <QuestionTab />
+        <HomeTab />
       </MidContainer>
       <QuestionList />
     </Page>
