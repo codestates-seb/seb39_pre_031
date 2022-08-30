@@ -25,7 +25,7 @@ const Label = styled.label`
 const FilterItem = ({ text, type, name, checked }) => {
   return (
     <Container>
-      <Checkbox type={type} id={text} name={name} checked={checked} />
+      <Checkbox type={type} id={text} name={name} defaultChecked={checked} />
       <Label htmlFor={text}>{text}</Label>
     </Container>
   );

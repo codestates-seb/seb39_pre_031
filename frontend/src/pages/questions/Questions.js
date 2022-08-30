@@ -10,7 +10,6 @@ import Filter from '../../components/filter/Filter';
 const Page = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 24px;
   width: 80%;
 `;
 
@@ -25,7 +24,6 @@ const Headline = styled.div`
 `;
 
 const MidContainer = styled.div`
-  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
 `;
@@ -52,8 +50,6 @@ const Questions = () => {
   const filterClickHandler = () => {
     setShowFilter(!showFilter);
   };
-
-  console.log(showFilter);
 
   return (
     <Page>
