@@ -5,13 +5,18 @@ import styled from 'styled-components';
 const MakeBtn = styled.button`
   width: ${({ width }) => (width ? width : '90px')};
   height: ${({ height }) => (height ? height : '30px')};
-  color: ${({ color }) => (color ? color : 'black')};
+  color: ${({ color }) => (color ? color : '#2C5877')};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : '#3F94F8'};
+    backgroundColor ? backgroundColor : '#0995FF'};
   border: 1px solid
-    ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205,36%,53%)')};
+    ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205deg 41% 63%)')};
   border-radius: 3px;
   margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ hoverBackgroundColor }) =>
+      hoverBackgroundColor ? hoverBackgroundColor : ''};
+  }
 `;
 
 //! props : width, backgroundColor, link, color

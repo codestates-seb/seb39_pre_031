@@ -38,6 +38,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   a {
+    color: black;
     text-decoration: none;
   }
 
@@ -45,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     color: black;
   }
 
-  ol li {
+  ol, li {
     list-style: none;
   }
 
