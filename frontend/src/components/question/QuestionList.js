@@ -5,7 +5,7 @@ const datas = [
   {
     votes: 108,
     answers: 0,
-    views: 4010,
+    views: 4010000,
     title: 'Integer.toBinaryString Java Equivalent in C#',
     body: `I wonder if there's an equivalent of Integer.toBinaryString method of Java in C# Language? I'm trying to convert code from Java to C#, sample java code below: String a1 = Integer.toBinaryString((...
     java`,
@@ -19,7 +19,7 @@ const datas = [
   {
     votes: 68,
     answers: 0,
-    views: 999,
+    views: 99900,
     title: 'ManyToOneAssociationField not working in shopware6',
     body: 'I have category_id column in exclude_categories table. And in exclude_categories entities, I want to add category entity. So, in Exclude categories definition ExcludeCategoryDefinition, I have ...',
     author: {
