@@ -14,6 +14,7 @@ const Content = styled.div`
   width: 70%;
   border: 1px solid red;
   display: flex;
+  padding: 24px;
 `;
 
 const Home = () => {

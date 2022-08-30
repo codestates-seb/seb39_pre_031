@@ -1,7 +1,8 @@
 import Card from '../../common/Card';
 import styled from 'styled-components';
 import ButtonStyle from '../../common/Button/ButtonStyle';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import TageControl from './TageControl';
 
 const TagHeader = styled.div`
   width: 100%;
@@ -49,37 +50,11 @@ const ShowContainer = styled.div`
   }
 `;
 
-const TageInput = styled.form`
-  width: 100%;
-  display: flex;
-  align-items: center;
-
-  > input {
-    display: block;
-    width: 80%;
-    height: 70%;
-    padding: 8px 9px;
-  }
-  > input:focus {
-    outline: 5px solid #ddeaf7;
-    border: 1px solid #0995ff;
-    border-radius: 3px;
-  }
-`;
-
 const IgnoredTags = () => {
   const [buttonClick, setButtonClick] = useState(false);
-  const inputRef = useRef(null);
 
   const clickHandler = () => {
     setButtonClick(!buttonClick);
-  };
-
-  const tageSubmitHandler = (e) => {
-    e.preventDefault();
-    if (inputRef.current.value === '') {
-      inputRef.current.focus();
-    }
   };
 
   return (
@@ -87,21 +62,7 @@ const IgnoredTags = () => {
       <TagHeader>Ignored Tags</TagHeader>
       <TageContent>
         {buttonClick ? (
-          <TageInput onSubmit={tageSubmitHandler}>
-            <input type="text" ref={inputRef} />
-            <ButtonStyle
-              width="20%"
-              height="70%"
-              borderRadius="0"
-              borderTR="3px"
-              borderBR="3px"
-              hoverBackgroundColor="#0074CC"
-              color="white"
-              type="submit"
-            >
-              Add
-            </ButtonStyle>
-          </TageInput>
+          <TageControl />
         ) : (
           <ShowContainer>
             <ButtonStyle
