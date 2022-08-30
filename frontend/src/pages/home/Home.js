@@ -6,7 +6,6 @@ import HomeTab from '../../components/home/HomeTab';
 const Page = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 24px;
   width: 80%;
 `;
 
