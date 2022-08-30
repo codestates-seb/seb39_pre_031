@@ -55,6 +55,7 @@ const ShowContainer = styled.div`
 const WatchedTags = () => {
   const [buttonClick, setButtonClick] = useState(false);
 
+  //* 검색 클릭 handler
   const clickHandler = () => {
     setButtonClick(!buttonClick);
   };

@@ -9,8 +9,8 @@ const MakeButton = styled.button`
   border: 1px solid
     ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205,47%,42%)')};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '3px')};
-  border-top-right-radius: ${({ borderTR }) => (borderTR ? borderTR : '0')};
-  border-bottom-right-radius: ${({ borderBR }) => (borderBR ? borderBR : '0')};
+  border-top-right-radius: ${({ borderTR }) => (borderTR ? borderTR : '')};
+  border-bottom-right-radius: ${({ borderBR }) => (borderBR ? borderBR : '')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '13px')};
   margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
   padding: 10px;

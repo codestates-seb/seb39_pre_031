@@ -22,13 +22,18 @@ const TageInput = styled.form`
   > input {
     display: block;
     width: 80%;
-    height: 70%;
-    padding: 8px 9px;
+    height: 100%;
+    padding: 10px 9px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #d6d9dc;
+    font-size: 14px;
   }
   > input:focus {
     outline: 5px solid #ddeaf7;
     border: 1px solid #0995ff;
-    border-radius: 3px;
   }
 `;
 
