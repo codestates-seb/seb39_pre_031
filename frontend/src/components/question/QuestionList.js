@@ -4,7 +4,7 @@ import QuestionItem from './QuestionItem';
 const datas = [
   {
     votes: 108,
-    answers: 0,
+    answers: 3,
     views: 4010000,
     title: 'Integer.toBinaryString Java Equivalent in C#',
     body: `I wonder if there's an equivalent of Integer.toBinaryString method of Java in C# Language? I'm trying to convert code from Java to C#, sample java code below: String a1 = Integer.toBinaryString((...

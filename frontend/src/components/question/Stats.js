@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -29,6 +29,15 @@ const AnswersBlock = styled.div`
   display: flex;
   border: 1px solid transparent;
   margin-bottom: 8px;
+
+  ${(props) =>
+    props.answers >= 1 &&
+    css`
+      color: hsl(140, 40%, 40%);
+      border: 1px solid hsl(140, 40%, 40%);
+      padding: 2px 4px;
+      border-radius: 3px;
+    `}
 `;
 
 const ViewsBlock = styled.div`
@@ -55,7 +64,7 @@ const Stats = ({ votes, answers, views }) => {
       <VotesBlock>
         <FontWeight>{votes}</FontWeight> votes
       </VotesBlock>
-      <AnswersBlock>
+      <AnswersBlock answers={answers}>
         <FontWeight>{answers}</FontWeight> answers
       </AnswersBlock>
       <ViewsBlock views={views}>
