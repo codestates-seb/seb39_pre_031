@@ -1,8 +1,15 @@
 import styled from 'styled-components';
+import Stats from './Stats';
 
 const Container = styled.div`
+  display: flex;
   padding: 16px;
   border-bottom: 1px solid hsl(210, 8%, 90%);
+`;
+
+const PostContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const TitleBlock = styled.h3`
@@ -46,7 +53,7 @@ const TimeBlock = styled.div`
 `;
 
 const QuestionItem = ({ contents }) => {
-  const { title, body, author, createdAt } = contents;
+  const { votes, answers, views, title, body, author, createdAt } = contents;
   const { name, profile_image } = author;
 
   const saveCreatedAt = (value) => {
@@ -97,13 +104,16 @@ const QuestionItem = ({ contents }) => {
 
   return (
     <Container>
-      <TitleBlock>{title}</TitleBlock>
-      <ContentsBlock>{body}</ContentsBlock>
-      <BottomContainer>
-        <ImageBlock img={profile_image} />
-        <AuthorBlock>{name}</AuthorBlock>
-        <TimeBlock>asked {saveCreatedAt(createdAt)}</TimeBlock>
-      </BottomContainer>
+      <Stats votes={votes} views={views} answers={answers} />
+      <PostContainer>
+        <TitleBlock>{title}</TitleBlock>
+        <ContentsBlock>{body}</ContentsBlock>
+        <BottomContainer>
+          <ImageBlock img={profile_image} />
+          <AuthorBlock>{name}</AuthorBlock>
+          <TimeBlock>asked {saveCreatedAt(createdAt)}</TimeBlock>
+        </BottomContainer>
+      </PostContainer>
     </Container>
   );
 };
