@@ -69,6 +69,9 @@ const SignupComponent = () => {
 
     fetch('http://localhost:8080/members', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(userInfo),
     })
       .then((res) => res.json())
