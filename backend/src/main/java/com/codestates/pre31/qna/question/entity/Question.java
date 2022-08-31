@@ -1,6 +1,7 @@
-package com.codestates.pre31.question.entity;
+package com.codestates.pre31.qna.question.entity;
 
-import com.codestates.pre31.answer.entity.Answer;
+import com.codestates.pre31.qna.answer.entity.Answer;
+import com.codestates.pre31.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name="question")
@@ -20,7 +22,10 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int questionId;
+    private long questionId;
+
+    @Column
+    private Boolean deleteState;
 
     @Column
     private String title;
@@ -32,23 +37,30 @@ public class Question {
     private  String type;
 
     @Column
-    private Timestamp generatedTime;
+    private LocalDateTime generatedTime;
 
     @Column
-    private Timestamp modifiedTime;
+    private LocalDateTime modifiedTime;
 
     @Column
-    private int vote_up;
+    private int vote;
 
     @Column
-    private int vote_down;
+    private int views;
+
+    @Column
+    private int numAnswer;
+
+    @Column
+    private int numSelected;
 
     @OneToMany(mappedBy = "question")
 //  @JoinTable(name = "Answer")
     private List<Answer> answer;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 }
