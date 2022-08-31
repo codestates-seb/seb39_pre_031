@@ -2,11 +2,18 @@ import styled from 'styled-components';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import QuestionList from '../../components/question/QuestionList';
 import HomeTab from '../../components/home/HomeTab';
+import RightSide from '../../components/Side/RightSide';
 
 const Page = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+const Main = styled.div`
+  display: flex;
   flex-direction: column;
-  width: 80%;
+  width: calc(100% - 164px);
 `;
 
 const TopContainer = styled.div`
@@ -28,14 +35,17 @@ const MidContainer = styled.div`
 const Home = () => {
   return (
     <Page>
-      <TopContainer>
-        <Headline>Top Questions</Headline>
-        <AskQuestionBtn />
-      </TopContainer>
-      <MidContainer>
-        <HomeTab />
-      </MidContainer>
-      <QuestionList />
+      <Main>
+        <TopContainer>
+          <Headline>Top Questions</Headline>
+          <AskQuestionBtn />
+        </TopContainer>
+        <MidContainer>
+          <HomeTab />
+        </MidContainer>
+        <QuestionList />
+      </Main>
+      <RightSide />
     </Page>
   );
 };
