@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Data } from '../../common/DummyData/Data';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
-import LeftSide from '../../components/Side/LeftSide';
 import RightSide from '../../components/Side/RightSide';
 import DetailQue from '../../components/question/DetailQue';
 import QuestionTime from '../../components/question/QuestionTime';
@@ -54,7 +53,6 @@ const QuestionDetail = () => {
 
   return (
     <Container>
-      <LeftSide />
       <Content>
         <QuestionHead>
           <h1>{dummyData.title}</h1>

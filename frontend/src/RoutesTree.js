@@ -15,13 +15,13 @@ const RoutesTree = () => {
       <Route path="/" element={<SplitLayout />}>
         <Route index element={<Home />} />
         <Route path="/questions" element={<Questions />} />
+        <Route path="/questions/:questionId" element={<QuestionDetail />} />
         <Route path="/tags" element={<Tags />} />
         <Route path="/users" element={<Users />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/questions/ask" element={<Ask />} />
-      <Route path="/questions/:questionId" element={<QuestionDetail />} />
     </Routes>
   );
 };
