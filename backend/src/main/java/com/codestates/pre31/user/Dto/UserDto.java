@@ -1,0 +1,27 @@
+package com.codestates.pre31.user.Dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+public class UserDto {
+
+    @Getter
+    @AllArgsConstructor
+    public static class Response {
+
+        private String username;
+
+        private String email;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class Post {
+
+        private String username;
+
+        private String email;
+
+        private String password;
+    }
+}
