@@ -62,7 +62,7 @@ const QuestionDetail = () => {
         </QuestionHead>
         <QuestionTime createdAt={dummyData.createdAt} views={dummyData.views} />
         <QuestionContainer>
-          <DetailQue body={dummyData.body} />
+          <DetailQue body={dummyData.body} id={dummyData.id} />
           <RightSide />
         </QuestionContainer>
       </Content>

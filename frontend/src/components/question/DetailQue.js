@@ -4,6 +4,7 @@ import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { BsFillBookmarkStarFill } from 'react-icons/bs';
 import { GiBackwardTime } from 'react-icons/gi';
 import Answer from '../../components/question/Answer';
+import { Link } from 'react-router-dom';
 
 const QueContainer = styled.div`
   width: 80%;
@@ -41,11 +42,21 @@ const QueContent = styled.div`
   padding-right: 16px;
 `;
 
-const PostContent = styled.div`
+const PostContainer = styled.div`
   width: 90%;
 `;
 
-const DetailQue = ({ body }) => {
+const PostContent = styled.div`
+  width: 100%;
+`;
+
+const EditContent = styled.div`
+  width: 100%;
+  margin: 16px 0;
+  padding-top: 10px;
+`;
+
+const DetailQue = ({ body, id }) => {
   return (
     <QueContainer>
       <QueContent>
@@ -64,7 +75,12 @@ const DetailQue = ({ body }) => {
             <GiBackwardTime />
           </span>
         </Votecell>
-        <PostContent>{body}</PostContent>
+        <PostContainer>
+          <PostContent>{body}</PostContent>
+          <EditContent>
+            <Link to={`/questions/${id}/edit`}>Edit</Link>
+          </EditContent>
+        </PostContainer>
       </QueContent>
       <Answer />
     </QueContainer>
