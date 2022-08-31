@@ -1,27 +1,24 @@
-import styled from 'styled-components';
-import QuestionItem from './QuestionItem';
-
-const datas = [
+export const Data = [
   {
     id: 0,
     votes: 108,
-    answers: 3,
-    views: 4010000,
+    answers: 0,
+    views: 4010,
     title: 'Integer.toBinaryString Java Equivalent in C#',
     body: `I wonder if there's an equivalent of Integer.toBinaryString method of Java in C# Language? I'm trying to convert code from Java to C#, sample java code below: String a1 = Integer.toBinaryString((...
-    java`,
+        java`,
     author: {
       name: 'Mario Luigi Vibal',
       profile_image:
         'https://www.gravatar.com/avatar/eb1b29a4b3f8fc693f0858f56d6ec0de?s=256&d=identicon&r=PG&f=1',
     },
-    createdAt: '2022-08-30 08:00:00',
+    createdAt: '1660910166567',
   },
   {
     id: 1,
     votes: 68,
     answers: 0,
-    views: 99900,
+    views: 999,
     title: 'ManyToOneAssociationField not working in shopware6',
     body: 'I have category_id column in exclude_categories table. And in exclude_categories entities, I want to add category entity. So, in Exclude categories definition ExcludeCategoryDefinition, I have ...',
     author: {
@@ -29,7 +26,7 @@ const datas = [
       profile_image:
         'https://www.gravatar.com/avatar/8ac845c718513cb656028923380d1a09?s=256&d=identicon&r=PG&f=1',
     },
-    createdAt: '2022-08-29 08:00:00',
+    createdAt: '1661010166567',
   },
   {
     id: 2,
@@ -44,7 +41,7 @@ const datas = [
       profile_image:
         'https://www.gravatar.com/avatar/c7406e712d91323d45076cbee612011a?s=256&d=identicon&r=PG&f=1',
     },
-    createdAt: '2022-08-28 10:50:00',
+    createdAt: '1661310166567',
   },
   {
     id: 3,
@@ -58,23 +55,6 @@ const datas = [
       profile_image:
         'https://www.gravatar.com/avatar/eb1b29a4b3f8fc693f0858f56d6ec0de?s=256&d=identicon&r=PG&f=1',
     },
-    createdAt: '2022-08-20 02:05:00',
+    createdAt: '1661710166567',
   },
 ];
-
-const Container = styled.div`
-  border-top: 1px solid hsl(210, 8%, 90%);
-  margin-left: -24px;
-`;
-
-const QuestionList = () => {
-  return (
-    <Container>
-      {datas.map((item, idx) => (
-        <QuestionItem key={idx} contents={item} />
-      ))}
-    </Container>
-  );
-};
-
-export default QuestionList;

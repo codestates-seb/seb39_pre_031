@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a:visited {
-    color: black;
+    color: #3974cc;
   }
 
   ol, li {

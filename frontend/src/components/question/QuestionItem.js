@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Stats from './Stats';
 
@@ -19,7 +20,10 @@ const TitleBlock = styled.h3`
   padding-right: 24px;
   margin-top: -2px;
   margin-bottom: 5px;
-  cursor: pointer;
+
+  > a {
+    color: #3974cc;
+  }
 `;
 
 const ContentsBlock = styled.div`
@@ -53,7 +57,8 @@ const TimeBlock = styled.div`
 `;
 
 const QuestionItem = ({ contents }) => {
-  const { votes, answers, views, title, body, author, createdAt } = contents;
+  const { id, votes, answers, views, title, body, author, createdAt } =
+    contents;
   const { name, profile_image } = author;
 
   const saveCreatedAt = (value) => {
@@ -106,7 +111,9 @@ const QuestionItem = ({ contents }) => {
     <Container>
       <Stats votes={votes} views={views} answers={answers} />
       <PostContainer>
-        <TitleBlock>{title}</TitleBlock>
+        <TitleBlock>
+          <Link to={`/questions/${id}`}>{title}</Link>
+        </TitleBlock>
         <ContentsBlock>{body}</ContentsBlock>
         <BottomContainer>
           <ImageBlock img={profile_image} />

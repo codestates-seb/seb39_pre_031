@@ -7,7 +7,7 @@ const MakeButton = styled.button`
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : '#3F94F8'};
   border: 1px solid
-    ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205,47%,42%)')};
+    ${({ borderColor }) => (borderColor ? borderColor : '#4A95FF')};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '3px')};
   border-top-right-radius: ${({ borderTR }) => (borderTR ? borderTR : '')};
   border-bottom-right-radius: ${({ borderBR }) => (borderBR ? borderBR : '')};
