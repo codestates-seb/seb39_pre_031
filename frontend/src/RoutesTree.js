@@ -8,6 +8,7 @@ import Users from './pages/users/Users';
 import Ask from './pages/questions/Ask';
 import Home from './pages/home/Home';
 import QuestionDetail from './pages/questions/QuestionDetail';
+import Password from './pages/users/Password';
 
 const RoutesTree = () => {
   return (
@@ -22,6 +23,7 @@ const RoutesTree = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/questions/ask" element={<Ask />} />
+      <Route path="/password" element={<Password />} />
     </Routes>
   );
 };

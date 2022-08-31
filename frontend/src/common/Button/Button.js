@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 const BtnContainer = styled.button`
+  width: ${({ width }) => width};
   font-size: 12px;
   color: ${({ color }) => (color ? color : 'white')};
   background-color: ${({ bgColor }) =>
