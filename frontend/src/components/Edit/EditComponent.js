@@ -99,7 +99,7 @@ const EditComponent = ({ editData }) => {
         <Input placeholder="e.g. Is there an R function for finding the index an element in a vector?" />
       </Card>
       <SubmitButton
-        go="/"
+        go={`/questions/${editData.id}`}
         type="submit"
         btnName="Edit your question"
         width="150px"
