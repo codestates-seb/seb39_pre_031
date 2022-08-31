@@ -13,7 +13,7 @@ const Page = styled.div`
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100% - 164px);
+  width: 80%;
 `;
 
 const TopContainer = styled.div`
