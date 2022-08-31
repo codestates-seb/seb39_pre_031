@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const InputContainer = styled.input`
   width: 100%;
-  margin: ${({ margin }) => (margin ? margin : '0 0 1rem 0')};
-  padding: 0.6em 0.7em;
+  margin: ${({ margin }) => margin || '0 0 1rem 0'};
+  padding: ${({ padding }) => padding || '0.6em 0.7em'};
   border: 1px solid hsl(210, 8%, 75%);
   border-radius: 3px;
 

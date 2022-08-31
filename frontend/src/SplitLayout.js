@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import LeftSide from './components/Side/LeftSide';
 import styled from 'styled-components';
-import RightSide from './components/Side/RightSide';
 
 const Container = styled.div`
   width: 100%;
@@ -22,7 +21,6 @@ const SplitLayout = () => {
       <LeftSide />
       <Content>
         <Outlet />
-        <RightSide />
       </Content>
     </Container>
   );

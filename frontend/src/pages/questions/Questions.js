@@ -6,8 +6,15 @@ import QuestionList from '../../components/question/QuestionList';
 import QuestionTab from '../../components/question/QuestionTab';
 import FilterBtn from '../../components/filter/FilterBtn';
 import Filter from '../../components/filter/Filter';
+import RightSide from '../../components/Side/RightSide';
 
 const Page = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+const Main = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -53,21 +60,24 @@ const Questions = () => {
 
   return (
     <Page>
-      <TopContainer>
-        <Headline>All Question</Headline>
-        <AskQuestionBtn />
-      </TopContainer>
-      <MidContainer>
-        <MidBlock>
-          <TotalCount>22,937,347 questions</TotalCount>
-          <RightBlock>
-            <QuestionTab />
-            <FilterBtn onClick={filterClickHandler} />
-          </RightBlock>
-        </MidBlock>
-        {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
-      </MidContainer>
-      <QuestionList />
+      <Main>
+        <TopContainer>
+          <Headline>All Question</Headline>
+          <AskQuestionBtn />
+        </TopContainer>
+        <MidContainer>
+          <MidBlock>
+            <TotalCount>22,937,347 questions</TotalCount>
+            <RightBlock>
+              <QuestionTab />
+              <FilterBtn onClick={filterClickHandler} />
+            </RightBlock>
+          </MidBlock>
+          {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
+        </MidContainer>
+        <QuestionList />
+      </Main>
+      <RightSide />
     </Page>
   );
 };
