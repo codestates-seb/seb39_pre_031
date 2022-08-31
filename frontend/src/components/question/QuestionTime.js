@@ -19,11 +19,11 @@ const QuestionTimeContainer = styled.div`
 `;
 
 const QuestionTime = ({ createdAt, views }) => {
+  const createdTime = new Date(createdAt);
+
   const timeNow = new Date().getTime();
 
-  const diffTime = Math.floor((timeNow - createdAt) / (1000 * 60 * 60 * 24));
-
-  console.log(diffTime);
+  const diffTime = Math.floor((timeNow - createdTime) / (1000 * 60 * 60 * 24));
 
   return (
     <QuestionTimeContainer>

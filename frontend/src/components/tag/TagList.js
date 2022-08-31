@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import TagItem from './TagItem';
-import tagData from '../../mocks/tagData';
+import { tagData } from '../../mocks/Data';
 
 const Container = styled.div`
   display: flex;

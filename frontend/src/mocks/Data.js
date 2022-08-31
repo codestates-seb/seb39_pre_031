@@ -1,4 +1,65 @@
-const tagData = [
+export const Data = [
+  {
+    id: 0,
+    votes: 108,
+    answers: 3,
+    views: 4010000,
+    title: 'Integer.toBinaryString Java Equivalent in C#',
+    body: `I wonder if there's an equivalent of Integer.toBinaryString method of Java in C# Language? I'm trying to convert code from Java to C#, sample java code below: String a1 = Integer.toBinaryString((...
+    java`,
+    author: {
+      name: 'Mario Luigi Vibal',
+      profile_image:
+        'https://www.gravatar.com/avatar/eb1b29a4b3f8fc693f0858f56d6ec0de?s=256&d=identicon&r=PG&f=1',
+    },
+    createdAt: '2022-08-30 08:00:00',
+  },
+  {
+    id: 1,
+    votes: 68,
+    answers: 0,
+    views: 99900,
+    title: 'ManyToOneAssociationField not working in shopware6',
+    body: 'I have category_id column in exclude_categories table. And in exclude_categories entities, I want to add category entity. So, in Exclude categories definition ExcludeCategoryDefinition, I have ...',
+    author: {
+      name: 'amit',
+      profile_image:
+        'https://www.gravatar.com/avatar/8ac845c718513cb656028923380d1a09?s=256&d=identicon&r=PG&f=1',
+    },
+    createdAt: '2022-08-29 08:00:00',
+  },
+  {
+    id: 2,
+    votes: 50,
+    answers: 0,
+    views: 552,
+    title:
+      'Delete duplicate entries when attribute value meets certain requirements and is not blank or space',
+    body: 'I want to delete duplicates from a large TEXT file with header column fields that are separated by tab but only when VATRegistration is not SPACE and VATRegistration only appears again for GroupID ...',
+    author: {
+      name: 'Jana',
+      profile_image:
+        'https://www.gravatar.com/avatar/c7406e712d91323d45076cbee612011a?s=256&d=identicon&r=PG&f=1',
+    },
+    createdAt: '2022-08-28 10:50:00',
+  },
+  {
+    id: 3,
+    votes: 150,
+    answers: 1,
+    views: 5000,
+    title: 'Finding percentages on groups in pyspark',
+    body: 'I have a 2 different columns Gender and Country Gender : Men, Women. Country : America, India, Australia I need to find out what percentage of men belongs to which country : India, America, Australia ...',
+    author: {
+      name: 'chandu',
+      profile_image:
+        'https://www.gravatar.com/avatar/eb1b29a4b3f8fc693f0858f56d6ec0de?s=256&d=identicon&r=PG&f=1',
+    },
+    createdAt: '2022-08-20 02:05:00',
+  },
+];
+
+export const tagData = [
   {
     has_synonyms: true,
     is_moderator_only: false,
@@ -96,5 +157,3 @@ const tagData = [
     info: `MySQL is a free, open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL). DO NOT USE this tag for other DBs such as SQL Server, SQLite etc. Those are diff…`,
   },
 ];
-
-export default tagData;

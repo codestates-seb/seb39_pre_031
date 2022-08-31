@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Data } from '../../common/DummyData/Data';
+import { Data } from '../../mocks/Data';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import RightSide from '../../components/Side/RightSide';
 import DetailQue from '../../components/question/DetailQue';
@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 const Content = styled.div`
   height: 100%;
-  width: 70%;
+  width: 100%;
   padding: 24px;
 `;
 

@@ -47,7 +47,7 @@ const AskForm = () => {
 
   return (
     <>
-      <Card width="842px" margin="0 0 2rem 0">
+      <Card width="842px" margin="0 0 1rem 0">
         <Label>
           Title
           <div>
@@ -87,7 +87,7 @@ const AskForm = () => {
       </Card>
       <SubmitButton
         go="/"
-        text="Review your question"
+        btnName="Review your question"
         width="150px"
         height="35px"
         color="white"
