@@ -38,6 +38,7 @@ const InfoBlock = styled.div`
 
 const CountBlock = styled.div`
   display: flex;
+  justify-content: space-between;
   color: hsl(210, 8%, 55%);
   font-size: 11px;
 `;
