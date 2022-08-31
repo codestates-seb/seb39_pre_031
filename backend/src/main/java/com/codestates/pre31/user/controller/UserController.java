@@ -7,10 +7,7 @@ import com.codestates.pre31.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +22,12 @@ public class UserController {
     public ResponseEntity<UserDto.Response> postUser(@RequestBody UserDto.Post postUser) {
         User savedUser = userService.postUser(mapper.userPostDtoToUser(postUser));
         return new ResponseEntity<>(mapper.userToUserResponseDto(savedUser), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{email}/find")
+    public ResponseEntity<UserDto.Response> postUser(@PathVariable String email) {
+        User resetUser = userService.findPassword(email);
+        return new ResponseEntity<>(mapper.userToUserResponseDto(resetUser), HttpStatus.CREATED);
     }
 
 }

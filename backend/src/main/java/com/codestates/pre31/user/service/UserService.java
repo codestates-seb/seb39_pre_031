@@ -1,8 +1,10 @@
 package com.codestates.pre31.user.service;
 
+import com.codestates.pre31.helper.event.UserPasswordApplicationEvent;
 import com.codestates.pre31.user.entity.User;
 import com.codestates.pre31.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final ApplicationEventPublisher publisher;
+
     public void getUser(){}
 
     public User postUser(User newUser) {
@@ -20,9 +24,17 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    public void findPassword(){}
+    public User findPassword(String email){
+        User user = userRepository.findByEmail(email).orElse(null);
+        publisher.publishEvent(new UserPasswordApplicationEvent(this, user));
 
-    public void changePassword(){}
+        return user;
+    }
+
+    public void changePassword(User user, String newPassword){
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
 
     public void putUser(){}
 
