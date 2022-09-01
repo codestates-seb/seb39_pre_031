@@ -7,6 +7,7 @@ import QuestionTab from '../../components/question/QuestionTab';
 import FilterBtn from '../../components/filter/FilterBtn';
 import Filter from '../../components/filter/Filter';
 import RightSide from '../../components/Side/RightSide';
+import Paging from '../../common/Paging';
 
 const Page = styled.div`
   display: flex;
@@ -51,6 +52,10 @@ const RightBlock = styled.div`
   justify-content: space-between;
 `;
 
+const Pagination = styled.div`
+  margin: 30px 0;
+`;
+
 const Questions = () => {
   const [showFilter, setShowFilter] = useState(false);
 
@@ -76,6 +81,9 @@ const Questions = () => {
           {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
         </MidContainer>
         <QuestionList />
+        <Pagination>
+          <Paging />
+        </Pagination>
       </Main>
       <RightSide />
     </Page>
