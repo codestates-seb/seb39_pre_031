@@ -67,13 +67,16 @@ const SignupComponent = () => {
     console.log(userInfo);
     console.log(JSON.stringify(userInfo));
 
-    fetch('http://localhost:8080/members', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfo),
-    })
+    fetch(
+      'http://ec2-13-124-119-114.ap-northeast-2.compute.amazonaws.com:8080/members',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfo),
+      }
+    )
       .then((res) => res.json())
       .then((res) => console.log(res));
 
