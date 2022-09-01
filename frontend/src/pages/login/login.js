@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
+import { loginApi } from '../../config/api';
 import logoImage from '../../image/logo.png';
 import LoginBtn from './loginBtn';
 import OauthBtn from './OauthBtn';
@@ -89,25 +90,34 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const submitHandler = () => {
+  //! 로그인 api
+
+  const submitHandler = async () => {
     const userInfo = {
       email,
       password,
     };
-    console.log('good');
-    console.log(userInfo);
 
-    fetch('http://localhost:8080/members/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    const body = JSON.stringify(userInfo);
 
-    console.log(JSON.stringify(userInfo));
+    try {
+      const { Authorization } = await loginApi(body);
+      console.log(Authorization);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // fetch('http://localhost:8080/members/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(userInfo),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res));
+
+    // console.log(JSON.stringify(userInfo));
   };
 
   return (

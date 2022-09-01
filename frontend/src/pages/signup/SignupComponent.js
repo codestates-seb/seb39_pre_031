@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import OauthButton from '../../common/Button/OauthButton';
 import InputForm from '../../common/InputForm';
+import { signupApi } from '../../config/api';
 import SignupBtn from './SignupBtn';
 
 const SignupContent = styled.div`
@@ -57,27 +58,35 @@ const SignupComponent = () => {
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
-  const submitHandler = () => {
+
+  //! 회원가입 api
+  const submitHandler = async () => {
     const userInfo = {
       username,
       email,
       password,
     };
 
-    console.log(userInfo);
-    console.log(JSON.stringify(userInfo));
+    const body = JSON.stringify(userInfo);
 
-    fetch('http://localhost:8080/members', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    try {
+      const { Authorization } = await signupApi(body); // 회원가입 하고 나면 들어오는 값이 뭔지 확인
+      console.log(Authorization);
+    } catch (error) {
+      console.log(error);
+    }
 
-    console.log(JSON.stringify(userInfo));
+    // fetch('http://localhost:8080/members', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(userInfo),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res));
+
+    // console.log(JSON.stringify(userInfo));
   };
 
   return (
