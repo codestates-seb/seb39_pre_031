@@ -43,13 +43,13 @@ const LoginLink = styled.div`
 `;
 
 const SignupComponent = () => {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   //* onChaneHandler
   const nameHandler = (event) => {
-    setName(event.target.value);
+    setUsername(event.target.value);
   };
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -59,12 +59,25 @@ const SignupComponent = () => {
   };
   const submitHandler = () => {
     const userInfo = {
-      name,
+      username,
       email,
       password,
     };
 
     console.log(userInfo);
+    console.log(JSON.stringify(userInfo));
+
+    fetch('http://localhost:8080/members', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+
+    console.log(JSON.stringify(userInfo));
   };
 
   return (

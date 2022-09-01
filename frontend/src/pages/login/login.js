@@ -96,6 +96,18 @@ const Login = () => {
     };
     console.log('good');
     console.log(userInfo);
+
+    fetch('http://localhost:8080/members/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+
+    console.log(JSON.stringify(userInfo));
   };
 
   return (
