@@ -11,6 +11,7 @@ import Home from './pages/home/Home';
 import QuestionDetail from './pages/questions/QuestionDetail';
 import Edit from './pages/questions/Edit';
 import Password from './pages/users/Password';
+import Errorpage from './pages/error/Errorpage';
 
 const RoutesTree = () => {
   return (
@@ -27,6 +28,7 @@ const RoutesTree = () => {
       <Route path="/questions/ask" element={<Ask />} />
       <Route path="/questions/:questionId/edit" element={<Edit />} />
       <Route path="/password" element={<Password />} />
+      <Route path="*" element={<Errorpage />} />
     </Routes>
   );
 };
