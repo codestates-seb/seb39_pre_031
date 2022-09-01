@@ -18,6 +18,12 @@ public class UserController {
 
     private final UserMapper mapper;
 
+    @GetMapping("/{member-id}")
+    public ResponseEntity<UserDto.Response> getUser(@PathVariable("member-id") Long memberId) {
+        User savedUser = userService.getUser(memberId);
+        return new ResponseEntity<>(mapper.userToUserResponseDto(savedUser), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<UserDto.Response> postUser(@RequestBody UserDto.Post postUser) {
         User savedUser = userService.postUser(mapper.userPostDtoToUser(postUser));

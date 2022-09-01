@@ -9,6 +9,8 @@ public class UserDto {
     @AllArgsConstructor
     public static class Response {
 
+        private long userId;
+
         private String username;
 
         private String email;

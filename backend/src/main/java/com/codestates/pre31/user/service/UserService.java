@@ -17,7 +17,10 @@ public class UserService {
 
     private final ApplicationEventPublisher publisher;
 
-    public void getUser(){}
+    public User getUser(Long memberId){
+        User user = userRepository.findById(memberId).orElse(null);
+        return user;
+    }
 
     public User postUser(User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
