@@ -8,7 +8,8 @@ import { useEffect, useRef, useState } from 'react';
 import SubmitButton from '../../common/Button/SubmitButton';
 
 const Container = styled.div`
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
 `;
 
 const Label = styled.label`
