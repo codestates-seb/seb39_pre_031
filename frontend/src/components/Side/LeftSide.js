@@ -3,7 +3,6 @@ import NavItem from './NavItem';
 
 const Nav = styled.nav`
   display: block;
-  height: 100%;
   min-width: 9rem;
   margin-bottom: 8px;
   width: auto;

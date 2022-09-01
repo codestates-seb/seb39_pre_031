@@ -9,6 +9,7 @@ const Container = styled.header`
   height: 50px;
   position: fixed;
   top: 0;
+  z-index: 1;
   background-color: #f8f9f9;
   box-shadow: 5px 2px rgba(0, 0, 0, 0.1);
 `;

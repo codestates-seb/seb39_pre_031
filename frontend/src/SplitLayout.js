@@ -1,6 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import LeftSide from './components/Side/LeftSide';
 import styled from 'styled-components';
+import Footer from './components/layout/Footer';
+
+const Page = styled.div`
+  position: absolute;
+  width: 100%;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -17,12 +23,15 @@ const Content = styled.div`
 
 const SplitLayout = () => {
   return (
-    <Container>
-      <LeftSide />
-      <Content>
-        <Outlet />
-      </Content>
-    </Container>
+    <Page>
+      <Container>
+        <LeftSide />
+        <Content>
+          <Outlet />
+        </Content>
+      </Container>
+      <Footer />
+    </Page>
   );
 };
 
