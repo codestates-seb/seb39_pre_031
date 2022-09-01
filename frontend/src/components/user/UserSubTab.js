@@ -16,7 +16,7 @@ const Tab = styled.div`
   line-height: 23px;
   transition: all 150ms cubic-bezier(0.19, 1, 0.22, 1);
   font-weight: ${({ isClick }) => (isClick ? '700' : '400')};
-  cursor: pointer
+  cursor: pointer;
 
   &:hover {
     border-bottom: 1px solid rgb(244, 130, 37);
