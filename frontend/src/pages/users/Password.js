@@ -54,13 +54,16 @@ const Password = () => {
     console.log(email);
     console.log(JSON.stringify(email));
 
-    fetch(`http://localhost:8080/members/${email}/find`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(email),
-    })
+    fetch(
+      `http://ec2-13-124-119-114.ap-northeast-2.compute.amazonaws.com:8080/members/${email}/find`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(email),
+      }
+    )
       .then((res) => res.json())
       .then((res) => console.log(res));
 
