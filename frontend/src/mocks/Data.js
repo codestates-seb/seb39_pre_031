@@ -157,3 +157,78 @@ export const tagData = [
     info: `MySQL is a free, open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL). DO NOT USE this tag for other DBs such as SQL Server, SQLite etc. Those are diff…`,
   },
 ];
+
+export const usersData = [
+  {
+    name: 'mozway',
+    reputation: 983,
+    location: 'Mare Tranquillitatis',
+    lang: ['pyhon', 'pandas', 'numpy'],
+  },
+  {
+    name: 'Barmar',
+    reputation: 802,
+    location: 'Arlington, MA',
+    lang: ['python', 'javascript', 'python-3.x'],
+  },
+  {
+    name: 'arkun',
+    reputation: 765,
+    location: '',
+    lang: ['r', 'data.table', 'dplyr'],
+  },
+  {
+    name: 'VonC',
+    reputation: 740,
+    location: 'France',
+    lang: ['git', 'github', 'go'],
+  },
+  {
+    name: 'Frank van Puffelen',
+    reputation: 703,
+    location: 'San Francisco, CA',
+    lang: ['firebase', 'javascript', 'google-cloud-firestore'],
+  },
+  {
+    name: 'jezrael',
+    reputation: 693,
+    location: 'Bratislava, Slovakia',
+    lang: ['pandas', 'python', 'dataframe'],
+  },
+  {
+    name: 'Olivier',
+    reputation: 690,
+    location: '',
+    lang: ['java', 'javascript', 'php'],
+  },
+  {
+    name: 'mklement0',
+    reputation: 685,
+    location: 'United States',
+    lang: ['powershell', 'bash', 'windows'],
+  },
+  {
+    name: 'Martijn Pieters',
+    reputation: 664,
+    location: 'Cambridge, UK',
+    lang: ['python', 'python-3.x', 'python-requests'],
+  },
+  {
+    name: 'CertainPerformance',
+    reputation: 664,
+    location: 'Austin, TX, USA',
+    lang: ['javascript', 'typescript', 'reactjs'],
+  },
+  {
+    name: 'Andrej Kesely',
+    reputation: 645,
+    location: 'Slovakia',
+    lang: ['python', 'pandans', 'list'],
+  },
+  {
+    name: 'Jon Skeet',
+    reputation: 624,
+    location: 'Reading, United Kingdom',
+    lang: ['c#', 'java', '.net'],
+  },
+];

@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -53,9 +51,7 @@ const TagItem = ({ tag }) => {
   return (
     <Card>
       <TagBlock>
-        <Link to={`/questions/tagged/${name}`}>
-          <TagName>{name}</TagName>
-        </Link>
+        <TagName>{name}</TagName>
       </TagBlock>
       <InfoBlock>{info}</InfoBlock>
       <CountBlock>
