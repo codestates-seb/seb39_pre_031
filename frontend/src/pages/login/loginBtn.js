@@ -1,7 +1,7 @@
-import SubmitButton from '../../common/Button/SubmitButton';
+import Button from '../../common/Button/Button';
 
 const LoginBtn = ({ ...props }) => {
-  return <SubmitButton {...props} />;
+  return <Button {...props} />;
 };
 
 export default LoginBtn;
