@@ -1,8 +1,12 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../store/user';
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
 import SearchInput from '../search/SearchInput';
+import Button from '../../common/Button/Button';
 
 const Container = styled.header`
   width: 100%;
@@ -58,6 +62,14 @@ const HeaderLogin = styled.div`
 `;
 
 const Header = () => {
+  const user = useSelector((state) => state.user.value);
+  const isLogin = useSelector((state) => state.user.login);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <Container>
       <Head>
@@ -70,19 +82,28 @@ const Header = () => {
           <SearchInput />
         </HeaderInput>
         <HeaderLogin>
-          <SubmitButton
-            go="/login"
-            btnName="Log In"
-            backgroundColor="#e1ecf4"
-            color="#3F94F8"
-            hoverBackgroundColor="#B3D3EA"
-          />
-          <SubmitButton
-            go="/signup"
-            btnName="Sign Up"
-            color="white"
-            hoverBackgroundColor="#0074CC"
-          />
+          {isLogin ? (
+            <>
+              {user.name}
+              <Button btnName="Logout" onClick={logoutHandler} />
+            </>
+          ) : (
+            <>
+              <SubmitButton
+                go="/login"
+                btnName="Log In"
+                backgroundColor="#e1ecf4"
+                color="#3F94F8"
+                hoverBackgroundColor="#B3D3EA"
+              />
+              <SubmitButton
+                go="/signup"
+                btnName="Sign Up"
+                color="white"
+                hoverBackgroundColor="#0074CC"
+              />
+            </>
+          )}
         </HeaderLogin>
       </Head>
     </Container>
