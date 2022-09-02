@@ -1,8 +1,12 @@
-import { BiSearch } from 'react-icons/bi';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../store/user';
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
+import SearchInput from '../search/SearchInput';
+import Button from '../../common/Button/Button';
 
 const Container = styled.header`
   width: 100%;
@@ -12,6 +16,7 @@ const Container = styled.header`
   z-index: 1;
   background-color: #f8f9f9;
   box-shadow: 5px 2px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #f48224;
 `;
 
 const Head = styled.div`
@@ -45,19 +50,7 @@ const HeaderInput = styled.div`
   align-items: center;
   position: relative;
   justify-content: center;
-
-  .searchIcon {
-    position: absolute;
-    left: 5.3rem;
-  }
-  > input {
-    width: 80%;
-    height: 30px;
-    border-radius: 3px;
-    padding: 5px 35px;
-    font-size: 13px;
-    border: 1px solid #babfc3;
-  }
+  padding: 0 8px;
 `;
 
 const HeaderLogin = styled.div`
@@ -69,6 +62,14 @@ const HeaderLogin = styled.div`
 `;
 
 const Header = () => {
+  const user = useSelector((state) => state.user.value);
+  const isLogin = useSelector((state) => state.user.login);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <Container>
       <Head>
@@ -78,23 +79,31 @@ const Header = () => {
           </Link>
         </HeaderLogo>
         <HeaderInput>
-          <BiSearch className="searchIcon" />
-          <input placeholder="Search..." />
+          <SearchInput />
         </HeaderInput>
         <HeaderLogin>
-          <SubmitButton
-            go="/login"
-            btnName="Log In"
-            backgroundColor="#e1ecf4"
-            color="#3F94F8"
-            hoverBackgroundColor="#B3D3EA"
-          />
-          <SubmitButton
-            go="/signup"
-            btnName="Sign Up"
-            color="white"
-            hoverBackgroundColor="#0074CC"
-          />
+          {isLogin ? (
+            <>
+              {user.name}
+              <Button btnName="Logout" onClick={logoutHandler} />
+            </>
+          ) : (
+            <>
+              <SubmitButton
+                go="/login"
+                btnName="Log In"
+                backgroundColor="#e1ecf4"
+                color="#3F94F8"
+                hoverBackgroundColor="#B3D3EA"
+              />
+              <SubmitButton
+                go="/signup"
+                btnName="Sign Up"
+                color="white"
+                hoverBackgroundColor="#0074CC"
+              />
+            </>
+          )}
         </HeaderLogin>
       </Head>
     </Container>

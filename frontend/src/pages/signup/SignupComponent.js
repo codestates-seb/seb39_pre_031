@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import OauthButton from '../../common/Button/OauthButton';
 import InputForm from '../../common/InputForm';
-import { signupApi } from '../../config/api';
+// import { signupApi } from '../../config/api';
 import SignupBtn from './SignupBtn';
+import { checkValidForm } from '../../utils/checkValid';
 
 const SignupContent = styled.div`
   width: 35%;
@@ -19,7 +20,6 @@ const SingupOauth = styled.div`
 
 const SingupForm = styled.form`
   width: 100%;
-  height: 55%;
   background-color: white;
   padding: 24px;
   border-radius: 10px;
@@ -48,6 +48,11 @@ const SignupComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [errorEmail, setErrorEmail] = useState();
+  const [errorPassword, setErrorPassword] = useState();
+
+  const navigate = useNavigate();
+
   //* onChaneHandler
   const nameHandler = (event) => {
     setUsername(event.target.value);
@@ -60,21 +65,31 @@ const SignupComponent = () => {
   };
 
   //! 회원가입 api
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    setErrorEmail(null);
+    setErrorPassword(null);
+
+    if (!checkValidForm(email, password, setErrorEmail, setErrorPassword))
+      return;
+
     const userInfo = {
       username,
       email,
       password,
     };
 
-    const body = JSON.stringify(userInfo);
+    console.log(userInfo);
 
-    try {
-      const { Authorization } = await signupApi(body); // 회원가입 하고 나면 들어오는 값이 뭔지 확인
-      console.log(Authorization);
-    } catch (error) {
-      console.log(error);
-    }
+    // const body = JSON.stringify(userInfo);
+
+    // try {
+    //   const { Authorization } = await signupApi(body); // 회원가입 하고 나면 들어오는 값이 뭔지 확인
+    //   console.log(Authorization);
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     // fetch('http://localhost:8080/members', {
     //   method: 'POST',
@@ -87,6 +102,8 @@ const SignupComponent = () => {
     //   .then((res) => console.log(res));
 
     // console.log(JSON.stringify(userInfo));
+
+    navigate('/');
   };
 
   return (
@@ -104,24 +121,21 @@ const SignupComponent = () => {
           backgroundColor="#304986"
         />
       </SingupOauth>
-      <SingupForm>
+      <SingupForm onSubmit={submitHandler}>
         <InputForm title="Display name" type="text" onChange={nameHandler} />
-        <InputForm title="Email" type="email" onChange={emailHandler} />
+        <InputForm
+          title="Email"
+          type="email"
+          onChange={emailHandler}
+          error={errorEmail}
+        />
         <InputForm
           title="Password"
           type="password"
           onChange={passwordHandler}
+          error={errorPassword}
         />
-        <SignupBtn
-          go="/"
-          btnName="Sign up"
-          backgroundColor="#0074CC"
-          color="white"
-          type="submit"
-          width="100%"
-          height="37px"
-          onClick={submitHandler}
-        />
+        <SignupBtn btnName="Sign up" width="100%" type="submit" />
       </SingupForm>
       <LoginLink>
         <div className="to-signup">

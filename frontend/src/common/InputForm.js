@@ -1,15 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { RiErrorWarningFill } from 'react-icons/ri';
 
 const Content = styled.div`
-  margin-bottom: 20px;
-
-  > input {
-    padding: 8px 9px;
-    width: 100%;
-    border: 1px solid #d6d9dc;
-    border-radius: 5px;
-  }
+  margin-bottom: 10px;
 `;
 
 const Component = styled.div`
@@ -32,7 +26,45 @@ const Component = styled.div`
   }
 `;
 
-const InputForm = ({ title, passwordLink, ...props }) => {
+const InputBlock = styled.div`
+  display: flex;
+  position: relative;
+
+  > input {
+    padding: 8px 9px;
+    width: 100%;
+    border: 1px solid #d6d9dc;
+    border-radius: 5px;
+  }
+
+  > input.error {
+    border: 1px solid hsl(358, 68%, 59%);
+    padding-right: 32px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .icon {
+    color: hsl(358, 68%, 59%);
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 0.3em;
+    margin-top: -11px;
+    pointer-events: none;
+  }
+`;
+
+const ErrorMessage = styled.div`
+  padding: 2px;
+  margin: 2px 0;
+  color: hsl(358, 62%, 52%);
+  font-size: 12px;
+`;
+
+const InputForm = ({ title, passwordLink, error, ...props }) => {
   return (
     <Content>
       <Component>
@@ -41,7 +73,11 @@ const InputForm = ({ title, passwordLink, ...props }) => {
           <Link to="/password">{passwordLink ? passwordLink : ''}</Link>
         </div>
       </Component>
-      <input {...props} />
+      <InputBlock>
+        <input {...props} className={error ? 'error' : ''} />
+        {error && <RiErrorWarningFill className="icon" />}
+      </InputBlock>
+      <ErrorMessage>{error ? error : ''}</ErrorMessage>
     </Content>
   );
 };
