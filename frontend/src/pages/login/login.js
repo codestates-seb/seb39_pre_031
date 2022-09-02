@@ -97,8 +97,10 @@ const Login = () => {
       email,
       password,
     };
-    
+
     const body = JSON.stringify(userInfo);
+
+    console.log(body);
 
     try {
       const { Authorization } = await loginApi(body);
