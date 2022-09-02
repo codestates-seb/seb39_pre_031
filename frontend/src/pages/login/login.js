@@ -97,7 +97,7 @@ const Login = () => {
       email,
       password,
     };
-
+    
     const body = JSON.stringify(userInfo);
 
     try {
