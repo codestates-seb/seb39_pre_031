@@ -1,6 +1,7 @@
 package com.codestates.pre31.comment.entity;
 
 import com.codestates.pre31.audit.Auditable;
+import com.codestates.pre31.question.entity.Question;
 import com.codestates.pre31.user.entity.User;
 import lombok.Getter;
 
