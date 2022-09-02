@@ -2,10 +2,7 @@ package com.codestates.pre31.qna.question.entity;
 
 import com.codestates.pre31.qna.answer.entity.Answer;
 import com.codestates.pre31.user.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -14,10 +11,10 @@ import java.util.List;
 
 @Entity(name="question")
 @Table(name="Question")
-@Getter
-@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Question {
 
     @Id
@@ -54,7 +51,7 @@ public class Question {
     @Column
     private int numSelected;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question",fetch = FetchType.EAGER)
 //  @JoinTable(name = "Answer")
     private List<Answer> answer;
 

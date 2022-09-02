@@ -7,7 +7,10 @@ import com.codestates.pre31.qna.question.service.QuestionService;
 import com.codestates.pre31.user.entity.User;
 import com.codestates.pre31.user.repository.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +33,9 @@ public class QuestionController {
 
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody PostQuestionDTO dto) {
-        Question question = new Question();
         User user = new User();
         user.setUserId(dto.getUser_id());
+        Question question = new Question();
         question.setTitle(dto.getTitle());
         question.setBody(dto.getBody());
         question.setDeleteState(false);
@@ -49,47 +52,41 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity getQuestions(@RequestBody GetQuestionDTO dto, Pageable pageable) {
-
+    public ResponseEntity getQuestions(@RequestBody GetQuestionDTO dto) {
+        int pageNum = dto.getPageNum();
         boolean answered = dto.isNoAnswerFilter();  // Answer 갯수가 0개
         boolean selected = dto.isNoSelectedFilter(); // Answer where selected 갯수가 0개
-        String sortby =dto.getSortedBy();
-        String sorted = null;
-        String filter = null;
+        String sort = "zero";
+        if(dto.getSortedBy() !=null) {
+            sort = dto.getSortedBy();
+        }
+        String newSort = null;
+        String filter = "None";
 
-        // << Tab >>
-        //-------------------//
-        // Newest : Created time Desc //
-        // Active : Edited time Desc //
-        // Unanswered : (F) No accepted answer + vote Desc //
-        // Score : Vote desc //
-        // Frequent : View Desc //
-        //-------------------//
+        if(answered){filter = "NoAnswer";}
+        if(selected){filter = "NoSelected";}
 
-        // << Filter >>
-        //-------------------//
-        // isNoAnswerFilter   : (F) Answer num = 0 //
-        // isNoSelectedFilter : (F) Answer where accepted = 0 //
-        //-------------------//
+        if(sort.equals("Newest")){newSort = "generated_time";}
+        if(sort.equals("Active") || sort.equals("Recent activity")){newSort = "modified_time";}
+        if(sort.equals("Unanswered")){newSort = "votes"; filter = "NoAnswer";}
+        if(sort.equals("Score") || sort.equals("Highest score")){newSort = "votes";}
+        if(sort.equals("Frequent") || sort.equals("Most frequent")){newSort = "views";}
+        Page<Question> getQuestions = questionService.findQuestions(newSort, filter, pageNum);
+        return new ResponseEntity<Page>(getQuestions, HttpStatus.OK);
 
-        // << Sorted by >>
-        //-------------------//
-        // Newest : Created time Desc //
-        // Recent activity : Edited time Desc //
-        // Highest score : Vote Desc //
-        // Most frequent : View Desc //
-        //-------------------//
+    }
 
-
-        Page<Question> getQuestions = questionService.findQuestions(sorted, filter, pageable);
-        List<Question> result = new ArrayList<>();
-        Map<String, String> map = new HashMap<>();
-
-        return new ResponseEntity<List<>>(result, HttpStatus.OK);
+    @GetMapping("/findAll")
+    public ResponseEntity getAllQuestions(){
+        List<Question> result = questionService.findAllQuestioins();
+        Map<String, Object> map = new HashMap<>();
+        map.put("result",result);
+        return new ResponseEntity<Map>(map,HttpStatus.OK);
     }
 
     @GetMapping("/{questionId}")
-    public ResponseEntity getQuestion(@PathVariable int questionId) {
+    public ResponseEntity getQuestion(@PathVariable long questionId) {
+        questionService.findQuestion(questionId);
         Map<String, String> map = new HashMap<>();
         return new ResponseEntity<Map>(map, HttpStatus.OK);
     }

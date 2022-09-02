@@ -12,4 +12,6 @@ public class GetQuestionDTO {
     private boolean NoSelectedFilter;
 
     private String SortedBy;
+
+    private int pageNum;
 }
