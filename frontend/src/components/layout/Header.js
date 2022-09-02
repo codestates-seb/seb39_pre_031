@@ -1,8 +1,8 @@
-import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
+import SearchInput from '../search/SearchInput';
 
 const Container = styled.header`
   width: 100%;
@@ -12,6 +12,7 @@ const Container = styled.header`
   z-index: 1;
   background-color: #f8f9f9;
   box-shadow: 5px 2px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #f48224;
 `;
 
 const Head = styled.div`
@@ -45,19 +46,7 @@ const HeaderInput = styled.div`
   align-items: center;
   position: relative;
   justify-content: center;
-
-  .searchIcon {
-    position: absolute;
-    left: 5.3rem;
-  }
-  > input {
-    width: 80%;
-    height: 30px;
-    border-radius: 3px;
-    padding: 5px 35px;
-    font-size: 13px;
-    border: 1px solid #babfc3;
-  }
+  padding: 0 8px;
 `;
 
 const HeaderLogin = styled.div`
@@ -78,8 +67,7 @@ const Header = () => {
           </Link>
         </HeaderLogo>
         <HeaderInput>
-          <BiSearch className="searchIcon" />
-          <input placeholder="Search..." />
+          <SearchInput />
         </HeaderInput>
         <HeaderLogin>
           <SubmitButton
