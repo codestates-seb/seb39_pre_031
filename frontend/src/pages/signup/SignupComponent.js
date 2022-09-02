@@ -20,7 +20,6 @@ const SingupOauth = styled.div`
 
 const SingupForm = styled.form`
   width: 100%;
-  height: 55%;
   background-color: white;
   padding: 24px;
   border-radius: 10px;
@@ -64,9 +63,6 @@ const SignupComponent = () => {
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
-
-  console.log(errorEmail);
-  console.log(errorPassword);
 
   //! 회원가입 api
   const submitHandler = async (e) => {
@@ -127,14 +123,18 @@ const SignupComponent = () => {
       </SingupOauth>
       <SingupForm onSubmit={submitHandler}>
         <InputForm title="Display name" type="text" onChange={nameHandler} />
-        <InputForm title="Email" type="email" onChange={emailHandler} />
-        {errorEmail ? errorEmail : ''}
+        <InputForm
+          title="Email"
+          type="email"
+          onChange={emailHandler}
+          error={errorEmail}
+        />
         <InputForm
           title="Password"
           type="password"
           onChange={passwordHandler}
+          error={errorPassword}
         />
-        {errorPassword ? errorPassword : ''}
         <SignupBtn btnName="Sign up" width="100%" type="submit" />
       </SingupForm>
       <LoginLink>
