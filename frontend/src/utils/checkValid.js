@@ -10,7 +10,7 @@ export const checkValidForm = (
     emailErrorMessage('Email cannot be empty.');
     isValid = false;
   } else {
-    const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{3}$/g;
+    const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,}$/g;
     if (!validEmail.test(email)) {
       emailErrorMessage('The email is not a valid email address.');
       isValid = false;
@@ -23,7 +23,9 @@ export const checkValidForm = (
   } else {
     const validPassword = /^(?=.*\d)[a-zA-Z0-9]{5,15}$/g;
     if (!validPassword.test(password)) {
-      passwordErrorMessage('The password is not a valid passowrd.');
+      passwordErrorMessage(
+        'The password must be at least 5 characters and contain at least 1 number and 1 letter.'
+      );
       isValid = false;
     }
   }
