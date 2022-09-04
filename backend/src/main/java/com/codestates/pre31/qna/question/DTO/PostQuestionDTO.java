@@ -1,9 +1,11 @@
 package com.codestates.pre31.qna.question.DTO;
 
 import com.codestates.pre31.user.entity.User;
+import lombok.Data;
 import lombok.Getter;
 
 @Getter
+@Data
 public class PostQuestionDTO {
 
     private Integer user_id;
@@ -12,10 +14,4 @@ public class PostQuestionDTO {
 
     private String body;
 
-
-    public User getUser() {
-        User user = new User();
-        user.setUserId(user_id);
-        return user;
-    }
 }

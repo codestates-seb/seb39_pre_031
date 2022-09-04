@@ -1,17 +1,17 @@
 package com.codestates.pre31.qna.question.DTO;
 
-import lombok.Getter;
-
-import java.security.PrivateKey;
+import lombok.*;
 
 @Getter
+@Setter
+@Data
 public class GetQuestionDTO {
 
-    private boolean NoAnswerFilter;
+    private boolean noAns;
 
-    private boolean NoSelectedFilter;
+    private boolean noSel;
 
-    private String SortedBy;
+    private String sort;
 
     private int pageNum;
 }

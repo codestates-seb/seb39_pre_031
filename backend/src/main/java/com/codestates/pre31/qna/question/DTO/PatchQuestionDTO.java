@@ -1,6 +1,4 @@
-package com.codestates.pre31.qna.answer.DTO;
-
-
+package com.codestates.pre31.qna.question.DTO;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,11 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class PostAnswerDTO {
-
-    private Integer question_id;
-
-    private Integer user_id;
+public class PatchQuestionDTO {
 
     private String title;
 

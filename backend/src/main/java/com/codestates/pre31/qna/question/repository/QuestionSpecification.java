@@ -19,4 +19,5 @@ public class QuestionSpecification {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal((root.get("deleteState")),deleted);
     }
 
+
 }

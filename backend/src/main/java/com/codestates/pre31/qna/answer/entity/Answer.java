@@ -1,6 +1,5 @@
 package com.codestates.pre31.qna.answer.entity;
 
-import com.codestates.pre31.qna.question.entity.Question;
 import com.codestates.pre31.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity(name="answer")
@@ -35,8 +33,6 @@ public class Answer {
     @Column(length = 5000)
     private String body;
 
-    @Column
-    private String type;
 
     @Column
     private LocalDateTime generatedTime;
@@ -45,14 +41,10 @@ public class Answer {
     private LocalDateTime modifiedTime;
 
     @Column
-    private int voteUp;
+    private int vote;
 
-    @Column
-    private int voteDown;
-
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
+    @Column(name = "question_id")
+    private long questionId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

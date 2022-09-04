@@ -28,10 +28,8 @@ public class Question {
     private String title;
 
     @Column(length = 5000)
-    private  String body;
+    private String body;
 
-    @Column
-    private  String type;
 
     @Column
     private LocalDateTime generatedTime;
@@ -51,13 +49,12 @@ public class Question {
     @Column
     private int numSelected;
 
-    @OneToMany(mappedBy = "question",fetch = FetchType.EAGER)
-//  @JoinTable(name = "Answer")
-    private List<Answer> answer;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
+
 
 
 }
