@@ -6,7 +6,7 @@ import AskInfoThird from './AskInfoThird';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  margin-left: 32px;
 `;
 
 const AskInfo = () => {

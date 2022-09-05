@@ -6,14 +6,20 @@ import Input from '../../common/Input';
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 
-const Label = styled.label`
+const Container = styled.div`
   width: 100%;
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+`;
+
+const Label = styled.label`
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
 
   div {
-    font-size: 0.7rem;
+    font-size: 12px;
     font-weight: 400;
     margin-bottom: 5px;
   }
@@ -45,8 +51,8 @@ const AskForm = () => {
   // Editor.prototype.getInstance().getMarkdown()
 
   return (
-    <>
-      <Card width="842px" margin="0 0 1rem 0">
+    <Container>
+      <Card width="100%" margin="0 0 1rem 0">
         <Label>
           Title
           <div>
@@ -90,7 +96,7 @@ const AskForm = () => {
         height="35px"
         color="white"
       />
-    </>
+    </Container>
   );
 };
 
