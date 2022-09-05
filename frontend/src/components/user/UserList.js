@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import UserItem from './UserItem';
 import { usersData } from '../../mocks/Data';
+import TagPaging from '../tag/TagPaging';
 
 const Container = styled.div`
   width: 100%;
@@ -13,15 +15,52 @@ const Grid = styled.div`
   gap: 12px;
 `;
 
+const Pagination = styled.div`
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const UserList = () => {
+  const [users] = useState(usersData);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [dataPerPage] = useState(16);
+
+  const [indexOfLastData, setIndexOfLastData] = useState(0);
+  const [indexOfFirstData, setIndexOfFirstData] = useState(0);
+  const [currentData, setCurrentData] = useState();
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
+  useEffect(() => {
+    setCount(users.length);
+    setIndexOfLastData(page * dataPerPage);
+    setIndexOfFirstData(indexOfLastData - dataPerPage);
+    setCurrentData(users.slice(indexOfFirstData, indexOfLastData));
+  }, [page, indexOfFirstData, indexOfLastData, users, dataPerPage]);
+
   return (
-    <Container>
-      <Grid>
-        {usersData.map((user, idx) => {
-          return <UserItem key={idx} user={user} />;
-        })}
-      </Grid>
-    </Container>
+    <>
+      <Container>
+        <Grid>
+          {currentData &&
+            currentData.map((user, idx) => {
+              return <UserItem key={idx} user={user} />;
+            })}
+        </Grid>
+      </Container>
+      <Pagination>
+        <TagPaging
+          page={page}
+          itemsCountPerPage={dataPerPage}
+          totalItemsCount={count}
+          onChange={handlePageChange}
+        />
+      </Pagination>
+    </>
   );
 };
 

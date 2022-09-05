@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import TagFilter from '../../components/tag/TagFilter';
 import TagList from '../../components/tag/TagList';
 import TagTab from '../../components/tag/TagTab';
-import Paging from '../../common/Paging';
 
 const Container = styled.div`
   width: 100%;
@@ -35,12 +34,6 @@ const TabBlock = styled.div`
   margin-left: auto !important;
 `;
 
-const Pagination = styled.div`
-  margin: 20px 0;
-  display: flex;
-  justify-content: flex-end;
-`;
-
 const Tags = () => {
   return (
     <Container>
@@ -59,9 +52,6 @@ const Tags = () => {
         </TabBlock>
       </TopContainer>
       <TagList />
-      <Pagination>
-        <Paging />
-      </Pagination>
     </Container>
   );
 };
