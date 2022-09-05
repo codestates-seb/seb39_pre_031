@@ -25,7 +25,7 @@ export const findPasswordApi = async (email) => {
 
 export const questionApi = async (body) => {
   const url = '/question';
-  return Axios.get(url, body);
+  return Axios.post(url, body);
 };
 
 export const updateQuestionApi = async (body, id) => {
@@ -81,4 +81,9 @@ export const voteUpAnsApi = async (id) => {
 export const voteDownAnsApi = async (id) => {
   const url = `/answer/voteDown/${id}`;
   return Axios.patch(url);
+};
+
+export const getDetailQueApi = async (id) => {
+  const url = `/question/${id}`;
+  return Axios.get(url);
 };

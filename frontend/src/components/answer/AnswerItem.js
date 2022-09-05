@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { BsFillBookmarkStarFill } from 'react-icons/bs';
 import { GiBackwardTime } from 'react-icons/gi';
-import Answer from './Answer';
-import { voteUpQueApi, voteDownQueApi } from '../../config/api';
+import { Link } from 'react-router-dom';
 
 const QueContainer = styled.div`
   width: 80%;
@@ -56,26 +55,18 @@ const EditContent = styled.div`
   padding-top: 10px;
 `;
 
-const DetailQue = ({ body, vote, questionId }) => {
-  const voteUpHandler = async (questionId) => {
-    await voteUpQueApi(questionId);
-  };
-
-  const voteDownHandler = async (questionId) => {
-    await voteDownQueApi(questionId);
-  };
-
-  console.log(questionId);
+const DetailQue = ({ data }) => {
+  const { answerId, body, vote } = data;
 
   return (
     <QueContainer>
       <QueContent>
         <Votecell>
-          <button onClick={voteUpHandler}>
+          <button>
             <TiArrowSortedUp />
           </button>
           <div>{vote}</div>
-          <button onClick={voteDownHandler}>
+          <button>
             <TiArrowSortedDown />
           </button>
           <span>
@@ -88,11 +79,10 @@ const DetailQue = ({ body, vote, questionId }) => {
         <PostContainer>
           <PostContent>{body}</PostContent>
           <EditContent>
-            <Link to={`/questions/${questionId}/edit`}>Edit</Link>
+            <Link to={`/answer/${answerId}/edit`}>Edit</Link>
           </EditContent>
         </PostContainer>
       </QueContent>
-      <Answer />
     </QueContainer>
   );
 };

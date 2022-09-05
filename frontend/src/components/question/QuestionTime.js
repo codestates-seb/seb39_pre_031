@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { saveCreatedAt } from '../../utils/saveCreatedAt';
 
 const QuestionTimeContainer = styled.div`
   width: 100%;
@@ -18,22 +19,19 @@ const QuestionTimeContainer = styled.div`
   }
 `;
 
-const QuestionTime = ({ createdAt, views }) => {
-  const createdTime = new Date(createdAt);
-
-  const timeNow = new Date().getTime();
-
-  const diffTime = Math.floor((timeNow - createdTime) / (1000 * 60 * 60 * 24));
+const QuestionTime = ({ generatedTime, modifiedTime, views }) => {
+  const generated = saveCreatedAt(generatedTime);
+  const modified = saveCreatedAt(modifiedTime);
 
   return (
     <QuestionTimeContainer>
       <div>
         <span>Asked</span>
-        <span>{diffTime} days ago</span>
+        <span>{generated}</span>
       </div>
       <div>
         <span>Modifed</span>
-        <span>today</span>
+        <span>{modified}</span>
       </div>
       <div>
         <span>Viewed</span>
