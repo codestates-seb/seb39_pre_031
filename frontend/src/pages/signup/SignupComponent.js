@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import OauthButton from '../../common/Button/OauthButton';
 import InputForm from '../../common/InputForm';
-// import { signupApi } from '../../config/api';
+import { signupApi } from '../../config/api';
 import SignupBtn from './SignupBtn';
 import { checkValidForm } from '../../utils/checkValid';
 
@@ -63,7 +63,7 @@ const SignupComponent = () => {
     setPassword(event.target.value);
   };
 
-  //! 회원가입 api
+  //TODO 회원가입 api 입력 위치
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -79,28 +79,12 @@ const SignupComponent = () => {
       password,
     };
 
-    console.log(userInfo);
-
-    // const body = JSON.stringify(userInfo);
-
-    // try {
-    //   const { Authorization } = await signupApi(body); // 회원가입 하고 나면 들어오는 값이 뭔지 확인
-    //   console.log(Authorization);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    // fetch('http://localhost:8080/members', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(userInfo),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
-
-    // console.log(JSON.stringify(userInfo));
+    try {
+      const { id } = await signupApi(userInfo); // 회원가입 하고 나면 들어오는 값이 뭔지 확인
+      console.log(id);
+    } catch (error) {
+      console.log(error);
+    }
 
     navigate('/');
   };

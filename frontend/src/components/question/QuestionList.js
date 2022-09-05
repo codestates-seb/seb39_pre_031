@@ -10,6 +10,8 @@ const Container = styled.div`
   margin-left: -24px;
 `;
 
+const filter = 'Hot';
+
 //TODO home과 question api 호출 위치
 
 const QuestionList = () => {
@@ -17,9 +19,10 @@ const QuestionList = () => {
 
   useEffect(() => {
     if (pathname === '/') {
+      console.log(pathname);
       try {
-        const data = homeApi(); //! body 작성해서 함수에 넣어주기
-        console.log(data);
+        const { result } = homeApi(filter); //! body 작성해서 함수에 넣어주기
+        console.log(result);
       } catch (error) {
         console.log(error);
       }

@@ -55,7 +55,7 @@ const Password = () => {
     console.log(JSON.stringify(email));
 
     fetch(
-      `http://ec2-13-124-119-114.ap-northeast-2.compute.amazonaws.com:8080/members/${email}/find`,
+      `http://ec2-13-124-119-114.ap-northeast-2.compute.amazonaws.com:8080/member/${email}/find`,
       {
         method: 'POST',
         headers: {
