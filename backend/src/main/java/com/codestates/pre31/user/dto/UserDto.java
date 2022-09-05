@@ -1,4 +1,4 @@
-package com.codestates.pre31.user.Dto;
+package com.codestates.pre31.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

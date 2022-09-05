@@ -1,6 +1,6 @@
 package com.codestates.pre31.user.controller;
 
-import com.codestates.pre31.user.Dto.UserDto;
+import com.codestates.pre31.user.dto.UserDto;
 import com.codestates.pre31.user.entity.User;
 import com.codestates.pre31.user.mapper.UserMapper;
 import com.codestates.pre31.user.service.UserService;

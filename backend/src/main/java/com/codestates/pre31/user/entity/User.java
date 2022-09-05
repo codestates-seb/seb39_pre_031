@@ -1,17 +1,14 @@
 package com.codestates.pre31.user.entity;
 
 import com.codestates.pre31.audit.Auditable;
-import com.codestates.pre31.user.auth.entity.RoleType;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class User extends Auditable {
 
