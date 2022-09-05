@@ -4,7 +4,6 @@ import NavItem from './NavItem';
 const Nav = styled.nav`
   display: block;
   min-width: 9rem;
-  margin-bottom: 8px;
   width: auto;
   border-right: 1px solid hsl(210, 8%, 85%);
 `;

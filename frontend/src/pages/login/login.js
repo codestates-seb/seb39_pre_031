@@ -127,7 +127,7 @@ const Login = () => {
     //   console.log(error);
     // }
 
-    dispatch(login({ name: 'hyejin', email }));
+    dispatch(login('hyejin'));
 
     // fetch('http://localhost:8080/members/login', {
     //   method: 'POST',

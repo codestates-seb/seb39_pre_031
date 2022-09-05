@@ -1,19 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 
-const initialState = { value: { name: '', email: '' }, login: false };
+const initialState = { name: null, login: false };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     login: (state, action) => {
-      state.value = action.payload;
+      state.name = action.payload;
       state.login = true;
     },
     logout: (state) => {
-      state.value = initialState;
-      state.login = false;
+      Object.assign(state, initialState);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
   },
 });
 

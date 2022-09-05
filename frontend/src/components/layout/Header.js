@@ -1,12 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../store/user';
-
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
 import SearchInput from '../search/SearchInput';
-import Button from '../../common/Button/Button';
+import LogoutBtn from '../logout/LogoutBtn';
 
 const Container = styled.header`
   width: 100%;
@@ -61,14 +60,19 @@ const HeaderLogin = styled.div`
   justify-content: space-around;
 `;
 
-const Header = () => {
-  const user = useSelector((state) => state.user.value);
-  const isLogin = useSelector((state) => state.user.login);
-  const dispatch = useDispatch();
+const ProfileBlock = styled.div`
+  font-size: 12px;
+  padding: 10px;
+  margin: 0 2px;
+  border-radius: 3px;
+  color: white;
+  background-color: hsl(206, 100%, 40%);
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+`;
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
+const Header = () => {
+  const user = useSelector((state) => state.user.name);
+  const isLogin = useSelector((state) => state.user.login);
 
   return (
     <Container>
@@ -84,8 +88,8 @@ const Header = () => {
         <HeaderLogin>
           {isLogin ? (
             <>
-              {user.name}
-              <Button btnName="Logout" onClick={logoutHandler} />
+              <ProfileBlock>{user}</ProfileBlock>
+              <LogoutBtn />
             </>
           ) : (
             <>
