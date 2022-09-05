@@ -1,7 +1,8 @@
 package com.codestates.pre31.user.entity;
 
 import com.codestates.pre31.audit.Auditable;
-import lombok.Getter;
+import com.codestates.pre31.user.auth.entity.RoleType;
+import lombok.*;
 
 import javax.persistence.*;
 

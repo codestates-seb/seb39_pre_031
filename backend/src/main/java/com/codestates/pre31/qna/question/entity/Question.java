@@ -1,13 +1,11 @@
 package com.codestates.pre31.qna.question.entity;
 
-import com.codestates.pre31.qna.answer.entity.Answer;
 import com.codestates.pre31.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity(name="question")
 @Table(name="Question")

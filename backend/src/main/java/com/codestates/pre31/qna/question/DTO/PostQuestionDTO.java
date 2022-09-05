@@ -8,7 +8,7 @@ import lombok.Getter;
 @Data
 public class PostQuestionDTO {
 
-    private Integer user_id;
+    private long user_id;
 
     private String title;
 

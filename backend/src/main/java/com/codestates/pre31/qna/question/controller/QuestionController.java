@@ -7,6 +7,7 @@ import com.codestates.pre31.qna.question.DTO.QuestionReusltDTO;
 import com.codestates.pre31.qna.question.entity.Question;
 import com.codestates.pre31.qna.question.service.QuestionService;
 import com.codestates.pre31.user.entity.User;
+import com.codestates.pre31.user.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +21,17 @@ import java.util.*;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final UserRepository userRepository;
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, UserRepository userRepository) {
         this.questionService = questionService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody PostQuestionDTO dto) {
-        User user = new User();
-        user.setUserId(dto.getUser_id());
+        User user = userRepository.findById(dto.getUser_id()).orElse(null);
+        //user.setUserId(dto.getUser_id());
         Question question = new Question();
         question.setTitle(dto.getTitle());
         question.setBody(dto.getBody());

@@ -27,7 +27,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final JwtConfig jwtConfig;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtConfig jwtConfig) {
-        super.setFilterProcessesUrl("/members/login");
+        super.setFilterProcessesUrl("/member/login");
         this.authenticationManager = authenticationManager;
         this.jwtConfig = jwtConfig;
     }
