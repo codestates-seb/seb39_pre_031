@@ -12,7 +12,7 @@ const Container = styled.div`
 
 //TODO home과 question api 호출 위치
 
-const QuestionList = ({ tab }) => {
+const QuestionList = ({ tab, body }) => {
   const { pathname } = useLocation();
   // const [dataList, setDataList] = useState([]);
 
@@ -45,23 +45,24 @@ const QuestionList = ({ tab }) => {
     }
   };
 
-  const getQuestion = async () => {
+  const getQuestion = async (body) => {
     try {
-      const { data } = questionApi();
+      console.log(body);
+      const data = await questionApi(body);
       console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getFilterQuestion = () => {};
-
   useEffect(() => {
     if (pathname === '/') {
+      console.log(pathname);
       getHome();
     }
     if (pathname === '/questions') {
-      getQuestion();
+      console.log(pathname);
+      getQuestion(body);
     }
   }, [pathname]);
 
@@ -70,7 +71,7 @@ const QuestionList = ({ tab }) => {
       getFilterHome();
     }
     if (pathname === '/questions') {
-      getFilterQuestion();
+      getQuestion(body);
     }
   }, [tab]);
 

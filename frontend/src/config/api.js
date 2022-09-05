@@ -24,7 +24,7 @@ export const findPasswordApi = async (email) => {
 //! question
 
 export const questionApi = async (body) => {
-  const url = `/question`;
+  const url = '/question';
   return Axios.get(url, body);
 };
 

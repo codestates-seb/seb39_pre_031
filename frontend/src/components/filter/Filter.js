@@ -34,11 +34,14 @@ const Filter = (props) => {
   const cancelHandler = () => {
     props.onFilter();
   };
+
+  // const queFilter = () => {};
+
   return (
     <Container>
       <TopBlock>
-        <FirstFilter />
-        <SecondFilter />
+        <FirstFilter setNoAns={props.setNoAns} setNoSel={props.setNoSel} />
+        <SecondFilter onTab={props.onTab} />
         <ThirdFilter />
       </TopBlock>
       <BottomBlock>

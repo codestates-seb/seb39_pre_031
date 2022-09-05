@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Pagination from 'react-js-pagination';
 
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   .pagination {
@@ -58,14 +58,13 @@ const Container = styled.div`
   }
 `;
 
-const Paging = () => {
+const Paging = ({ setPageNum }) => {
   const [page, setPage] = useState(1);
 
-  const { pathname } = useLocation();
   //TODO pagenation api 호출 위치
   const handlePageChange = async (page) => {
     setPage(page);
-    console.log(pathname);
+    setPageNum(page - 1);
 
     // try {
     //   const data = await questionApi(); //! body 작성해서 함수에 넣어주기
@@ -74,7 +73,6 @@ const Paging = () => {
     //   console.last(error);
     // }
   };
-
   return (
     <Container>
       <Pagination

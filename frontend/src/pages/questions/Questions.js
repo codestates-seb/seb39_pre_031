@@ -58,10 +58,30 @@ const Pagination = styled.div`
 
 const Questions = () => {
   const [showFilter, setShowFilter] = useState(false);
+  const [noAns, setNoAns] = useState(false);
+  const [noSel, setNoSel] = useState(false);
+  const [sort, setSort] = useState('Score');
+  const [pageNum, setPageNum] = useState(0);
 
   const filterClickHandler = () => {
     setShowFilter(!showFilter);
   };
+
+  const onTab = (value) => {
+    if (value === 'Bountied' || value === 'More') {
+      return;
+    }
+
+    setSort(value);
+  };
+
+  const body = {
+    noAns,
+    noSel,
+    sort,
+    pageNum,
+  };
+  console.log(body);
 
   return (
     <Page>
@@ -74,15 +94,22 @@ const Questions = () => {
           <MidBlock>
             <TotalCount>22,937,347 questions</TotalCount>
             <RightBlock>
-              <QuestionTab />
+              <QuestionTab onTab={onTab} />
               <FilterBtn onClick={filterClickHandler} />
             </RightBlock>
           </MidBlock>
-          {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
+          {showFilter ? (
+            <Filter
+              onFilter={filterClickHandler}
+              onTab={onTab}
+              setNoSel={setNoSel}
+              setNoAns={setNoAns}
+            />
+          ) : null}
         </MidContainer>
-        <QuestionList />
+        <QuestionList body={body} />
         <Pagination>
-          <Paging />
+          <Paging setPageNum={setPageNum} />
         </Pagination>
       </Main>
       <RightSide />
