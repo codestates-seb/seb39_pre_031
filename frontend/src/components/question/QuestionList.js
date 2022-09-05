@@ -1,8 +1,7 @@
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import QuestionItem from './QuestionItem';
-import { Data } from '../../mocks/Data';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { homeApi, questionApi } from '../../config/api';
 
 const Container = styled.div`
@@ -14,13 +13,13 @@ const Container = styled.div`
 
 const QuestionList = ({ tab, body }) => {
   const { pathname } = useLocation();
-  // const [dataList, setDataList] = useState([]);
+  const [dataList, setDataList] = useState([]);
 
   const getHome = async () => {
     try {
       if (!tab) {
         const { data } = await homeApi('');
-        // setDataList(data.result);
+        setDataList(data.result);
         console.log('nomal');
         console.log(data.result);
       }
@@ -37,6 +36,7 @@ const QuestionList = ({ tab, body }) => {
     try {
       if (tab === 'Hot' || tab === 'Interesting') {
         const { data } = await homeApi(tab);
+        setDataList(data.result);
         console.log('filter');
         console.log(data.result);
       }
@@ -50,6 +50,7 @@ const QuestionList = ({ tab, body }) => {
       console.log(body);
       const data = await questionApi(body);
       console.log(data);
+      setDataList(data.data.result.content);
     } catch (error) {
       console.log(error);
     }
@@ -77,8 +78,8 @@ const QuestionList = ({ tab, body }) => {
 
   return (
     <Container>
-      {Data.map((item, idx) => (
-        <QuestionItem key={idx} contents={item} />
+      {dataList.map((item) => (
+        <QuestionItem key={item.questionId} contents={item} />
       ))}
     </Container>
   );
