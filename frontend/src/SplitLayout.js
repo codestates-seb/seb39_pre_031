@@ -19,6 +19,10 @@ const Content = styled.div`
   width: 70%;
   display: flex;
   padding: 24px;
+
+  @media (max-width: 980px) {
+    width: 100%;
+  }
 `;
 
 const SplitLayout = () => {

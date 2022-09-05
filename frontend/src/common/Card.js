@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: ${({ width }) => (width ? width : '40rem')};
+  width: ${({ width }) => (width ? width : '100%')};
   padding: ${({ padding }) => (padding ? padding : '16px')};
   margin: ${({ margin }) => (margin ? margin : '0')};
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.06), 0 2px 6px hsla(0, 0%, 0%, 0.06),

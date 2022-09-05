@@ -19,25 +19,21 @@ const Container = styled.div`
   background-color: #f1f2f3;
   display: flex;
   justify-content: center;
-`;
-
-const Content = styled.div`
-  height: 100%;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Component = styled.div`
-  height: 100%;
-  width: 27%;
-  display: flex;
   align-items: center;
 `;
 
 const LoginContent = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 288px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 660px) {
+    width: 267px;
+  }
+
+  @media (max-width: 300px) {
+    width: 100%;
+  }
 `;
 
 const LoginLogo = styled.div`
@@ -56,8 +52,11 @@ const Logo = styled.span`
 const LoginOauth = styled.div`
   width: 100%;
   margin-bottom: 17px;
+  font-size: 13px;
 `;
 const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: white;
   padding: 24px;
@@ -67,14 +66,14 @@ const LoginForm = styled.form`
 const SignpLink = styled.div`
   width: 100%;
   padding: 24px;
-  font-size: 16px;
+  font-size: 13px;
   .to-signup {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
     > a {
       color: #0074cc;
-      font-size: 15px;
+      font-size: 13px;
     }
     &a:visited {
       color: #0074cc;
@@ -146,59 +145,55 @@ const Login = () => {
 
   return (
     <Container>
-      <Content>
-        <Component>
-          <LoginContent>
-            <LoginLogo>
-              <Link to="/">
-                <Logo />
-              </Link>
-            </LoginLogo>
+      <LoginContent>
+        <LoginLogo>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </LoginLogo>
 
-            <LoginOauth>
-              <OauthBtn btnName="Log in with Google" />
-              <OauthBtn
-                btnName="Log in with GitHub"
-                color="white"
-                backgroundColor="#2f3337"
-              />
-              <OauthBtn
-                btnName="Log in with Facebook"
-                color="white"
-                backgroundColor="#304986"
-              />
-            </LoginOauth>
+        <LoginOauth>
+          <OauthBtn btnName="Log in with Google" />
+          <OauthBtn
+            btnName="Log in with GitHub"
+            color="white"
+            backgroundColor="#2f3337"
+          />
+          <OauthBtn
+            btnName="Log in with Facebook"
+            color="white"
+            backgroundColor="#304986"
+          />
+        </LoginOauth>
 
-            <LoginForm onSubmit={submitHandler}>
-              <InputForm
-                title="Email"
-                type="email"
-                onChange={emailHandler}
-                error={errorEmail}
-              />
-              <InputForm
-                title="Password"
-                type="password"
-                passwordLink="Forgot password?"
-                onChange={passwordHandler}
-                error={errorPassword}
-              />
-              <LoginBtn btnName="Log in" type="submit" width="100%" />
-            </LoginForm>
+        <LoginForm onSubmit={submitHandler}>
+          <InputForm
+            title="Email"
+            type="email"
+            onChange={emailHandler}
+            error={errorEmail}
+          />
+          <InputForm
+            title="Password"
+            type="password"
+            passwordLink="Forgot password?"
+            onChange={passwordHandler}
+            error={errorPassword}
+          />
+          <LoginBtn btnName="Log in" type="submit" width="100%" />
+        </LoginForm>
 
-            <SignpLink>
-              <div className="to-signup">
-                Don't have an account?
-                <Link to="/signup"> Sign Up</Link>
-              </div>
-              <div className="to-signup">
-                Are tou an employer?
-                <Link to="/signup"> Sign up on Talent</Link>
-              </div>
-            </SignpLink>
-          </LoginContent>
-        </Component>
-      </Content>
+        <SignpLink>
+          <div className="to-signup">
+            Don't have an account?
+            <Link to="/signup"> Sign Up</Link>
+          </div>
+          <div className="to-signup">
+            Are tou an employer?
+            <Link to="/signup"> Sign up on Talent</Link>
+          </div>
+        </SignpLink>
+      </LoginContent>
     </Container>
   );
 };

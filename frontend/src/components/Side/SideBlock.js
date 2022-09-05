@@ -25,6 +25,10 @@ const BlockItem = styled.li`
   }
   .font-size {
     font-size: 12px;
+
+    a:visited {
+      color: black;
+    }
   }
 `;
 

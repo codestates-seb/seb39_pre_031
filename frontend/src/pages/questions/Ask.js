@@ -7,14 +7,16 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: hsl(210, 8%, 95%);
   width: 100%;
   height: 100%;
-  padding: 0 24px 24px 24px;
 `;
 
 const Container = styled.div`
-  width: 1216px;
+  width: 100%;
+  max-width: 1264px;
+  padding: 0 24px 24px 24px;
 `;
 
 const HeaderBlock = styled.div`
@@ -31,13 +33,14 @@ const HeaderBlock = styled.div`
 `;
 
 const ContentsContainer = styled.div`
+  width: 100%;
   display: flex;
-`;
+  justify-content: space-between;
+  align-items: flex-start;
 
-const FormBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  @media (max-width: 820px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const Ask = () => {
@@ -46,9 +49,7 @@ const Ask = () => {
       <Container>
         <HeaderBlock>Ask a public question</HeaderBlock>
         <ContentsContainer>
-          <FormBlock>
-            <AskForm />
-          </FormBlock>
+          <AskForm />
           <AskInfo />
         </ContentsContainer>
       </Container>
