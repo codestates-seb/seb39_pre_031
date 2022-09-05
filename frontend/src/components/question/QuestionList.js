@@ -10,32 +10,69 @@ const Container = styled.div`
   margin-left: -24px;
 `;
 
-const filter = 'Hot';
-
 //TODO home과 question api 호출 위치
 
-const QuestionList = () => {
+const QuestionList = ({ tab }) => {
   const { pathname } = useLocation();
+  // const [dataList, setDataList] = useState([]);
+
+  const getHome = async () => {
+    try {
+      if (!tab) {
+        const { data } = await homeApi('');
+        // setDataList(data.result);
+        console.log('nomal');
+        console.log(data.result);
+      }
+      // if (tab) {
+      //   const { data } = await homeApi(tab);
+      //   console.log(data);
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getFilterHome = async () => {
+    try {
+      if (tab === 'Hot' || tab === 'Interesting') {
+        const { data } = await homeApi(tab);
+        console.log('filter');
+        console.log(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getQuestion = async () => {
+    try {
+      const { data } = questionApi();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getFilterQuestion = () => {};
 
   useEffect(() => {
     if (pathname === '/') {
-      console.log(pathname);
-      try {
-        const { result } = homeApi(filter); //! body 작성해서 함수에 넣어주기
-        console.log(result);
-      } catch (error) {
-        console.log(error);
-      }
+      getHome();
     }
     if (pathname === '/questions') {
-      try {
-        const data = questionApi(); //! body 작성해서 함수에 넣어주기
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      getQuestion();
     }
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === '/') {
+      getFilterHome();
+    }
+    if (pathname === '/questions') {
+      getFilterQuestion();
+    }
+  }, [tab]);
 
   return (
     <Container>
