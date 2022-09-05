@@ -9,8 +9,39 @@ import SignupBtn from './SignupBtn';
 import { checkValidForm } from '../../utils/checkValid';
 
 const SignupContent = styled.div`
-  width: 35%;
   height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Paragraph = styled.div`
+  display: none;
+  font-size: 21px;
+  text-align: center;
+
+  @media (max-width: 820px) {
+    width: 100%;
+    display: block;
+    margin-bottom: 24px;
+  }
+`;
+
+const OauthBlock = styled.div`
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 660px) {
+    width: 267px;
+  }
+
+  @media (max-width: 300px) {
+    width: 100%;
+  }
 `;
 
 const SingupOauth = styled.div`
@@ -28,14 +59,14 @@ const SingupForm = styled.form`
 const LoginLink = styled.div`
   width: 100%;
   padding: 24px;
-  font-size: 16px;
+  font-size: 12px;
   .to-signup {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
     > a {
       color: #0074cc;
-      font-size: 15px;
+      font-size: 12px;
     }
     &a:visited {
       color: #0074cc;
@@ -107,35 +138,40 @@ const SignupComponent = () => {
 
   return (
     <SignupContent>
-      <SingupOauth>
-        <OauthButton btnName="Sign up with Google" />
-        <OauthButton
-          btnName="Sign up with GitHub"
-          color="white"
-          backgroundColor="#2f3337"
-        />
-        <OauthButton
-          btnName="Sign up with Facebook"
-          color="white"
-          backgroundColor="#304986"
-        />
-      </SingupOauth>
-      <SingupForm onSubmit={submitHandler}>
-        <InputForm title="Display name" type="text" onChange={nameHandler} />
-        <InputForm
-          title="Email"
-          type="email"
-          onChange={emailHandler}
-          error={errorEmail}
-        />
-        <InputForm
-          title="Password"
-          type="password"
-          onChange={passwordHandler}
-          error={errorPassword}
-        />
-        <SignupBtn btnName="Sign up" width="100%" type="submit" />
-      </SingupForm>
+      <Paragraph>
+        Create your Stack Overflow account. It’s free and only takes a minute.
+      </Paragraph>
+      <OauthBlock>
+        <SingupOauth>
+          <OauthButton btnName="Sign up with Google" />
+          <OauthButton
+            btnName="Sign up with GitHub"
+            color="white"
+            backgroundColor="#2f3337"
+          />
+          <OauthButton
+            btnName="Sign up with Facebook"
+            color="white"
+            backgroundColor="#304986"
+          />
+        </SingupOauth>
+        <SingupForm onSubmit={submitHandler}>
+          <InputForm title="Display name" type="text" onChange={nameHandler} />
+          <InputForm
+            title="Email"
+            type="email"
+            onChange={emailHandler}
+            error={errorEmail}
+          />
+          <InputForm
+            title="Password"
+            type="password"
+            onChange={passwordHandler}
+            error={errorPassword}
+          />
+          <SignupBtn btnName="Sign up" width="100%" type="submit" />
+        </SingupForm>
+      </OauthBlock>
       <LoginLink>
         <div className="to-signup">
           Already have an account?

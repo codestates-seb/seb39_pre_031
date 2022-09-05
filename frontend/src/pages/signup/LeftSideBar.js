@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
 const SidBar = styled.div`
-  width: 50%;
   height: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-right: 1rem;
+  margin-right: 48px;
+
+  h1 {
+    font-size: 27px;
+    margin-bottom: 32px;
+  }
+
+  div {
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 820px) {
+    display: none;
+  }
 `;
 
 const LeftSideBar = () => {

@@ -11,7 +11,7 @@ const MakeBtn = styled.button`
   border: 1px solid
     ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205deg 41% 63%)')};
   border-radius: 3px;
-  margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
+  margin: ${({ marginTD }) => (marginTD ? marginTD : '4px')};
   cursor: pointer;
   &:hover {
     background-color: ${({ hoverBackgroundColor }) =>
