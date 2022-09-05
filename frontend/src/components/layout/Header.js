@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/user';
+import { persistor } from '../../store';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -61,13 +62,23 @@ const HeaderLogin = styled.div`
   justify-content: space-around;
 `;
 
+const ProfileBlock = styled.div`
+  font-size: 12px;
+  padding: 10px;
+  margin: 0 2px;
+  border-radius: 3px;
+  color: white;
+  background-color: hsl(206, 100%, 40%);
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+`;
+
 const Header = () => {
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.user.name);
   const isLogin = useSelector((state) => state.user.login);
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    dispatch(logout());
+    persistor.purge().then(() => dispatch(logout()));
   };
 
   return (
@@ -84,7 +95,7 @@ const Header = () => {
         <HeaderLogin>
           {isLogin ? (
             <>
-              {user.name}
+              <ProfileBlock>{user}</ProfileBlock>
               <Button btnName="Logout" onClick={logoutHandler} />
             </>
           ) : (
