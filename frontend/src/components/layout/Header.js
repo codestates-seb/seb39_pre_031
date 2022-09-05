@@ -1,13 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../store/user';
-import { persistor } from '../../store';
-
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
 import SearchInput from '../search/SearchInput';
-import Button from '../../common/Button/Button';
+import LogoutBtn from '../logout/LogoutBtn';
 
 const Container = styled.header`
   width: 100%;
@@ -75,11 +73,6 @@ const ProfileBlock = styled.div`
 const Header = () => {
   const user = useSelector((state) => state.user.name);
   const isLogin = useSelector((state) => state.user.login);
-  const dispatch = useDispatch();
-
-  const logoutHandler = () => {
-    persistor.purge().then(() => dispatch(logout()));
-  };
 
   return (
     <Container>
@@ -96,7 +89,7 @@ const Header = () => {
           {isLogin ? (
             <>
               <ProfileBlock>{user}</ProfileBlock>
-              <Button btnName="Logout" onClick={logoutHandler} />
+              <LogoutBtn />
             </>
           ) : (
             <>
