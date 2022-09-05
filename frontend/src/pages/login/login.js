@@ -1,11 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/user';
+
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
+// import { loginApi } from '../../config/api';
 import logoImage from '../../image/logo.png';
 import LoginBtn from './loginBtn';
 import OauthBtn from './OauthBtn';
+import { checkValidForm } from '../../utils/checkValid';
 
 const Container = styled.div`
   width: 100%;
@@ -53,7 +58,6 @@ const LoginOauth = styled.div`
 `;
 const LoginForm = styled.form`
   width: 100%;
-  height: 50%;
   background-color: white;
   padding: 24px;
   border-radius: 10px;
@@ -78,8 +82,13 @@ const SignpLink = styled.div`
 `;
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorEmail, setErrorEmail] = useState();
+  const [errorPassword, setErrorPassword] = useState();
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -89,13 +98,50 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const submitHandler = () => {
+  //! 로그인 api
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    setErrorEmail(null);
+    setErrorPassword(null);
+
+    if (!checkValidForm(email, password, setErrorEmail, setErrorPassword))
+      return;
+
     const userInfo = {
       email,
       password,
     };
-    console.log('good');
+
     console.log(userInfo);
+
+    // const body = JSON.stringify(userInfo);
+
+    // console.log(body);
+
+    // try {
+    //   const { Authorization } = await loginApi(body);
+    //   console.log(Authorization);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    dispatch(login('hyejin'));
+
+    // fetch('http://localhost:8080/members/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(userInfo),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res));
+
+    // console.log(JSON.stringify(userInfo));
+
+    navigate('/');
   };
 
   return (
@@ -123,25 +169,21 @@ const Login = () => {
               />
             </LoginOauth>
 
-            <LoginForm>
-              <InputForm title="Email" type="email" onChange={emailHandler} />
+            <LoginForm onSubmit={submitHandler}>
+              <InputForm
+                title="Email"
+                type="email"
+                onChange={emailHandler}
+                error={errorEmail}
+              />
               <InputForm
                 title="Password"
                 type="password"
                 passwordLink="Forgot password?"
                 onChange={passwordHandler}
+                error={errorPassword}
               />
-              <LoginBtn
-                go="/"
-                btnName="Log in"
-                type="submit"
-                backgroundColor="#0074CC"
-                color="white"
-                marginTD="2rem"
-                width="100%"
-                height="37px"
-                onClick={submitHandler}
-              />
+              <LoginBtn btnName="Log in" type="submit" width="100%" />
             </LoginForm>
 
             <SignpLink>

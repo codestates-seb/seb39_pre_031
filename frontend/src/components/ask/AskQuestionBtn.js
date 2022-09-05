@@ -8,6 +8,7 @@ const AskQuestionBtn = () => {
       width="100px"
       height="36px"
       color="white"
+      marginTD="0"
     />
   );
 };

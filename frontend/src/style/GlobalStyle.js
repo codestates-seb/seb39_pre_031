@@ -16,19 +16,19 @@ export const GlobalStyle = createGlobalStyle`
   scrollbar-width: none;
   }
 
+  html{
+    height: 100vh;
+  }
+  
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100%;
     padding-top: 50px;
-  }
-
-  html {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   code {
@@ -36,16 +36,16 @@ export const GlobalStyle = createGlobalStyle`
       monospace;
   }
 
-
   a {
+    color: black;
     text-decoration: none;
   }
 
   a:visited {
-    color: black;
+    color: #3974cc;
   }
 
-  ol li {
+  ol, li {
     list-style: none;
   }
 

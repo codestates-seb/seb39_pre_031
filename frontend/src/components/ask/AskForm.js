@@ -4,7 +4,6 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import Card from '../../common/Card';
 import Input from '../../common/Input';
 import styled from 'styled-components';
-import AskPreViewer from './AskPreViewer';
 import SubmitButton from '../../common/Button/SubmitButton';
 
 const Label = styled.label`
@@ -21,7 +20,7 @@ const Label = styled.label`
 `;
 
 const PreviewContainer = styled.div`
-  margin: 1rem 0;
+  margin: 10px 0;
 
   div {
     font-size: 12px;
@@ -47,7 +46,7 @@ const AskForm = () => {
 
   return (
     <>
-      <Card width="842px" margin="0 0 2rem 0">
+      <Card width="842px" margin="0 0 1rem 0">
         <Label>
           Title
           <div>
@@ -77,7 +76,6 @@ const AskForm = () => {
             ``` <code>code</code> ``` <strong>**bold**</strong> *<em>italic</em>
             * &gt;quote
           </div>
-          <AskPreViewer />
         </PreviewContainer>
         <Label className="tags">
           Tags
@@ -87,7 +85,7 @@ const AskForm = () => {
       </Card>
       <SubmitButton
         go="/"
-        text="Review your question"
+        btnName="Review your question"
         width="150px"
         height="35px"
         color="white"
