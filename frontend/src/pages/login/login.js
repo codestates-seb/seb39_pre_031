@@ -1,16 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useNavigate } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/user';
 
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
-// import { loginApi } from '../../config/api';
+import { loginApi } from '../../config/api';
 import logoImage from '../../image/logo.png';
 import LoginBtn from './loginBtn';
 import OauthBtn from './OauthBtn';
 import { checkValidForm } from '../../utils/checkValid';
+import { setCookie } from '../../config/cookie';
 
 const Container = styled.div`
   width: 100%;
@@ -98,7 +99,7 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  //! 로그인 api
+  //TODO 로그인 api 호출 위치
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -116,30 +117,29 @@ const Login = () => {
 
     console.log(userInfo);
 
-    // const body = JSON.stringify(userInfo);
+    let now = new Date();
+    let after1m = new Date();
+    after1m.setMinutes(now.getMinutes() + 1); // after1m을 현재시간의 1분후로 정의
 
-    // console.log(body);
+    try {
+      const data = await loginApi(userInfo);
+      const authorization = data.headers.authorization;
 
-    // try {
-    //   const { Authorization } = await loginApi(body);
-    //   console.log(Authorization);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      // 쿠키에 저장할 내용
+      const tokenBody = {
+        email,
+        authorization,
+      };
+
+      setCookie('accessToken', tokenBody, {
+        path: '/',
+        expires: after1m,
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     dispatch(login('hyejin'));
-
-    // fetch('http://localhost:8080/members/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(userInfo),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
-
-    // console.log(JSON.stringify(userInfo));
 
     navigate('/');
   };

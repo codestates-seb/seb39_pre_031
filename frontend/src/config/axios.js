@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import Axios from 'axios';
+import axios from 'axios';
 
-const axios = Axios.create({
+const Axios = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-export default axios;
+export default Axios;

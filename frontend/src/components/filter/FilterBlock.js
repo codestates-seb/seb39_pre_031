@@ -13,8 +13,8 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-const FilterBlock = ({ data, type }) => {
-  const { title, items } = data;
+const FilterBlock = ({ data, ...props }) => {
+  const { title, items, type } = data;
 
   return (
     <Container>
@@ -26,7 +26,7 @@ const FilterBlock = ({ data, type }) => {
             text={item.label}
             type={type}
             name={title}
-            checked={item.checked}
+            {...props}
           />
         );
       })}
