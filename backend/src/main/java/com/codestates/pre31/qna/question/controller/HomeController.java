@@ -25,6 +25,16 @@ public class HomeController {
         this.questionService = questionService;
     }
 
+
+
+    @GetMapping()
+    public ResponseEntity getQuestionsHome() {
+        Map<String, Object> result = new HashMap<>();
+        List<Question> res = questionService.findHome("num_answer");
+        result.put("result",res);
+        return new ResponseEntity<Map>(result, HttpStatus.OK);
+    }
+
     @GetMapping("/{filter}")
     public ResponseEntity getQuestionsHome(@PathVariable("filter") String filter) {
         Map<String, Object> result = new HashMap<>();
