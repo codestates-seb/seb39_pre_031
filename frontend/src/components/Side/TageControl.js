@@ -68,7 +68,6 @@ const TageControl = () => {
     }
   };
 
-  //* Tage 삭제
   const tageDeleteHandler = (e) => {
     const targetText = e.target.parentElement.parentElement.textContent;
     const targetID = e.target.parentElement.parentElement.id;

@@ -68,9 +68,6 @@ const QuestionItem = ({ contents }) => {
     const diffTime = Math.floor(
       (today.getTime() - createdAt.getTime()) / 1000 / 60
     );
-    // if (diffTime < 1) {
-    //   return `${today.getSeconds() - createdAt.getSeconds()} secs ago`;
-    // }
     if (diffTime < 60) {
       return `${diffTime} mins ago`;
     }

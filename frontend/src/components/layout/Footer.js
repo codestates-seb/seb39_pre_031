@@ -112,7 +112,7 @@ const Paragraph = styled.p`
   }
 
   a:visited {
-    color: hsl(210, 8%, 75%);
+    color: hsl(210, 8%, 60%);
   }
 `;
 
@@ -266,9 +266,9 @@ const Footer = () => {
           </SNS>
           <Paragraph>
             Site design / logo © 2022 Stack Exchange Inc; user contributions
-            licensed under{' '}
+            licensed under
             <a href="https://stackoverflow.com/help/licensing">CC BY-SA</a>.
-            <span>rev 2022.9.1.42953</span>
+            <span> rev 2022.9.1.42953</span>
           </Paragraph>
         </Copyright>
       </Container>

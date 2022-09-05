@@ -19,7 +19,6 @@ const MakeBtn = styled.button`
   }
 `;
 
-//! props : width, backgroundColor, link, color
 const SubmitButton = ({ go, btnName, ...props }) => {
   return (
     <Link to={go}>

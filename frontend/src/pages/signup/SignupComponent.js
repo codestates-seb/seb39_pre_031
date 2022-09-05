@@ -53,7 +53,6 @@ const SignupComponent = () => {
 
   const navigate = useNavigate();
 
-  //* onChaneHandler
   const nameHandler = (event) => {
     setUsername(event.target.value);
   };

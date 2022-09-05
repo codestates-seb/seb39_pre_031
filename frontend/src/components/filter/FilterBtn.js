@@ -9,7 +9,7 @@ const Button = styled.button`
   margin-left: 10px;
   text-align: center;
   font-size: 12px;
-  background-color: hslhsl(205, 46%, 92%);
+  background-color: hsl(205, 46%, 92%);
   color: hsl(205, 47%, 42%);
   cursor: pointer;
   border-radius: 3px;

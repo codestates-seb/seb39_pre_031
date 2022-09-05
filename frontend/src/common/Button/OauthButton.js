@@ -16,7 +16,6 @@ const OauthBtn = styled.div`
     backgroundColor ? backgroundColor : 'white'};
 `;
 
-//! borderColor, color, backgroundColor
 const OauthButton = ({ btnName, ...props }) => {
   return (
     <>

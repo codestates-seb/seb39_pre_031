@@ -47,13 +47,10 @@ const Accordion = ({ info, active, onToggle, ...props }) => {
     <Container className={`${active ? 'active' : ''}`}>
       <TitleBtn onClick={onToggle} {...props}>
         {title}
-        <span className="control">
-          {active ? <IoIosArrowUp /> : <IoIosArrowDown />}
-        </span>
+        <span>{active ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </TitleBtn>
       <ContentsContainer
         ref={contentEl}
-        className="answer_wrapper"
         style={
           active
             ? { height: contentEl.current.scrollHeight }
