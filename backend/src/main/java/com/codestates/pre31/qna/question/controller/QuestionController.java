@@ -28,7 +28,7 @@ public class QuestionController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping
+    @PostMapping("/ask")
     public ResponseEntity postQuestion(@RequestBody PostQuestionDTO dto) {
         User user = userRepository.findById(dto.getUser_id()).orElse(null);
         //user.setUserId(dto.getUser_id());
@@ -49,7 +49,7 @@ public class QuestionController {
         return new ResponseEntity<Map>(map, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity getQuestions(@RequestBody GetQuestionDTO dto) {
 
         int pageNum = dto.getPageNum();
