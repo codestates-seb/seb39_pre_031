@@ -30,7 +30,7 @@ public class HomeController {
     @GetMapping()
     public ResponseEntity getQuestionsHome() {
         Map<String, Object> result = new HashMap<>();
-        List<Question> res = questionService.findHome("num_answer");
+        List<Question> res = questionService.findHome("numAnswer");
         result.put("result",res);
         return new ResponseEntity<Map>(result, HttpStatus.OK);
     }

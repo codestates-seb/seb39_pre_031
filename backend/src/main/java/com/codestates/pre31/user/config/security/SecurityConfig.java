@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/member/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/question/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/home/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/answer/**").permitAll()
                 .anyRequest().authenticated();
         return http.build();
