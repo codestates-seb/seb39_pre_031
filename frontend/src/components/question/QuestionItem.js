@@ -64,6 +64,11 @@ const QuestionItem = ({ contents }) => {
 
   const { username } = user;
 
+  const reg = /[#`*]/gi;
+  const regReplace = (str) => {
+    return str.replace(reg, ``);
+  };
+
   return (
     <Container>
       <Stats votes={vote} views={views} answers={numAnswer} />
@@ -71,7 +76,7 @@ const QuestionItem = ({ contents }) => {
         <TitleBlock>
           <Link to={`/questions/${questionId}`}>{title}</Link>
         </TitleBlock>
-        <ContentsBlock>{body}</ContentsBlock>
+        <ContentsBlock>{regReplace(body)}</ContentsBlock>
         <BottomContainer>
           <AuthorBlock>{username}</AuthorBlock>
           <TimeBlock>asked {saveCreatedAt(generatedTime)}</TimeBlock>

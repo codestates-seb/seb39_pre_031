@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
@@ -11,7 +12,7 @@ import {
 } from '../../config/api';
 import AnswerList from '../answer/AnswerList';
 import { getCookie } from '../../config/cookie';
-import { useEffect, useState } from 'react';
+import { Viewer } from '@toast-ui/react-editor';
 
 const QueContainer = styled.div`
   width: 100%;
@@ -81,9 +82,11 @@ const EditContent = styled.div`
 
 const DetailQue = ({ body, vote, listAnswer, questionId }) => {
   const [voteNum, setVoteNum] = useState(vote);
+  const viewerRef = useRef();
 
   useEffect(() => {
     setVoteNum(vote);
+    viewerRef.current.getInstance().setMarkdown(body);
   }, [vote]);
 
   const token = getCookie('user').authorization;
@@ -127,7 +130,9 @@ const DetailQue = ({ body, vote, listAnswer, questionId }) => {
           </span>
         </Votecell>
         <PostContainer>
-          <PostContent>{body}</PostContent>
+          <PostContent>
+            <Viewer initialValue={body} ref={viewerRef} />
+          </PostContent>
           <EditContent>
             <Link to={`/questions/${questionId}/edit`} className="edit">
               Edit

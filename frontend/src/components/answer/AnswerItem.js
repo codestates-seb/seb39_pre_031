@@ -10,7 +10,7 @@ import {
   updateAnswerApi,
 } from '../../config/api';
 import { getCookie } from '../../config/cookie';
-import { Editor } from '@toast-ui/react-editor';
+import { Editor, Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 const QueContainer = styled.div`
@@ -103,12 +103,15 @@ const DetailQue = ({ data }) => {
   const [editBody, setEditBody] = useState(body);
   const [isEdit, setIsEdit] = useState(false);
   const bodyRef = useRef();
+  const viewerRef = useRef();
 
   bodyRef.current?.getInstance().setMarkdown(editBody);
+  viewerRef.current?.getInstance().setMarkdown(body);
 
   const modifyHandler = async () => {
     const token = getCookie('user').authorization;
     const body = { body: bodyRef.current?.getInstance().getMarkdown() };
+
     const header = {
       headers: {
         Authorization: token,
@@ -190,7 +193,9 @@ const DetailQue = ({ data }) => {
             </>
           ) : (
             <>
-              <PostContent>{body}</PostContent>
+              <PostContent>
+                <Viewer initialValue={body} ref={viewerRef} />
+              </PostContent>
               <EditContent>
                 <EditBtn onClick={editHandler}>Edit</EditBtn>
                 <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
