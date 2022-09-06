@@ -4,9 +4,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.codestates.pre31.user.auth.entity.PrincipalDetails;
 import com.codestates.pre31.user.config.security.JwtConfig;
+import com.codestates.pre31.user.dto.UserDto;
 import com.codestates.pre31.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -51,6 +53,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        ObjectMapper om = new ObjectMapper();
+        // LocalDateTime 자료형에 대해 Objectmapper serialize 오류를 발생한다.
+        om.registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 
@@ -61,6 +66,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("email", principalDetails.getUser().getEmail())
                 .withClaim("username", principalDetails.getUser().getUsername())
                 .sign(Algorithm.HMAC512(jwtConfig.getSecret()));
+
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + jwtToken);
+        response.setContentType("application/json;charset=UTF-8");
+//        response.getWriter().write(om.writeValueAsString(Map.of("userId", principalDetails.getUser().getUserId())));
+        response.getWriter().write(om.writeValueAsString(UserDto.Response.builder()
+                .userId(principalDetails.getUser().getUserId())
+                .email(principalDetails.getUser().getEmail())
+                .username(principalDetails.getUser().getUsername())
+                .build()
+        ));
     }
 }
