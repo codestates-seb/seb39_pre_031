@@ -4,8 +4,10 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Input from '../../common/Input';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import SubmitButton from '../../common/Button/SubmitButton';
+import { updateQuestionApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
 
 const Container = styled.div`
   width: 70%;
@@ -45,15 +47,26 @@ const PreviewContainer = styled.div`
 
 const EditComponent = ({ editData }) => {
   const [title, setTitle] = useState(editData.title);
+  console.log(title);
   const editorRef = useRef(null);
 
   const onChageHandler = (e) => {
     setTitle(e.target.value);
   };
+  console.log('editData : ', editData);
 
-  useEffect(() => {
-    editorRef.current?.getInstance().setMarkdown(editData.body);
-  }, []);
+  editorRef.current?.getInstance().setMarkdown(editData.body);
+
+  const postEditQueHandler = async () => {
+    const token = getCookie('user').authorization;
+    const body = {};
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await updateQuestionApi(editData.questionId, body, header);
+  };
 
   return (
     <Container>
@@ -65,7 +78,7 @@ const EditComponent = ({ editData }) => {
           </div>
         </Label>
         <Input
-          value={title}
+          value={title || ''}
           onChange={onChageHandler}
           placeholder="e.g. Is there an R function for finding the index an element in a vector?"
         />
@@ -106,6 +119,7 @@ const EditComponent = ({ editData }) => {
         width="150px"
         height="35px"
         color="white"
+        onClick={postEditQueHandler}
       ></SubmitButton>
     </Container>
   );

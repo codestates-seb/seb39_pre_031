@@ -10,6 +10,8 @@ import {
   deleteQuestionApi,
 } from '../../config/api';
 import AnswerList from '../answer/AnswerList';
+import { getCookie } from '../../config/cookie';
+import { useState } from 'react';
 
 const QueContainer = styled.div`
   width: 100%;
@@ -78,12 +80,28 @@ const DeleteBtn = styled.button`
 `;
 
 const DetailQue = ({ body, vote, listAnswer, questionId }) => {
-  const voteUpHandler = async (questionId) => {
-    await voteUpQueApi(questionId);
+  const [voteNum, setVoteNum] = useState(vote);
+  const voteUpHandler = async () => {
+    const token = getCookie('user').authorization;
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const data = await voteUpQueApi(questionId, {}, header);
+    setVoteNum(data.data.result.vote);
+
   };
 
-  const voteDownHandler = async (questionId) => {
-    await voteDownQueApi(questionId);
+  const voteDownHandler = async () => {
+    const token = getCookie('user').authorization;
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const data = await voteDownQueApi(questionId, {}, header);
+    setVoteNum(data.data.result.vote);
   };
 
   const deleteHandler = async () => {
@@ -97,7 +115,7 @@ const DetailQue = ({ body, vote, listAnswer, questionId }) => {
           <button onClick={voteUpHandler}>
             <TiArrowSortedUp />
           </button>
-          <div>{vote}</div>
+          <div>{voteNum}</div>
           <button onClick={voteDownHandler}>
             <TiArrowSortedDown />
           </button>
