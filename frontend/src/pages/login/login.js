@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
@@ -80,8 +80,6 @@ const SignpLink = styled.div`
 `;
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState();
@@ -136,8 +134,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-
-    navigate('/');
+    location.replace('/');
   };
 
   return (
@@ -177,7 +174,7 @@ const Login = () => {
             onChange={passwordHandler}
             error={errorPassword}
           />
-          <LoginBtn btnName="Log in" type="submit" width="100%" />
+          <LoginBtn btnName="Log in" type="submit" width="100%" color="white" />
         </LoginForm>
 
         <SignpLink>

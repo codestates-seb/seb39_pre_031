@@ -69,15 +69,15 @@ const EditContent = styled.div`
     font-size: 13px;
     color: hsl(210, 8%, 45%);
   }
-`;
 
-const DeleteBtn = styled.button`
-  font-size: 13px;
-  margin-left: 10px;
-  color: hsl(210, 8%, 45%);
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
+  > .deleteBtn {
+    font-size: 13px;
+    margin-left: 10px;
+    color: hsl(210, 8%, 45%);
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
 `;
 
 const DetailQue = ({ body, vote, listAnswer, questionId }) => {
@@ -107,8 +107,8 @@ const DetailQue = ({ body, vote, listAnswer, questionId }) => {
   };
 
   const deleteHandler = async () => {
-    const data = await deleteQuestionApi(questionId, header);
-    console.log(data);
+    await deleteQuestionApi(questionId, header);
+    window.location.reload();
   };
 
   return (
@@ -137,7 +137,13 @@ const DetailQue = ({ body, vote, listAnswer, questionId }) => {
             <Link to={`/questions/${questionId}/edit`} className="edit">
               Edit
             </Link>
-            <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
+            <Link
+              className="deleteBtn"
+              to={'/questions'}
+              onClick={deleteHandler}
+            >
+              Delete
+            </Link>
           </EditContent>
         </PostContainer>
       </QueContent>

@@ -11,7 +11,6 @@ const Count = styled.div`
 `;
 
 const AnswerList = ({ listAnswer }) => {
-  console.log(listAnswer);
   return (
     <Container>
       <Count> {listAnswer !== undefined && listAnswer.length} Answers</Count>
