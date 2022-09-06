@@ -45,7 +45,7 @@ const QuestionDetail = () => {
   const { questionId } = useParams();
 
   console.log(questionId);
-  
+
   const getDetailQue = async (questionId) => {
     try {
       const data = await getDetailQueApi(questionId);
