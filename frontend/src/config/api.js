@@ -28,9 +28,9 @@ export const questionApi = async (body) => {
   return Axios.post(url, body);
 };
 
-export const updateQuestionApi = async (body, id) => {
+export const updateQuestionApi = async (id, body, header) => {
   const url = `/question/${id}`;
-  return Axios.patch(url, body);
+  return Axios.patch(url, body, header);
 };
 
 export const deleteQuestionApi = async (id) => {

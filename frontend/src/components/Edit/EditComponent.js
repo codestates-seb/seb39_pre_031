@@ -6,6 +6,8 @@ import Card from '../../common/Card';
 import Input from '../../common/Input';
 import { useRef, useState } from 'react';
 import SubmitButton from '../../common/Button/SubmitButton';
+import { updateQuestionApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
 
 const Container = styled.div`
   width: 70%;
@@ -54,6 +56,17 @@ const EditComponent = ({ editData }) => {
   console.log('editData : ', editData);
 
   editorRef.current?.getInstance().setMarkdown(editData.body);
+
+  const postEditQueHandler = async () => {
+    const token = getCookie('user').authorization;
+    const body = {};
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await updateQuestionApi(editData.questionId, body, header);
+  };
 
   return (
     <Container>
@@ -106,6 +119,7 @@ const EditComponent = ({ editData }) => {
         width="150px"
         height="35px"
         color="white"
+        onClick={postEditQueHandler}
       ></SubmitButton>
     </Container>
   );
