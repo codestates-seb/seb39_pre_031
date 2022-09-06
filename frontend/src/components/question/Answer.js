@@ -56,10 +56,8 @@ const Answer = ({ questionId }) => {
       },
     };
 
-    console.log(answer);
     try {
-      const data = await answerApi(answer, header);
-      console.log(data);
+      await answerApi(answer, header);
     } catch (error) {
       console.log(error);
     }

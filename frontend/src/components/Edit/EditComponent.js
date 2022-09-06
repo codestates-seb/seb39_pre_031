@@ -58,7 +58,6 @@ const EditComponent = ({ editData }) => {
   const postEditQueHandler = async () => {
     const token = getCookie('user').authorization;
     const body = { title, body: bodyRef.current?.getInstance().getMarkdown() };
-    console.log(body);
     const header = {
       headers: {
         Authorization: token,

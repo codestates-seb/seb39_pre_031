@@ -51,8 +51,6 @@ const Edit = () => {
     getDetailQue(questionId);
   }, []);
 
-  console.log(data);
-
   return (
     <Container>
       <Content>
