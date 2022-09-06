@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
-import { BsFillBookmarkStarFill } from 'react-icons/bs';
 import { GiBackwardTime } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import { deleteAnswerApi } from '../../config/api';
 
 const QueContainer = styled.div`
-  width: 80%;
+  padding: 16px 0;
+  border-bottom: 1px solid hsl(210, 8%, 90%);
 `;
 
 const Votecell = styled.div`
@@ -47,16 +48,35 @@ const PostContainer = styled.div`
 
 const PostContent = styled.div`
   width: 100%;
+  font-size: 15px;
 `;
 
 const EditContent = styled.div`
   width: 100%;
   margin: 16px 0;
   padding-top: 10px;
+
+  > .edit {
+    font-size: 13px;
+    color: hsl(210, 8%, 45%);
+  }
+`;
+
+const DeleteBtn = styled.button`
+  font-size: 13px;
+  margin-left: 10px;
+  color: hsl(210, 8%, 45%);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const DetailQue = ({ data }) => {
   const { answerId, body, vote } = data;
+
+  const deleteHandler = async () => {
+    await deleteAnswerApi(answerId);
+  };
 
   return (
     <QueContainer>
@@ -70,16 +90,16 @@ const DetailQue = ({ data }) => {
             <TiArrowSortedDown />
           </button>
           <span>
-            <BsFillBookmarkStarFill />
-          </span>
-          <span>
             <GiBackwardTime />
           </span>
         </Votecell>
         <PostContainer>
           <PostContent>{body}</PostContent>
           <EditContent>
-            <Link to={`/answer/${answerId}/edit`}>Edit</Link>
+            <Link to={`/answer/${answerId}/edit`} className="edit">
+              Edit
+            </Link>
+            <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
           </EditContent>
         </PostContainer>
       </QueContent>

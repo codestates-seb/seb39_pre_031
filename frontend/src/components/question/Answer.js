@@ -1,8 +1,12 @@
+import { useRef } from 'react';
+
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import styled from 'styled-components';
 import ButtonStyle from '../../common/Button/ButtonStyle';
+import { answerApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
 
 const AnswerContainer = styled.div`
   width: 100%;
@@ -32,14 +36,24 @@ const AnswerForm = styled.form`
   }
 `;
 
-const Answer = () => {
-  // 에디터에 입력된 내용을 HTML 태그 형태로 취득
-  // Editor.prototype.getInstance().getHTML()
+const Answer = ({ questionId }) => {
+  const bodyRef = useRef();
+  const cookie = getCookie('accessToken');
 
-  // 에디터에 입력된 내용을 MarkDown 형태로 취득
-  // Editor.prototype.getInstance().getMarkdown()
-  const formSubmitHandler = (e) => {
+  const formSubmitHandler = async (e) => {
     e.preventDefault();
+
+    const answer = {
+      question_id: questionId,
+      user_id: cookie.userId,
+      body: bodyRef.current?.getInstance().getMarkdown(),
+    };
+    console.log(answer);
+    try {
+      await answerApi(answer);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -51,6 +65,7 @@ const Answer = () => {
       <AnswerForm onSubmit={formSubmitHandler}>
         <h2>Your Answer</h2>
         <Editor
+          ref={bodyRef}
           hideModeSwitch="true"
           height="250px"
           initialEditType="markdown"

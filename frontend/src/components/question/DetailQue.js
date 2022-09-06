@@ -4,12 +4,17 @@ import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { BsFillBookmarkStarFill } from 'react-icons/bs';
 import { GiBackwardTime } from 'react-icons/gi';
 import Answer from './Answer';
-import { voteUpQueApi, voteDownQueApi } from '../../config/api';
+import {
+  voteUpQueApi,
+  voteDownQueApi,
+  deleteQuestionApi,
+} from '../../config/api';
+import AnswerList from '../answer/AnswerList';
 import { getCookie } from '../../config/cookie';
 import { useState } from 'react';
 
 const QueContainer = styled.div`
-  width: 80%;
+  width: 100%;
 `;
 
 const Votecell = styled.div`
@@ -50,15 +55,31 @@ const PostContainer = styled.div`
 
 const PostContent = styled.div`
   width: 100%;
+  font-size: 15px;
 `;
 
 const EditContent = styled.div`
   width: 100%;
   margin: 16px 0;
   padding-top: 10px;
+  display: flex;
+
+  > .edit {
+    font-size: 13px;
+    color: hsl(210, 8%, 45%);
+  }
 `;
 
-const DetailQue = ({ body, vote, questionId }) => {
+const DeleteBtn = styled.button`
+  font-size: 13px;
+  margin-left: 10px;
+  color: hsl(210, 8%, 45%);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const DetailQue = ({ body, vote, listAnswer, questionId }) => {
   const [voteNum, setVoteNum] = useState(vote);
   const voteUpHandler = async () => {
     const token = getCookie('user').authorization;
@@ -69,6 +90,7 @@ const DetailQue = ({ body, vote, questionId }) => {
     };
     const data = await voteUpQueApi(questionId, {}, header);
     setVoteNum(data.data.result.vote);
+
   };
 
   const voteDownHandler = async () => {
@@ -80,6 +102,10 @@ const DetailQue = ({ body, vote, questionId }) => {
     };
     const data = await voteDownQueApi(questionId, {}, header);
     setVoteNum(data.data.result.vote);
+  };
+
+  const deleteHandler = async () => {
+    await deleteQuestionApi(questionId);
   };
 
   return (
@@ -103,11 +129,15 @@ const DetailQue = ({ body, vote, questionId }) => {
         <PostContainer>
           <PostContent>{body}</PostContent>
           <EditContent>
-            <Link to={`/questions/${questionId}/edit`}>Edit</Link>
+            <Link to={`/questions/${questionId}/edit`} className="edit">
+              Edit
+            </Link>
+            <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
           </EditContent>
         </PostContainer>
       </QueContent>
-      <Answer />
+      <AnswerList listAnswer={listAnswer} />
+      <Answer questionId={questionId} />
     </QueContainer>
   );
 };

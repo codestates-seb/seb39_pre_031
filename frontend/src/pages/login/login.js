@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/user';
 
+
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
 import { loginApi } from '../../config/api';
@@ -82,7 +83,6 @@ const SignpLink = styled.div`
 `;
 
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -114,8 +114,6 @@ const Login = () => {
       password,
     };
 
-    console.log(userInfo);
-
     let now = new Date();
     let after1m = new Date();
     after1m.setMinutes(now.getMinutes() + 60); // after1m을 현재시간의 1분후로 정의
@@ -123,10 +121,14 @@ const Login = () => {
     try {
       const data = await loginApi(userInfo);
       const authorization = data.headers.authorization;
+      const userId = data.data.userId;
+      const username = data.data.username;
 
       // 쿠키에 저장할 내용
       const tokenBody = {
         email,
+        userId,
+        username,
         authorization,
       };
 
@@ -137,8 +139,6 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-
-    dispatch(login('hyejin'));
 
     navigate('/');
   };

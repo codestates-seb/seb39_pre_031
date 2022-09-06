@@ -45,7 +45,7 @@ const QuestionDetail = () => {
   const { questionId } = useParams();
 
   console.log(questionId);
-
+  
   const getDetailQue = async (questionId) => {
     try {
       const data = await getDetailQueApi(questionId);
@@ -80,6 +80,7 @@ const QuestionDetail = () => {
             body={datas.body}
             vote={datas.vote}
             questionId={questionId}
+            listAnswer={datas.listAnswer}
           />
           <RightSide />
         </QuestionContainer>

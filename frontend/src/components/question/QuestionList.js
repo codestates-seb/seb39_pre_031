@@ -11,7 +11,7 @@ const Container = styled.div`
 
 //TODO home과 question api 호출 위치
 
-const QuestionList = ({ tab, body }) => {
+const QuestionList = ({ tab, body, questionsVolumeChange }) => {
   const { pathname } = useLocation();
   const [dataList, setDataList] = useState([]);
 
@@ -51,6 +51,7 @@ const QuestionList = ({ tab, body }) => {
       const data = await questionApi(body);
       console.log(data);
       setDataList(data.data.result.content);
+      questionsVolumeChange(dataList.length);
     } catch (error) {
       console.log(error);
     }
