@@ -1,9 +1,16 @@
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { GiBackwardTime } from 'react-icons/gi';
-import { Link } from 'react-router-dom';
-import { deleteAnswerApi } from '../../config/api';
+import {
+  deleteAnswerApi,
+  getAnswerApi,
+  updateAnswerApi,
+} from '../../config/api';
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { getCookie } from '../../config/cookie';
 
 const QueContainer = styled.div`
   padding: 16px 0;
@@ -55,11 +62,15 @@ const EditContent = styled.div`
   width: 100%;
   margin: 16px 0;
   padding-top: 10px;
+`;
 
-  > .edit {
-    font-size: 13px;
-    color: hsl(210, 8%, 45%);
-  }
+const EditBtn = styled.button`
+  font-size: 13px;
+  margin-left: 10px;
+  color: hsl(210, 8%, 45%);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const DeleteBtn = styled.button`
@@ -71,8 +82,46 @@ const DeleteBtn = styled.button`
   cursor: pointer;
 `;
 
+const ModifyBlock = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const ModifyBtn = styled.button`
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 13px;
+  color: hsl(210, 8%, 45%);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
 const DetailQue = ({ data }) => {
   const { answerId, body, vote } = data;
+  const [editBody, setEditBody] = useState(body);
+  const [isEdit, setIsEdit] = useState(false);
+  const bodyRef = useRef();
+
+  bodyRef.current?.getInstance().setMarkdown(editBody);
+
+  const modifyHandler = async () => {
+    const token = getCookie('user').authorization;
+    const body = { body: bodyRef.current?.getInstance().getMarkdown() };
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await updateAnswerApi(answerId, body, header);
+    setIsEdit(() => !isEdit);
+  };
+
+  const editHandler = async () => {
+    setIsEdit(() => !isEdit);
+    const data = await getAnswerApi(answerId);
+    setEditBody(data.data.result.body);
+  };
 
   const deleteHandler = async () => {
     await deleteAnswerApi(answerId);
@@ -94,13 +143,34 @@ const DetailQue = ({ data }) => {
           </span>
         </Votecell>
         <PostContainer>
-          <PostContent>{body}</PostContent>
-          <EditContent>
-            <Link to={`/answer/${answerId}/edit`} className="edit">
-              Edit
-            </Link>
-            <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
-          </EditContent>
+          {isEdit ? (
+            <>
+              <Editor
+                ref={bodyRef}
+                hideModeSwitch="true"
+                height="250px"
+                initialEditType="markdown"
+                previewStyle="tab"
+                autofocus="false"
+                toolbarItems={[
+                  ['bold', 'italic'],
+                  ['link', 'quote', 'code', 'image', 'codeblock'],
+                  ['ol', 'ul', 'heading', 'hr'],
+                ]}
+              ></Editor>
+              <ModifyBlock>
+                <ModifyBtn onClick={modifyHandler}>Modify</ModifyBtn>
+              </ModifyBlock>
+            </>
+          ) : (
+            <>
+              <PostContent>{body}</PostContent>
+              <EditContent>
+                <EditBtn onClick={editHandler}>Edit</EditBtn>
+                <DeleteBtn onClick={deleteHandler}>Delete</DeleteBtn>
+              </EditContent>
+            </>
+          )}
         </PostContainer>
       </QueContent>
     </QueContainer>

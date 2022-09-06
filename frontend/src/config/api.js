@@ -66,9 +66,9 @@ export const getAnswerApi = async (id) => {
   return Axios.get(url);
 };
 
-export const updateAnswerApi = async (body, id) => {
+export const updateAnswerApi = async (id, body, header) => {
   const url = `/answer/${id}`;
-  return Axios.patch(url, body);
+  return Axios.patch(url, body, header);
 };
 
 export const answerSelectApi = async (id) => {

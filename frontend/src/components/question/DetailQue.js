@@ -90,7 +90,6 @@ const DetailQue = ({ body, vote, listAnswer, questionId }) => {
     };
     const data = await voteUpQueApi(questionId, {}, header);
     setVoteNum(data.data.result.vote);
-
   };
 
   const voteDownHandler = async () => {
