@@ -5,6 +5,8 @@ import { BsFillBookmarkStarFill } from 'react-icons/bs';
 import { GiBackwardTime } from 'react-icons/gi';
 import Answer from './Answer';
 import { voteUpQueApi, voteDownQueApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
+import { useState } from 'react';
 
 const QueContainer = styled.div`
   width: 80%;
@@ -57,15 +59,28 @@ const EditContent = styled.div`
 `;
 
 const DetailQue = ({ body, vote, questionId }) => {
-  const voteUpHandler = async (questionId) => {
-    await voteUpQueApi(questionId);
+  const [voteNum, setVoteNum] = useState(vote);
+  const voteUpHandler = async () => {
+    const token = getCookie('user').authorization;
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const data = await voteUpQueApi(questionId, {}, header);
+    setVoteNum(data.data.result.vote);
   };
 
-  const voteDownHandler = async (questionId) => {
-    await voteDownQueApi(questionId);
+  const voteDownHandler = async () => {
+    const token = getCookie('user').authorization;
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const data = await voteDownQueApi(questionId, {}, header);
+    setVoteNum(data.data.result.vote);
   };
-
-  console.log(questionId);
 
   return (
     <QueContainer>
@@ -74,7 +89,7 @@ const DetailQue = ({ body, vote, questionId }) => {
           <button onClick={voteUpHandler}>
             <TiArrowSortedUp />
           </button>
-          <div>{vote}</div>
+          <div>{voteNum}</div>
           <button onClick={voteDownHandler}>
             <TiArrowSortedDown />
           </button>
