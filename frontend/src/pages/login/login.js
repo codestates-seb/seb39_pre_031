@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useNavigate } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/user';
 
@@ -118,7 +118,7 @@ const Login = () => {
 
     let now = new Date();
     let after1m = new Date();
-    after1m.setMinutes(now.getMinutes() + 1); // after1m을 현재시간의 1분후로 정의
+    after1m.setMinutes(now.getMinutes() + 60); // after1m을 현재시간의 1분후로 정의
 
     try {
       const data = await loginApi(userInfo);
@@ -130,7 +130,7 @@ const Login = () => {
         authorization,
       };
 
-      setCookie('accessToken', tokenBody, {
+      setCookie('user', tokenBody, {
         path: '/',
         expires: after1m,
       });
