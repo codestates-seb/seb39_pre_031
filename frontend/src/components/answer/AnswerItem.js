@@ -1,23 +1,17 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { GiBackwardTime } from 'react-icons/gi';
-
-import { Link } from 'react-router-dom';
-import { deleteAnswerApi, voteUpAnsApi } from '../../config/api';
-import { getCookie } from '../../config/cookie';
-import { useEffect, useState } from 'react';
-
 import {
   deleteAnswerApi,
+  voteUpAnsApi,
   getAnswerApi,
   updateAnswerApi,
 } from '../../config/api';
+import { getCookie } from '../../config/cookie';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { getCookie } from '../../config/cookie';
-
 
 const QueContainer = styled.div`
   padding: 16px 0;

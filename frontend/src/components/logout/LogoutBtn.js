@@ -13,7 +13,7 @@ const LogoutBtn = () => {
       .then(() => dispatch(logout()))
       .then(() => location.reload());
 
-    removeCookie('accessToken');
+    removeCookie('user');
   };
 
   return <Button btnName="Logout" onClick={logoutHandler} />;

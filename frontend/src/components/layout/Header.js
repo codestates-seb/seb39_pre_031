@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
@@ -90,12 +90,14 @@ const ProfileBlock = styled.div`
 `;
 
 const Header = () => {
-  const isLogin = useSelector((state) => state.user.login);
+  // const isLogin = useSelector((state) => state.user.login);
   const [cookie, setCookie] = useState({});
 
   useEffect(() => {
-    setCookie(getCookie('accessToken'));
+    setCookie(getCookie('user'));
   }, []);
+
+  console.log(cookie);
 
   return (
     <Container>
@@ -109,9 +111,9 @@ const Header = () => {
           <SearchInput />
         </HeaderInput>
         <HeaderLogin>
-          {isLogin && cookie !== undefined ? (
+          {cookie !== undefined ? (
             <>
-              <ProfileBlock>{cookie.email}</ProfileBlock>
+              <ProfileBlock>{cookie.username}</ProfileBlock>
               <LogoutBtn setCookie={setCookie} />
             </>
           ) : (

@@ -52,7 +52,7 @@ const AskForm = () => {
   const [cookie, setCookie] = useState({});
 
   useEffect(() => {
-    setCookie(getCookie('accessToken'));
+    setCookie(getCookie('user'));
   }, []);
 
   const askSubmitHandler = async (e) => {
