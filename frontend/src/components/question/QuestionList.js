@@ -67,7 +67,7 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
 
   return (
     <Container>
-      {dataList.map((item) => (
+      {dataList && dataList.map((item) => (
         <QuestionItem key={item.questionId} contents={item} />
       ))}
     </Container>
