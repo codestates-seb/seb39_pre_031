@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Stats from './Stats';
+import { saveCreatedAt } from '../../utils/saveCreatedAt';
 
 const Container = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const Container = styled.div`
 const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const TitleBlock = styled.h3`
@@ -38,14 +40,6 @@ const BottomContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const ImageBlock = styled.div`
-  width: 16px;
-  height: 16px;
-  background-size: 100%;
-  background-image: ${(props) => `url(${props.img})`};
-  margin-right: 3px;
-`;
-
 const AuthorBlock = styled.div`
   color: hsl(206, 100%, 40%);
   margin-right: 3px;
@@ -57,65 +51,35 @@ const TimeBlock = styled.div`
 `;
 
 const QuestionItem = ({ contents }) => {
-  const { id, votes, answers, views, title, body, author, createdAt } =
-    contents;
-  const { name, profile_image } = author;
+  const {
+    questionId,
+    title,
+    body,
+    generatedTime,
+    vote,
+    views,
+    numAnswer,
+    user,
+  } = contents;
 
-  const saveCreatedAt = (value) => {
-    const today = new Date();
-    const createdAt = new Date(value);
+  const { username } = user;
 
-    const diffTime = Math.floor(
-      (today.getTime() - createdAt.getTime()) / 1000 / 60
-    );
-    if (diffTime < 60) {
-      return `${diffTime} mins ago`;
-    }
-
-    const diffTimeHour = Math.floor(diffTime / 60);
-    if (diffTimeHour < 24) {
-      return `${diffTimeHour} hour ago`;
-    }
-    if (diffTimeHour < 48) {
-      return `yesterday`;
-    }
-    if (diffTimeHour < 72) {
-      return `2 days ago`;
-    }
-
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    const month = createdAt.getMonth();
-    const date = createdAt.getDate();
-    const hours = createdAt.getHours();
-    const minutes = createdAt.getMinutes().toString().padStart(2, '0');
-    return `${months[month]} ${date} at ${hours}:${minutes}`;
+  const reg = /[#`*]/gi;
+  const regReplace = (str) => {
+    return str.replace(reg, ``);
   };
 
   return (
     <Container>
-      <Stats votes={votes} views={views} answers={answers} />
+      <Stats votes={vote} views={views} answers={numAnswer} />
       <PostContainer>
         <TitleBlock>
-          <Link to={`/questions/${id}`}>{title}</Link>
+          <Link to={`/questions/${questionId}`}>{title}</Link>
         </TitleBlock>
-        <ContentsBlock>{body}</ContentsBlock>
+        <ContentsBlock>{regReplace(body)}</ContentsBlock>
         <BottomContainer>
-          <ImageBlock img={profile_image} />
-          <AuthorBlock>{name}</AuthorBlock>
-          <TimeBlock>asked {saveCreatedAt(createdAt)}</TimeBlock>
+          <AuthorBlock>{username}</AuthorBlock>
+          <TimeBlock>asked {saveCreatedAt(generatedTime)}</TimeBlock>
         </BottomContainer>
       </PostContainer>
     </Container>

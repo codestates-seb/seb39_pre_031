@@ -20,8 +20,8 @@ const data = [
   },
 ];
 
-const QuestionTab = () => {
-  return <Tab data={data} />;
+const QuestionTab = ({ onTab }) => {
+  return <Tab data={data} onTab={onTab} />;
 };
 
 export default QuestionTab;

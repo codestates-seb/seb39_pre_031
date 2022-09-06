@@ -1,8 +1,7 @@
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import QuestionItem from './QuestionItem';
-import { Data } from '../../mocks/Data';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { homeApi, questionApi } from '../../config/api';
 
 const Container = styled.div`
@@ -12,32 +11,64 @@ const Container = styled.div`
 
 //TODO home과 question api 호출 위치
 
-const QuestionList = () => {
+const QuestionList = ({ tab, body, questionsVolumeChange }) => {
   const { pathname } = useLocation();
+  const [dataList, setDataList] = useState([]);
+
+  const getHome = async () => {
+    try {
+      if (!tab) {
+        const { data } = await homeApi('');
+        setDataList(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getFilterHome = async () => {
+    try {
+      if (tab === 'Hot' || tab === 'Interesting') {
+        const { data } = await homeApi(tab);
+        setDataList(data.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getQuestion = async (body) => {
+    try {
+      const data = await questionApi(body);
+      setDataList(data.data.result.content);
+      questionsVolumeChange(dataList.length);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (pathname === '/') {
-      try {
-        const data = homeApi(); //! body 작성해서 함수에 넣어주기
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      getHome();
     }
     if (pathname === '/questions') {
-      try {
-        const data = questionApi(); //! body 작성해서 함수에 넣어주기
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      getQuestion(body);
     }
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === '/') {
+      getFilterHome();
+    }
+    if (pathname === '/questions') {
+      getQuestion(body);
+    }
+  }, [tab]);
 
   return (
     <Container>
-      {Data.map((item, idx) => (
-        <QuestionItem key={idx} contents={item} />
+      {dataList.map((item) => (
+        <QuestionItem key={item.questionId} contents={item} />
       ))}
     </Container>
   );

@@ -11,7 +11,7 @@ const TabContainer = styled.div`
   border-radius: 3px;
 `;
 
-const Tab = ({ data }) => {
+const Tab = ({ data, onTab }) => {
   const [isActive, setIsActive] = useState('');
 
   return (
@@ -21,7 +21,10 @@ const Tab = ({ data }) => {
           key={idx}
           text={tab.text}
           radius={tab.radius}
-          onClick={() => setIsActive(idx)}
+          onClick={(e) => {
+            setIsActive(idx);
+            onTab(e.target.textContent);
+          }}
           isClick={isActive === idx ? true : false}
         />
       ))}

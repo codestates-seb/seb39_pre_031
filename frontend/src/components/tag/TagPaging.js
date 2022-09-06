@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import Pagination from 'react-js-pagination';
 
 import styled from 'styled-components';
-// import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   .pagination {
@@ -58,35 +56,21 @@ const Container = styled.div`
   }
 `;
 
-const Paging = ({ setPageNum }) => {
-  const [page, setPage] = useState(1);
-
-  //TODO pagenation api 호출 위치
-  const handlePageChange = async (page) => {
-    setPage(page);
-    setPageNum(page - 1);
-
-    // try {
-    //   const data = await questionApi(); //! body 작성해서 함수에 넣어주기
-    //   console.last(data);
-    // } catch (error) {
-    //   console.last(error);
-    // }
-  };
+const TagPaging = ({ page, itemsCountPerPage, totalItemsCount, onChange }) => {
   return (
     <Container>
       <Pagination
         activePage={page}
-        itemsCountPerPage={15}
-        totalItemsCount={100}
+        itemsCountPerPage={itemsCountPerPage}
+        totalItemsCount={totalItemsCount}
         pageRangeDisplayed={6}
         hideFirstLastPages={true}
         prevPageText="Prev"
         nextPageText="Next"
-        onChange={handlePageChange}
+        onChange={onChange}
       />
     </Container>
   );
 };
 
-export default Paging;
+export default TagPaging;

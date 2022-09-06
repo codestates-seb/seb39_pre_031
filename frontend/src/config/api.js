@@ -1,78 +1,99 @@
-import axios from './axios';
+import Axios from './axios';
 
 export const loginApi = async (body) => {
-  const url = '/members/login';
-  return axios.post(url, body);
+  const url = '/member/login';
+  return Axios.post(url, body);
 };
 
 export const signupApi = async (body) => {
-  const url = '/members';
-  return axios.post(url, body);
+  const url = '/member';
+  return Axios.post(url, body);
 };
 
-export const homeApi = async (body, filter) => {
+export const homeApi = async (filter) => {
   const url = `/home/${filter}`;
-  return axios.get(url, body);
+  return Axios.get(url);
+};
+
+//! find password
+export const findPasswordApi = async (email) => {
+  const url = `/member/${email}/find`;
+  return Axios.post(url);
 };
 
 //! question
 
 export const questionApi = async (body) => {
-  const url = `/question`;
-  return axios.get(url, body);
+  const url = '/question';
+  return Axios.post(url, body);
 };
 
-export const updateQuestionApi = async (body, id) => {
+export const updateQuestionApi = async (id, body, header) => {
   const url = `/question/${id}`;
-  return axios.patch(url, body);
+  return Axios.patch(url, body, header);
 };
 
-export const deleteQuestionApi = async (id) => {
+export const deleteQuestionApi = async (id, body, header) => {
   const url = `/question/${id}`;
-  return axios.delete(url);
+  return Axios.delete(url, body, header);
 };
 
-// Vote update api
-export const voteUpQueApi = async (id) => {
+export const getDetailQueApi = async (id) => {
+  const url = `/question/${id}`;
+  return Axios.get(url);
+};
+
+// question Vote update api
+export const voteUpQueApi = async (id, body, header) => {
   const url = `/question/voteUp/${id}`;
-  return axios.patch(url);
+  return Axios.patch(url, body, header);
 };
 
-export const voteDownQueApi = async (id) => {
+export const voteDownQueApi = async (id, body, header) => {
   const url = `/question/voteDown/${id}`;
-  return axios.patch(url);
+  return Axios.patch(url, body, header);
 };
 
 //! answer
 
-export const answerApi = async (body) => {
+export const answerApi = async (body, header) => {
   const url = '/answer';
-  return axios.post(url, body);
+  return Axios.post(url, body, header);
 };
 
-export const updateAnswerApi = async (body, id) => {
+export const getAnswerApi = async (id) => {
   const url = `/answer/${id}`;
-  return axios.patch(url, body);
+  return Axios.get(url);
+};
+
+export const updateAnswerApi = async (id, body, header) => {
+  const url = `/answer/${id}`;
+  return Axios.patch(url, body, header);
 };
 
 export const answerSelectApi = async (id) => {
   const url = `/answer/select/${id}`;
-  return axios.patch(url);
+  return Axios.patch(url);
 };
 
-export const deleteAnswerApi = async (id) => {
+export const deleteAnswerApi = async (id, body, header) => {
   const url = `/answer/${id}`;
-  return axios.delete(url);
+  return Axios.delete(url, body, header);
 };
 
-// Vote update api
+// answer Vote update api
 
-export const voteUpAnsApi = async (id) => {
+export const voteUpAnsApi = async (id, body, header) => {
   const url = `/answer/voteUp/${id}`;
-  return axios.patch(url);
+  return Axios.patch(url, body, header);
 };
 
-export const voteDownAnsApi = async (id) => {
+export const voteDownAnsApi = async (id, body, header) => {
   const url = `/answer/voteDown/${id}`;
-  return axios.patch(url);
+  return Axios.patch(url, body, header);
+};
+
+export const postAskQueApi = async (body, header) => {
+  const url = '/question/ask';
+  return Axios.post(url, body, header);
 };

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
 import logoImage from '../../image/headerLogo.png';
 import SearchInput from '../search/SearchInput';
 import LogoutBtn from '../logout/LogoutBtn';
+import shortLogo from '../../image/logo.png';
+import { getCookie } from '../../config/cookie';
+import { useEffect, useState } from 'react';
 
 const Container = styled.header`
   width: 100%;
@@ -16,19 +18,24 @@ const Container = styled.header`
   background-color: #f8f9f9;
   box-shadow: 5px 2px rgba(0, 0, 0, 0.1);
   border-top: 3px solid #f48224;
-`;
-
-const Head = styled.div`
-  width: 82%;
-  height: 100%;
-  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
+const Head = styled.div`
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 640px) {
+    width: 90%;
+  }
+`;
+
 const HeaderLogo = styled.div`
-  width: 20%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -40,6 +47,12 @@ const Logo = styled.span`
   background-image: url(${logoImage});
   width: 150px;
   height: 30px;
+
+  @media (max-width: 640px) {
+    background-image: url(${shortLogo});
+    margin-left: 10px;
+    background-repeat: no-repeat;
+  }
 `;
 
 const HeaderInput = styled.div`
@@ -50,6 +63,12 @@ const HeaderInput = styled.div`
   position: relative;
   justify-content: center;
   padding: 0 8px;
+  flex-shrink: 10000;
+  flex-grow: 1;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const HeaderLogin = styled.div`
@@ -57,7 +76,6 @@ const HeaderLogin = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
 `;
 
 const ProfileBlock = styled.div`
@@ -71,8 +89,11 @@ const ProfileBlock = styled.div`
 `;
 
 const Header = () => {
-  const user = useSelector((state) => state.user.name);
-  const isLogin = useSelector((state) => state.user.login);
+  const [cookie, setCookie] = useState({});
+
+  useEffect(() => {
+    setCookie(getCookie('user'));
+  }, []);
 
   return (
     <Container>
@@ -86,10 +107,10 @@ const Header = () => {
           <SearchInput />
         </HeaderInput>
         <HeaderLogin>
-          {isLogin ? (
+          {cookie !== undefined ? (
             <>
-              <ProfileBlock>{user}</ProfileBlock>
-              <LogoutBtn />
+              <ProfileBlock>{cookie.username}</ProfileBlock>
+              <LogoutBtn setCookie={setCookie} />
             </>
           ) : (
             <>

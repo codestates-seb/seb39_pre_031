@@ -11,19 +11,25 @@ const MakeBtn = styled.button`
   border: 1px solid
     ${({ borderColor }) => (borderColor ? borderColor : 'hsl(205deg 41% 63%)')};
   border-radius: 3px;
-  margin: ${({ marginTD }) => (marginTD ? marginTD : '8px')} 0;
+  margin: ${({ marginTD }) => (marginTD ? marginTD : '4px')};
   cursor: pointer;
   &:hover {
     background-color: ${({ hoverBackgroundColor }) =>
       hoverBackgroundColor ? hoverBackgroundColor : ''};
   }
+
+  > .a-style {
+    color: ${({ color }) => (color ? color : '#2C5877')};
+  }
 `;
 
 const SubmitButton = ({ go, btnName, ...props }) => {
   return (
-    <Link to={go}>
-      <MakeBtn {...props}>{btnName}</MakeBtn>
-    </Link>
+    <MakeBtn {...props}>
+      <Link className="a-style" to={go} color={props.color}>
+        {btnName}
+      </Link>
+    </MakeBtn>
   );
 };
 

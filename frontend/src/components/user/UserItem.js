@@ -12,10 +12,9 @@ const Container = styled.div`
   display: flex;
 `;
 
-const Image = styled.div`
+const Image = styled.img`
   width: 48px;
   height: 48px;
-  background-color: black;
   border-radius: 2px;
   float: left;
 `;
@@ -54,13 +53,13 @@ const TagsBlock = styled.div`
 `;
 
 const UserItem = ({ user }) => {
-  const { name, reputation, location, lang } = user;
+  const { name, picture, reputation, location, lang } = user;
   const [tag1, tag2, tag3] = lang;
 
   return (
     <Card>
       <Container>
-        <Image />
+        <Image src={picture} alt="profile"></Image>
         <UserContainer>
           <UserName>{name}</UserName>
           <Location>{location}</Location>

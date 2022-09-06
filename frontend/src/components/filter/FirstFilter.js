@@ -1,14 +1,15 @@
 import FilterBlock from './FilterBlock';
 
-const FirstFilter = () => {
+const FirstFilter = (props) => {
   const data = {
     title: 'Filter by',
     items: [
-      { label: 'No answers', checked: false },
-      { label: 'No accepted answer', checked: false },
-      { label: 'Has bounty', checked: false },
+      { label: 'No answers' },
+      { label: 'No accepted answer' },
+      { label: 'Has bounty' },
     ],
+    type: 'checkbox',
   };
-  return <FilterBlock data={data} type="checkbox" />;
+  return <FilterBlock data={data} {...props} />;
 };
 export default FirstFilter;

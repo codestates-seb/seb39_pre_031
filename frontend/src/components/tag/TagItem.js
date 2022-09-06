@@ -43,8 +43,6 @@ const CountBlock = styled.div`
 
 const Questions = styled.div``;
 
-const Sort = styled.div``;
-
 const TagItem = ({ tag }) => {
   const { name, info, count } = tag;
 
@@ -56,7 +54,6 @@ const TagItem = ({ tag }) => {
       <InfoBlock>{info}</InfoBlock>
       <CountBlock>
         <Questions>{count} questions</Questions>
-        <Sort>asked today, this week</Sort>
       </CountBlock>
     </Card>
   );

@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Data } from '../../mocks/Data';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import RightSide from '../../components/Side/RightSide';
 import DetailQue from '../../components/question/DetailQue';
 import QuestionTime from '../../components/question/QuestionTime';
+import { getDetailQueApi } from '../../config/api';
 
 const Container = styled.div`
   width: 100%;
@@ -40,29 +41,44 @@ const QuestionContainer = styled.div`
 `;
 
 const QuestionDetail = () => {
+  const [datas, setDatas] = useState({});
   const { questionId } = useParams();
 
-  const dummyData = Data[questionId];
+  const getDetailQue = async (questionId) => {
+    try {
+      const data = await getDetailQueApi(questionId);
+      setDatas(data.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //! API 받아오기
-  //   useEffect(()=> {
-  //     fetch(`/users/:${questionId}`')
-  //     	.then((res) => res.json())
-  //         .then((res) => console.log(''));
-  //     }, []);
+  useEffect(() => {
+    getDetailQue(questionId);
+  }, []);
 
   return (
     <Container>
       <Content>
         <QuestionHead>
-          <h1>{dummyData.title}</h1>
+          <h1>{datas.title}</h1>
           <HeadButton>
             <AskQuestionBtn />
           </HeadButton>
         </QuestionHead>
-        <QuestionTime createdAt={dummyData.createdAt} views={dummyData.views} />
+        <QuestionTime
+          generatedTime={datas.generatedTime}
+          modifiedTime={datas.modifiedTime}
+          views={datas.views}
+        />
         <QuestionContainer>
-          <DetailQue body={dummyData.body} id={dummyData.id} />
+          <DetailQue
+            body={datas.body}
+            vote={datas.vote}
+            questionId={questionId}
+            listAnswer={datas.listAnswer}
+          />
           <RightSide />
         </QuestionContainer>
       </Content>

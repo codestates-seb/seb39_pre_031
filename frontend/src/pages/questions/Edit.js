@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import EditComponent from '../../components/Edit/EditComponent';
+import { getDetailQueApi } from '../../config/api';
 import backgroundImg from '../../image/background.svg';
-import { Data } from '../../mocks/Data';
 
 const Container = styled.div`
   width: 100%;
@@ -35,16 +36,27 @@ const EditHeader = styled.div`
 `;
 
 const Edit = () => {
+  const [data, setData] = useState({});
   const { questionId } = useParams();
+  const getDetailQue = async (questionId) => {
+    try {
+      const res = await getDetailQueApi(questionId);
+      setData(res.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const editData = Data[questionId];
+  useEffect(() => {
+    getDetailQue(questionId);
+  }, []);
 
   return (
     <Container>
       <Content>
         <EditHeader>Ask a public Question</EditHeader>
         <Component>
-          <EditComponent editData={editData} />
+          <EditComponent editData={data} />
         </Component>
       </Content>
     </Container>

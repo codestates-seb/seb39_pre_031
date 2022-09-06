@@ -1,16 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/user';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';
-// import { loginApi } from '../../config/api';
+import { loginApi } from '../../config/api';
 import logoImage from '../../image/logo.png';
 import LoginBtn from './loginBtn';
 import OauthBtn from './OauthBtn';
 import { checkValidForm } from '../../utils/checkValid';
+import { setCookie } from '../../config/cookie';
 
 const Container = styled.div`
   width: 100%;
@@ -18,25 +17,21 @@ const Container = styled.div`
   background-color: #f1f2f3;
   display: flex;
   justify-content: center;
-`;
-
-const Content = styled.div`
-  height: 100%;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Component = styled.div`
-  height: 100%;
-  width: 27%;
-  display: flex;
   align-items: center;
 `;
 
 const LoginContent = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 288px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 660px) {
+    width: 267px;
+  }
+
+  @media (max-width: 300px) {
+    width: 100%;
+  }
 `;
 
 const LoginLogo = styled.div`
@@ -55,8 +50,11 @@ const Logo = styled.span`
 const LoginOauth = styled.div`
   width: 100%;
   margin-bottom: 17px;
+  font-size: 13px;
 `;
 const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: white;
   padding: 24px;
@@ -66,14 +64,14 @@ const LoginForm = styled.form`
 const SignpLink = styled.div`
   width: 100%;
   padding: 24px;
-  font-size: 16px;
+  font-size: 13px;
   .to-signup {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
     > a {
       color: #0074cc;
-      font-size: 15px;
+      font-size: 13px;
     }
     &a:visited {
       color: #0074cc;
@@ -82,9 +80,6 @@ const SignpLink = styled.div`
 `;
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState();
@@ -98,7 +93,7 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  //! 로그인 api
+  //TODO 로그인 api 호출 위치
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -114,91 +109,85 @@ const Login = () => {
       password,
     };
 
-    console.log(userInfo);
+    let now = new Date();
+    let after1m = new Date();
+    after1m.setMinutes(now.getMinutes() + 60); // after1m을 현재시간의 1분후로 정의
 
-    // const body = JSON.stringify(userInfo);
+    try {
+      const data = await loginApi(userInfo);
+      const authorization = data.headers.authorization;
+      const userId = data.data.userId;
+      const username = data.data.username;
 
-    // console.log(body);
+      // 쿠키에 저장할 내용
+      const tokenBody = {
+        email,
+        userId,
+        username,
+        authorization,
+      };
 
-    // try {
-    //   const { Authorization } = await loginApi(body);
-    //   console.log(Authorization);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    dispatch(login('hyejin'));
-
-    // fetch('http://localhost:8080/members/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(userInfo),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
-
-    // console.log(JSON.stringify(userInfo));
-
-    navigate('/');
+      setCookie('user', tokenBody, {
+        path: '/',
+        expires: after1m,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    location.replace('/');
   };
 
   return (
     <Container>
-      <Content>
-        <Component>
-          <LoginContent>
-            <LoginLogo>
-              <Link to="/">
-                <Logo />
-              </Link>
-            </LoginLogo>
+      <LoginContent>
+        <LoginLogo>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </LoginLogo>
 
-            <LoginOauth>
-              <OauthBtn btnName="Log in with Google" />
-              <OauthBtn
-                btnName="Log in with GitHub"
-                color="white"
-                backgroundColor="#2f3337"
-              />
-              <OauthBtn
-                btnName="Log in with Facebook"
-                color="white"
-                backgroundColor="#304986"
-              />
-            </LoginOauth>
+        <LoginOauth>
+          <OauthBtn btnName="Log in with Google" />
+          <OauthBtn
+            btnName="Log in with GitHub"
+            color="white"
+            backgroundColor="#2f3337"
+          />
+          <OauthBtn
+            btnName="Log in with Facebook"
+            color="white"
+            backgroundColor="#304986"
+          />
+        </LoginOauth>
 
-            <LoginForm onSubmit={submitHandler}>
-              <InputForm
-                title="Email"
-                type="email"
-                onChange={emailHandler}
-                error={errorEmail}
-              />
-              <InputForm
-                title="Password"
-                type="password"
-                passwordLink="Forgot password?"
-                onChange={passwordHandler}
-                error={errorPassword}
-              />
-              <LoginBtn btnName="Log in" type="submit" width="100%" />
-            </LoginForm>
+        <LoginForm onSubmit={submitHandler}>
+          <InputForm
+            title="Email"
+            type="email"
+            onChange={emailHandler}
+            error={errorEmail}
+          />
+          <InputForm
+            title="Password"
+            type="password"
+            passwordLink="Forgot password?"
+            onChange={passwordHandler}
+            error={errorPassword}
+          />
+          <LoginBtn btnName="Log in" type="submit" width="100%" color="white" />
+        </LoginForm>
 
-            <SignpLink>
-              <div className="to-signup">
-                Don't have an account?
-                <Link to="/signup"> Sign Up</Link>
-              </div>
-              <div className="to-signup">
-                Are tou an employer?
-                <Link to="/signup"> Sign up on Talent</Link>
-              </div>
-            </SignpLink>
-          </LoginContent>
-        </Component>
-      </Content>
+        <SignpLink>
+          <div className="to-signup">
+            Don't have an account?
+            <Link to="/signup"> Sign Up</Link>
+          </div>
+          <div className="to-signup">
+            Are tou an employer?
+            <Link to="/signup"> Sign up on Talent</Link>
+          </div>
+        </SignpLink>
+      </LoginContent>
     </Container>
   );
 };

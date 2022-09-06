@@ -3,6 +3,7 @@ import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import QuestionList from '../../components/question/QuestionList';
 import HomeTab from '../../components/home/HomeTab';
 import RightSide from '../../components/Side/RightSide';
+import { useState } from 'react';
 
 const Page = styled.div`
   display: flex;
@@ -33,6 +34,12 @@ const MidContainer = styled.div`
 `;
 
 const Home = () => {
+  const [tab, setTab] = useState('');
+
+  const onTab = (tabState) => {
+    setTab(tabState);
+  };
+
   return (
     <Page>
       <Main>
@@ -41,9 +48,9 @@ const Home = () => {
           <AskQuestionBtn />
         </TopContainer>
         <MidContainer>
-          <HomeTab />
+          <HomeTab onTab={onTab} />
         </MidContainer>
-        <QuestionList />
+        <QuestionList tab={tab} />
       </Main>
       <RightSide />
     </Page>

@@ -1,11 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Input from '../../common/Input';
-import { useEffect, useRef, useState } from 'react';
 import SubmitButton from '../../common/Button/SubmitButton';
+import { updateQuestionApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
 
 const Container = styled.div`
   width: 70%;
@@ -45,15 +48,23 @@ const PreviewContainer = styled.div`
 
 const EditComponent = ({ editData }) => {
   const [title, setTitle] = useState(editData.title);
-  const editorRef = useRef(null);
-
-  const onChageHandler = (e) => {
-    setTitle(e.target.value);
-  };
+  const bodyRef = useRef(null);
 
   useEffect(() => {
-    editorRef.current?.getInstance().setMarkdown(editData.body);
-  }, []);
+    setTitle(editData.title);
+    bodyRef.current?.getInstance().setMarkdown(editData.body);
+  }, [editData]);
+
+  const postEditQueHandler = async () => {
+    const token = getCookie('user').authorization;
+    const body = { title, body: bodyRef.current?.getInstance().getMarkdown() };
+    const header = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    await updateQuestionApi(editData.questionId, body, header);
+  };
 
   return (
     <Container>
@@ -65,8 +76,8 @@ const EditComponent = ({ editData }) => {
           </div>
         </Label>
         <Input
-          value={title}
-          onChange={onChageHandler}
+          value={title || ''}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="e.g. Is there an R function for finding the index an element in a vector?"
         />
         <Label>
@@ -77,10 +88,12 @@ const EditComponent = ({ editData }) => {
           </div>
         </Label>
         <Editor
-          ref={editorRef}
+          ref={bodyRef}
           hideModeSwitch="true"
           height="250px"
           initialEditType="markdown"
+          previewStyle="tab"
+          autofocus="false"
           toolbarItems={[
             ['bold', 'italic'],
             ['link', 'quote', 'code', 'image', 'codeblock'],
@@ -100,12 +113,13 @@ const EditComponent = ({ editData }) => {
         <Input placeholder="e.g. Is there an R function for finding the index an element in a vector?" />
       </Card>
       <SubmitButton
-        go={`/questions/${editData.id}`}
+        go={`/questions/${editData.questionId}`}
         type="submit"
         btnName="Edit your question"
         width="150px"
         height="35px"
         color="white"
+        onClick={postEditQueHandler}
       ></SubmitButton>
     </Container>
   );

@@ -10,10 +10,15 @@ const Component = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+
   > label {
     display: block;
     font-weight: 600;
     font-size: 15px;
+
+    @media (max-width: 660px) {
+      font-size: 12px;
+    }
   }
   .aLink {
     > a {

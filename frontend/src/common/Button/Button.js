@@ -12,6 +12,7 @@ const BtnContainer = styled.button`
   padding: 10px;
   margin: 0 2px;
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ hoverBgColor }) =>

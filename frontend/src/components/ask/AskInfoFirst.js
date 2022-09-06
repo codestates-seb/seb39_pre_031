@@ -2,6 +2,12 @@ import AskInfoFirstItem from './AskInfoFirstItem';
 import Card from '../../common/Card';
 import styled from 'styled-components';
 
+const Block = styled.div`
+  @media (max-width: 820px) {
+    display: none;
+  }
+`;
+
 const Title = styled.div`
   box-sizing: border-box;
   font-size: 14px;
@@ -29,17 +35,19 @@ const Contents = styled.div`
 
 const AskInfoFirst = () => {
   return (
-    <Card width="314px" margin="0.1rem" padding="0">
-      <Title>Step 1: Draft your question</Title>
-      <ContentsContainer>
-        <Contents>
-          The community is here to help you with specific coding, algorithm, or
-          language problems.
-        </Contents>
-        <Contents>Avoid asking opinion-based questions.</Contents>
-        <AskInfoFirstItem />
-      </ContentsContainer>
-    </Card>
+    <Block>
+      <Card width="314px" padding="0">
+        <Title>Step 1: Draft your question</Title>
+        <ContentsContainer>
+          <Contents>
+            The community is here to help you with specific coding, algorithm,
+            or language problems.
+          </Contents>
+          <Contents>Avoid asking opinion-based questions.</Contents>
+          <AskInfoFirstItem />
+        </ContentsContainer>
+      </Card>
+    </Block>
   );
 };
 

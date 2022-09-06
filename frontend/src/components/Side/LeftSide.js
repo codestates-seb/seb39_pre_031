@@ -6,6 +6,10 @@ const Nav = styled.nav`
   min-width: 9rem;
   width: auto;
   border-right: 1px solid hsl(210, 8%, 85%);
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const NavMenu = styled.div`

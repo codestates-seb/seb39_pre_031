@@ -57,10 +57,34 @@ const Pagination = styled.div`
 `;
 
 const Questions = () => {
+  const [questionsVolume, setQuestionsVolume] = useState(0);
   const [showFilter, setShowFilter] = useState(false);
+  const [noAns, setNoAns] = useState(false);
+  const [noSel, setNoSel] = useState(false);
+  const [sort, setSort] = useState('Score');
+  const [pageNum, setPageNum] = useState(0);
 
   const filterClickHandler = () => {
     setShowFilter(!showFilter);
+  };
+
+  const onTab = (value) => {
+    if (value === 'Bountied' || value === 'More') {
+      return;
+    }
+
+    setSort(value);
+  };
+
+  const body = {
+    noAns,
+    noSel,
+    sort,
+    pageNum,
+  };
+
+  const questionsVolumeChange = (value) => {
+    setQuestionsVolume(value);
   };
 
   return (
@@ -72,17 +96,27 @@ const Questions = () => {
         </TopContainer>
         <MidContainer>
           <MidBlock>
-            <TotalCount>22,937,347 questions</TotalCount>
+            <TotalCount>{questionsVolume} questions</TotalCount>
             <RightBlock>
-              <QuestionTab />
+              <QuestionTab onTab={onTab} />
               <FilterBtn onClick={filterClickHandler} />
             </RightBlock>
           </MidBlock>
-          {showFilter ? <Filter onFilter={filterClickHandler} /> : null}
+          {showFilter ? (
+            <Filter
+              onFilter={filterClickHandler}
+              onTab={onTab}
+              setNoSel={setNoSel}
+              setNoAns={setNoAns}
+            />
+          ) : null}
         </MidContainer>
-        <QuestionList />
+        <QuestionList
+          body={body}
+          questionsVolumeChange={questionsVolumeChange}
+        />
         <Pagination>
-          <Paging />
+          <Paging setPageNum={setPageNum} />
         </Pagination>
       </Main>
       <RightSide />
