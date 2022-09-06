@@ -7,6 +7,8 @@ import logoImage from '../../image/headerLogo.png';
 import SearchInput from '../search/SearchInput';
 import LogoutBtn from '../logout/LogoutBtn';
 import shortLogo from '../../image/logo.png';
+import { getCookie } from '../../config/cookie';
+import { useEffect, useState } from 'react';
 
 const Container = styled.header`
   width: 100%;
@@ -88,8 +90,12 @@ const ProfileBlock = styled.div`
 `;
 
 const Header = () => {
-  const user = useSelector((state) => state.user.name);
   const isLogin = useSelector((state) => state.user.login);
+  const [cookie, setCookie] = useState({});
+
+  useEffect(() => {
+    setCookie(getCookie('accessToken'));
+  }, []);
 
   return (
     <Container>
@@ -103,10 +109,10 @@ const Header = () => {
           <SearchInput />
         </HeaderInput>
         <HeaderLogin>
-          {isLogin ? (
+          {isLogin && cookie !== undefined ? (
             <>
-              <ProfileBlock>{user}</ProfileBlock>
-              <LogoutBtn />
+              <ProfileBlock>{cookie.email}</ProfileBlock>
+              <LogoutBtn setCookie={setCookie} />
             </>
           ) : (
             <>

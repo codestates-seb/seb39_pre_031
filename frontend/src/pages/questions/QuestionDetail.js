@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-// import { Data } from '../../mocks/Data';
 import AskQuestionBtn from '../../components/ask/AskQuestionBtn';
 import RightSide from '../../components/Side/RightSide';
 import DetailQue from '../../components/question/DetailQue';
@@ -45,9 +44,6 @@ const QuestionDetail = () => {
   const [datas, setDatas] = useState({});
   const { questionId } = useParams();
 
-  // const datas = Data[questionId];
-  console.log(questionId);
-
   const getDetailQue = async (questionId) => {
     try {
       const data = await getDetailQueApi(questionId);
@@ -84,6 +80,7 @@ const QuestionDetail = () => {
             body={datas.body}
             vote={datas.vote}
             questionId={questionId}
+            listAnswer={datas.listAnswer}
           />
           <RightSide />
         </QuestionContainer>

@@ -57,6 +57,7 @@ const Pagination = styled.div`
 `;
 
 const Questions = () => {
+  const [questionsVolume, setQuestionsVolume] = useState(0);
   const [showFilter, setShowFilter] = useState(false);
   const [noAns, setNoAns] = useState(false);
   const [noSel, setNoSel] = useState(false);
@@ -83,6 +84,10 @@ const Questions = () => {
   };
   console.log(body);
 
+  const questionsVolumeChange = (value) => {
+    setQuestionsVolume(value);
+  };
+
   return (
     <Page>
       <Main>
@@ -92,7 +97,7 @@ const Questions = () => {
         </TopContainer>
         <MidContainer>
           <MidBlock>
-            <TotalCount>22,937,347 questions</TotalCount>
+            <TotalCount>{questionsVolume} questions</TotalCount>
             <RightBlock>
               <QuestionTab onTab={onTab} />
               <FilterBtn onClick={filterClickHandler} />
@@ -107,7 +112,10 @@ const Questions = () => {
             />
           ) : null}
         </MidContainer>
-        <QuestionList body={body} />
+        <QuestionList
+          body={body}
+          questionsVolumeChange={questionsVolumeChange}
+        />
         <Pagination>
           <Paging setPageNum={setPageNum} />
         </Pagination>
