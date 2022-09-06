@@ -3,6 +3,12 @@ import styled from 'styled-components';
 
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/ti';
 import { GiBackwardTime } from 'react-icons/gi';
+
+import { Link } from 'react-router-dom';
+import { deleteAnswerApi, voteUpAnsApi } from '../../config/api';
+import { getCookie } from '../../config/cookie';
+import { useEffect, useState } from 'react';
+
 import {
   deleteAnswerApi,
   getAnswerApi,
@@ -11,6 +17,7 @@ import {
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { getCookie } from '../../config/cookie';
+
 
 const QueContainer = styled.div`
   padding: 16px 0;
@@ -123,19 +130,43 @@ const DetailQue = ({ data }) => {
     setEditBody(data.data.result.body);
   };
 
+  const [voteNum, setVoteNum] = useState(vote);
+
+  useEffect(() => {
+    setVoteNum(vote);
+  }, [vote]);
+
+  const voteUpHandler = async () => {
+    const data = await voteUpAnsApi(answerId, {}, header);
+    setVoteNum(data.data.result.vote);
+  };
+
+  const voteDownHandler = async () => {
+    const data = await voteUpAnsApi(answerId, {}, header);
+    setVoteNum(data.data.result.vote);
+  };
+
+  const token = getCookie('user').authorization;
+  const header = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
   const deleteHandler = async () => {
-    await deleteAnswerApi(answerId);
+    const data = await deleteAnswerApi(answerId, header);
+    console.log(data);
   };
 
   return (
     <QueContainer>
       <QueContent>
         <Votecell>
-          <button>
+          <button onClick={voteUpHandler}>
             <TiArrowSortedUp />
           </button>
-          <div>{vote}</div>
-          <button>
+          <div>{voteNum}</div>
+          <button onClick={voteDownHandler}>
             <TiArrowSortedDown />
           </button>
           <span>

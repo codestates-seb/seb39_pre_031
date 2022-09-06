@@ -11,7 +11,7 @@ import {
 } from '../../config/api';
 import AnswerList from '../answer/AnswerList';
 import { getCookie } from '../../config/cookie';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const QueContainer = styled.div`
   width: 100%;
@@ -81,30 +81,31 @@ const DeleteBtn = styled.button`
 
 const DetailQue = ({ body, vote, listAnswer, questionId }) => {
   const [voteNum, setVoteNum] = useState(vote);
+
+  useEffect(() => {
+    setVoteNum(vote);
+  }, [vote]);
+
+  const token = getCookie('user').authorization;
+  const header = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
   const voteUpHandler = async () => {
-    const token = getCookie('user').authorization;
-    const header = {
-      headers: {
-        Authorization: token,
-      },
-    };
     const data = await voteUpQueApi(questionId, {}, header);
     setVoteNum(data.data.result.vote);
   };
 
   const voteDownHandler = async () => {
-    const token = getCookie('user').authorization;
-    const header = {
-      headers: {
-        Authorization: token,
-      },
-    };
     const data = await voteDownQueApi(questionId, {}, header);
     setVoteNum(data.data.result.vote);
   };
 
   const deleteHandler = async () => {
-    await deleteQuestionApi(questionId);
+    const data = await deleteQuestionApi(questionId, header);
+    console.log(data);
   };
 
   return (

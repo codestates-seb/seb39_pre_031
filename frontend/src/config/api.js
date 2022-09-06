@@ -33,9 +33,9 @@ export const updateQuestionApi = async (id, body, header) => {
   return Axios.patch(url, body, header);
 };
 
-export const deleteQuestionApi = async (id) => {
+export const deleteQuestionApi = async (id, body, header) => {
   const url = `/question/${id}`;
-  return Axios.delete(url);
+  return Axios.delete(url, body, header);
 };
 
 export const getDetailQueApi = async (id) => {
@@ -56,9 +56,9 @@ export const voteDownQueApi = async (id, body, header) => {
 
 //! answer
 
-export const answerApi = async (body) => {
+export const answerApi = async (body, header) => {
   const url = '/answer';
-  return Axios.post(url, body);
+  return Axios.post(url, body, header);
 };
 
 export const getAnswerApi = async (id) => {
@@ -76,24 +76,24 @@ export const answerSelectApi = async (id) => {
   return Axios.patch(url);
 };
 
-export const deleteAnswerApi = async (id) => {
+export const deleteAnswerApi = async (id, body, header) => {
   const url = `/answer/${id}`;
-  return Axios.delete(url);
+  return Axios.delete(url, body, header);
 };
 
 // answer Vote update api
 
-export const voteUpAnsApi = async (id) => {
+export const voteUpAnsApi = async (id, body, header) => {
   const url = `/answer/voteUp/${id}`;
-  return Axios.patch(url);
+  return Axios.patch(url, body, header);
 };
 
-export const voteDownAnsApi = async (id) => {
+export const voteDownAnsApi = async (id, body, header) => {
   const url = `/answer/voteDown/${id}`;
-  return Axios.patch(url);
+  return Axios.patch(url, body, header);
 };
 
-export const postAskQueApi = async (body) => {
+export const postAskQueApi = async (body, header) => {
   const url = '/question/ask';
-  return Axios.post(url, body);
+  return Axios.post(url, body, header);
 };
