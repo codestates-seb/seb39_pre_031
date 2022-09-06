@@ -23,10 +23,6 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
         console.log('nomal');
         console.log(data.result);
       }
-      // if (tab) {
-      //   const { data } = await homeApi(tab);
-      //   console.log(data);
-      // }
     } catch (error) {
       console.log(error);
     }
