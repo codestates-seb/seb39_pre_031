@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 public class PatchAnswerDTO {
 
-    private String title;
+   // private String title;
 
     private String body;
 }

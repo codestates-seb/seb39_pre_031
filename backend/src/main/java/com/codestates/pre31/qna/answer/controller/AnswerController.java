@@ -25,13 +25,10 @@ public class AnswerController {
 
     @PostMapping
     public ResponseEntity postAnswer(@RequestBody PostAnswerDTO dto) {
-        System.out.println(dto.getTitle() + " " + dto.getBody()+ " " + dto.getUser_id()+ " " + dto.getQuestion_id());
         User user = new User();
         user.setUserId(dto.getUser_id());
-
         Answer answer = new Answer();
-
-        answer.setTitle(dto.getTitle());
+        answer.setTitle("answer***");
         answer.setBody(dto.getBody());
         answer.setDeleteState(false);
         answer.setGeneratedTime(LocalDateTime.now());
@@ -58,7 +55,6 @@ public class AnswerController {
 
     @PatchMapping("/{answerId}")
     public ResponseEntity patchAnswer(@PathVariable("answerId") Integer answerId, @RequestBody PatchAnswerDTO dto) {
-        System.out.println("Result :::::::" +dto.getBody() + " , " + dto.getTitle());
         Answer result = answerService.updateAnswer(answerId, dto);
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);

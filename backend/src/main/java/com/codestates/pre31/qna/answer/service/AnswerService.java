@@ -56,7 +56,6 @@ public class AnswerService {
         Answer old = answerRepository.findById((long) answerId)
                 .orElseThrow(() -> new RuntimeException("id 확인필요 [" + answerId+"]"));
         old.setModifiedTime(LocalDateTime.now());
-        if(dto.getTitle()!=null){old.setTitle(dto.getTitle());}
         if(dto.getBody()!=null){old.setBody(dto.getBody());}
         answerRepository.save(old);
         return old;

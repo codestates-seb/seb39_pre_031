@@ -14,7 +14,7 @@ public class PostAnswerDTO {
 
     private Integer user_id;
 
-    private String title;
+//    private String title;
 
     private String body;
 
