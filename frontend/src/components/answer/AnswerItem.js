@@ -116,6 +116,7 @@ const DetailQue = ({ data }) => {
     };
     await updateAnswerApi(answerId, body, header);
     setIsEdit(() => !isEdit);
+    window.location.reload();
   };
 
   const editHandler = async () => {
@@ -148,8 +149,8 @@ const DetailQue = ({ data }) => {
   };
 
   const deleteHandler = async () => {
-    const data = await deleteAnswerApi(answerId, header);
-    console.log(data);
+    await deleteAnswerApi(answerId, header);
+    window.location.reload();
   };
 
   return (

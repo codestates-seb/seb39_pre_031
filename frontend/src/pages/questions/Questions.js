@@ -82,7 +82,6 @@ const Questions = () => {
     sort,
     pageNum,
   };
-  console.log(body);
 
   const questionsVolumeChange = (value) => {
     setQuestionsVolume(value);

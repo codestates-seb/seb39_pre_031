@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import SubmitButton from '../../common/Button/SubmitButton';
@@ -90,14 +89,11 @@ const ProfileBlock = styled.div`
 `;
 
 const Header = () => {
-  // const isLogin = useSelector((state) => state.user.login);
   const [cookie, setCookie] = useState({});
 
   useEffect(() => {
     setCookie(getCookie('user'));
   }, []);
-
-  console.log(cookie);
 
   return (
     <Container>

@@ -14,6 +14,7 @@ const LogoutBtn = () => {
       .then(() => location.reload());
 
     removeCookie('user');
+    window.location.reload();
   };
 
   return <Button btnName="Logout" onClick={logoutHandler} />;

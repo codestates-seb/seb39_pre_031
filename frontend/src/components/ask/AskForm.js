@@ -62,10 +62,13 @@ const AskForm = () => {
       title,
       body: bodyRef.current?.getInstance().getMarkdown(),
     };
-    console.log(ask);
+    const header = {
+      headers: {
+        Authorization: cookie.authorization,
+      },
+    };
     try {
-      const data = await postAskQueApi(ask);
-      console.log(data);
+      await postAskQueApi(ask, header);
     } catch (error) {
       console.log(error);
     }

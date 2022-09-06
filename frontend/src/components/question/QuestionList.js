@@ -20,8 +20,6 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
       if (!tab) {
         const { data } = await homeApi('');
         setDataList(data.result);
-        console.log('nomal');
-        console.log(data.result);
       }
     } catch (error) {
       console.log(error);
@@ -33,8 +31,6 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
       if (tab === 'Hot' || tab === 'Interesting') {
         const { data } = await homeApi(tab);
         setDataList(data.result);
-        console.log('filter');
-        console.log(data.result);
       }
     } catch (error) {
       console.log(error);
@@ -43,9 +39,7 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
 
   const getQuestion = async (body) => {
     try {
-      console.log(body);
       const data = await questionApi(body);
-      console.log(data);
       setDataList(data.data.result.content);
       questionsVolumeChange(dataList.length);
     } catch (error) {
@@ -55,11 +49,9 @@ const QuestionList = ({ tab, body, questionsVolumeChange }) => {
 
   useEffect(() => {
     if (pathname === '/') {
-      console.log(pathname);
       getHome();
     }
     if (pathname === '/questions') {
-      console.log(pathname);
       getQuestion(body);
     }
   }, [pathname]);

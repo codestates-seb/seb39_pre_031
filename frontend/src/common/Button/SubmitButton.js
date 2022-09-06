@@ -17,13 +17,19 @@ const MakeBtn = styled.button`
     background-color: ${({ hoverBackgroundColor }) =>
       hoverBackgroundColor ? hoverBackgroundColor : ''};
   }
+
+  > .a-style {
+    color: ${({ color }) => (color ? color : '#2C5877')};
+  }
 `;
 
 const SubmitButton = ({ go, btnName, ...props }) => {
   return (
-    <Link to={go}>
-      <MakeBtn {...props}>{btnName}</MakeBtn>
-    </Link>
+    <MakeBtn {...props}>
+      <Link className="a-style" to={go} color={props.color}>
+        {btnName}
+      </Link>
+    </MakeBtn>
   );
 };
 

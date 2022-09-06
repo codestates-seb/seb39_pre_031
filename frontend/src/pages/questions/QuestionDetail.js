@@ -44,12 +44,9 @@ const QuestionDetail = () => {
   const [datas, setDatas] = useState({});
   const { questionId } = useParams();
 
-  console.log(questionId);
-  
   const getDetailQue = async (questionId) => {
     try {
       const data = await getDetailQueApi(questionId);
-      console.log(data);
       setDatas(data.data.result);
     } catch (error) {
       console.log(error);
