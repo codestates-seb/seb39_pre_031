@@ -93,11 +93,6 @@ export const voteDownAnsApi = async (id) => {
   return Axios.patch(url);
 };
 
-export const getDetailQueApi = async (id) => {
-  const url = `/question/${id}`;
-  return Axios.get(url);
-};
-
 export const postAskQueApi = async (body) => {
   const url = '/question/ask';
   return Axios.post(url, body);
