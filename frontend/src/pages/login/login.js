@@ -1,9 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/user';
-
 
 import styled from 'styled-components';
 import InputForm from '../../common/InputForm';

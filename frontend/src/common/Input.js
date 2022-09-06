@@ -19,8 +19,8 @@ const InputContainer = styled.input`
   }
 `;
 
-const Input = ({ placeholder, ...props }) => {
-  return <InputContainer {...props} placeholder={placeholder} />;
+const Input = (props) => {
+  return <InputContainer {...props} />;
 };
 
 export default Input;

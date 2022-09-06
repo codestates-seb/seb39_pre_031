@@ -38,7 +38,7 @@ const AnswerForm = styled.form`
 
 const Answer = ({ questionId }) => {
   const bodyRef = useRef();
-  const cookie = getCookie('accessToken');
+  const cookie = getCookie('user');
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
@@ -48,9 +48,18 @@ const Answer = ({ questionId }) => {
       user_id: cookie.userId,
       body: bodyRef.current?.getInstance().getMarkdown(),
     };
+    const authorization = cookie.authorization;
+
+    const header = {
+      headers: {
+        Authorization: authorization,
+      },
+    };
+
     console.log(answer);
     try {
-      await answerApi(answer);
+      const data = await answerApi(answer, header);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
